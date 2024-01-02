@@ -2,7 +2,7 @@
 const ErrorPage = () => {
     return (
         <div>
-            <section className="relative z-10 bg-gray-800 py-[300px]">
+            <section className="relative z-10 bg-[#25476a] py-[300px]">
         <div className="container">
           <div className="flex -mx-4">
             <div className="w-full px-4">

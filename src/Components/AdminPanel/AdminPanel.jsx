@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { RiMenu2Line } from "react-icons/ri";
-import { ProfileMenu } from "../Shared/ProfileMenu";
-import { NotificationsMenu } from "../Shared/NotificationsMenu";
-import { MessagesMenu } from "../Shared/MessagesMenu";
+import { ProfileMenu } from "../Shared/SearchPanel/ProfileMenu";
+import { NotificationsMenu } from "../Shared/SearchPanel/NotificationsMenu";
+import { MessagesMenu } from "../Shared/SearchPanel/MessagesMenu";
 import { FaSearch } from "react-icons/fa";
 import NumberStatus from "../Shared/NumberStatus";
+import ChartOne from "../Shared/ChartFiles/ChartOne";
+import ChartTwo from "../Shared/ChartFiles/ChartTwo";
+import DpTable from "../Shared/DpTable";
 
 const AdminPanel = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -24,10 +27,10 @@ const AdminPanel = () => {
       >
         {isSidebarOpen ? <FaArrowAltCircleLeft /> : <RiMenu2Line />}
       </button>
-      {/* Sidebar */}
+      {/*------------------- Sidebar -----------------------*/}
       <nav
         className={`z-50 bg-[#25476a] text-white w-[280px] min-h-screen ${
-          isSidebarOpen ? "block" : "hidden md:block"
+          isSidebarOpen ? "block" : "lg:block md:hidden sm: hidden"
         }`}
       >
         {/* Sidebar content goes here */}
@@ -47,7 +50,7 @@ const AdminPanel = () => {
         </div>
       </nav>
 
-      {/* Main content */}
+      {/* ----------------Main content -------------------*/}
       <div className="flex-1 flex flex-col overflow-hidden bg-[#25476a]">
         <div className="flex justify-between items-center ms-3 me-3">
           {/* search input  secttion  */}
@@ -55,15 +58,15 @@ const AdminPanel = () => {
             <input
               type="text"
               placeholder="Type here"
-              className="sm: hidden md:hidden lg:flex input border pt-1 pb-1 border-blue-gray-900 rounded-xl w-[500px] "
+              className="sm: hidden md:hidden lg:flex input border pt-1 pb-1 border-blue-gray-900 rounded-md w-[500px] "
             />
-            {/* input search button  */}
-            <button className="sm: hidden md:hidden lg:flex items-center justify-center w-[30px] h-[30px] ">
+            {/* search button  */}
+            <button className=" ms-2 sm: hidden md:hidden lg:flex items-center justify-center w-[30px] h-[30px] ">
               {" "}
               <FaSearch className="text-white hover:text-blue-500" />{" "}
             </button>
           </div>
-          {/* menu section  */}
+          {/*-------------------- menu section---------------  */}
           <div className="flex items-center gap-3 pt-3 pb-3">
             {/* Message menu Section  */}
             <MessagesMenu />
@@ -76,9 +79,12 @@ const AdminPanel = () => {
 
         {/* Page content */}
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
-
-<NumberStatus/>
-
+          <NumberStatus />
+          <div className="grid lg:grid-cols-2 md:grid-cols-1 sm: grid-cols-1 mt-10">
+            <ChartOne />
+            <ChartTwo />
+          </div>
+          <DpTable/>
         </main>
       </div>
     </div>

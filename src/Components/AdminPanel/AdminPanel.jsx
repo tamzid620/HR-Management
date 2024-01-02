@@ -9,6 +9,7 @@ import NumberStatus from "../Shared/NumberStatus";
 import ChartOne from "../Shared/ChartFiles/ChartOne";
 import ChartTwo from "../Shared/ChartFiles/ChartTwo";
 import DpTable from "../Shared/DpTable";
+import NavList from "../Shared/NavList";
 
 const AdminPanel = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -34,7 +35,6 @@ const AdminPanel = () => {
         }`}
       >
         {/* Sidebar content goes here */}
-        {/* For example, you can include navigation links */}
         <div className="p-4 flex">
           <p className="text-2xl font-bold">Admin Panel</p>
           {/* nav close button  */}
@@ -46,8 +46,9 @@ const AdminPanel = () => {
               {isSidebarOpen ? <FaArrowAltCircleLeft /> : "Open"}
             </button>
           </p>
-          {/* Add your navigation links here */}
         </div>
+        {/* Navlist  */}
+        <NavList/>
       </nav>
 
       {/* ----------------Main content -------------------*/}
@@ -58,7 +59,7 @@ const AdminPanel = () => {
             <input
               type="text"
               placeholder="Type here"
-              className="sm: hidden md:hidden lg:flex input border pt-1 pb-1 border-blue-gray-900 rounded-md w-[500px] "
+              className="sm: hidden md:hidden lg:flex input border pt-1 pb-1 border-blue-gray-900 rounded-md w-[600px] "
             />
             {/* search button  */}
             <button className=" ms-2 sm: hidden md:hidden lg:flex items-center justify-center w-[30px] h-[30px] ">

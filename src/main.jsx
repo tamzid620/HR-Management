@@ -5,18 +5,29 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AdminPanel from "./Components/AdminPanel/AdminPanel";
 import ErrorPage from "./Components/ErrorPage/ErrorPage";
 import { ThemeProvider } from "@material-tailwind/react";
+import AdminLogin from "./Components/Pages/Login/AdminLogin";
+import Layout from "./Components/Layout/Layout";
+import Home from "./Components/Pages/Home/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AdminPanel/>,
+    element: <Layout/>,
     errorElement: <ErrorPage />,
-    // children: [
-    //   {
-    //     path: "contacts/:contactId",
-    //     element: </>,
-    //   },
-    // ],
+    children: [
+      {
+        path: "/",
+        element: <Home/>
+      },
+      {
+        path: "/adminLogin",
+        element: <AdminLogin/>
+      },
+      {
+        path: "/dp",
+        element: <AdminPanel/>
+      },
+    ],
   },
 ]);
 

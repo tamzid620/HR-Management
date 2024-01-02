@@ -5,7 +5,8 @@ const DpTable = () => {
 
 
   return (
-    <div className="my-10 mx-5 rounded-md shadow-md shadow-gray-500  bg-white">
+    <div className="my-10 mx-5 rounded-md shadow-md shadow-gray-500  bg-white pb-5">
+        <h1 className="pt-5 ms-3 font-bold text-lg">Reports</h1>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

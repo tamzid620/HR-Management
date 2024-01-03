@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { RiMenu2Line } from "react-icons/ri";
 import { ProfileMenu } from "../Shared/SearchPanel/ProfileMenu";
@@ -10,6 +10,9 @@ import ChartOne from "../Shared/ChartFiles/ChartOne";
 import ChartTwo from "../Shared/ChartFiles/ChartTwo";
 import DpTable from "../Shared/DpTable";
 import NavList from "../Shared/NavList";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const AdminPanel = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -18,6 +21,36 @@ const AdminPanel = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+   const userRole=  localStorage.getItem("user"); 
+
+    if (!token) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "You have to Login first",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/adminlogin");
+    } 
+    else if (userRole.role ===  '1') {
+      navigate("/dp");
+    } 
+    else if (userRole.role ===  '2') {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "You are not eligible for this page",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/adminlogin");
+    } 
+  }, [navigate]);
 
   return (
     <div className="flex h-screen bg-gray-100">

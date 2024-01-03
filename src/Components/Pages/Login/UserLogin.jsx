@@ -7,7 +7,7 @@ import showPasswordIcon from "../../../../public/icons/show-password-icon-19.jpg
 import hidePasswordIcon from "../../../../public/icons/show-password-icon-18.jpg";
 import { IoPersonCircleSharp } from "react-icons/io5";
 
-const AdminLogin = () => {
+const UserLogin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,9 +47,9 @@ const AdminLogin = () => {
       if (res.data.status === "201") {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data));
-        if (res.data.user.role === '1') {
-        navigate("/dp");
-        } else if (res.data.user.role === '2') {
+        if (res.data.user.role === 1) {
+          navigate("/dp");
+        } else if (res.data.user.role === 2) {
           navigate("/deliverymanPanel");
         }
         Swal.fire({
@@ -92,12 +92,11 @@ const AdminLogin = () => {
       <div className="md:hidden lg:flex w-full relative flex justify-center">
         {/* form section  */}
         <form
-          
           onSubmit={handleSubmit}
           className="hidden bg-[#25476a] drop-shadow-2xl rounded-md px-8 pt-6 pb-8 mb-4 "
         >
           <h1 className="font-semibold text-white text-center mb-3">
-            Management Login Only
+            Please Login Here
           </h1>
           {/* email field  */}
           <div className="mb-4">
@@ -187,7 +186,7 @@ const AdminLogin = () => {
             className="relative w-[380px] bg-gray-300 drop-shadow-2xl rounded-md px-8 pt-6 pb-8 mb-4 "
           >
             <h1 className="font-semibold text-[#25476a] text-center mt-8 mb-3">
-            Management Login Only
+              Please Login Here
             </h1>
             {/* email field  */}
             <div className="mb-4">
@@ -258,6 +257,21 @@ const AdminLogin = () => {
                 Login
               </button>
             </div>
+            {/* extra paragraph -------------  */}
+
+            <p className="mt-3 text-sm">
+              If you are a student and do not have an account yet, please
+              <div className="flex items-center">
+                register here :{" "}
+                <button className="bg-[#25476a] hover:bg-gray-500 text-white hover:text-black  font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
+                  <a href="/userSignup">Signup</a>
+                </button>{" "}
+                <span className="ms-2 me-2">or</span>
+                <button className="bg-[#25476a] hover:bg-gray-500 text-white hover:text-black  font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
+                  <a href="/">return home</a>
+                </button>
+              </div>
+            </p>
           </form>
         </div>
       </div>
@@ -265,4 +279,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+export default UserLogin;

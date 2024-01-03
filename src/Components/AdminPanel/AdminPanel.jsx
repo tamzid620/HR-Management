@@ -12,7 +12,6 @@ import DpTable from "../Shared/DpTable";
 import NavList from "../Shared/NavList";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import axios from "axios";
 
 const AdminPanel = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

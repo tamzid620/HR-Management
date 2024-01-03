@@ -10,6 +10,16 @@ import Layout from "./Components/Layout/Layout";
 import Home from "./Components/Pages/Home/Home";
 import UserLogin from "./Components/Pages/Login/UserLogin";
 import UserSignUp from "./Components/Pages/Login/UserSignUp";
+import AdminContracts from "./Components/Shared/DashBoard/LeadMangement/AdminContracts";
+import AdminLeeds from "./Components/Shared/DashBoard/LeadMangement/AdminLeeds";
+import AdminSubLeeds from "./Components/Shared/DashBoard/LeadMangement/AdminSubLeeds";
+import AdminEstimates from "./Components/Shared/DashBoard/Finance/AdminEstimates";
+import AdminInvoice from "./Components/Shared/DashBoard/Finance/AdminInvoice";
+import AdminPayment from "./Components/Shared/DashBoard/Finance/AdminPayment";
+import AdminCreditNote from "./Components/Shared/DashBoard/Finance/AdminCreditNote";
+import AdminTickets from "./Components/Shared/DashBoard/Tickets/AdminTickets";
+import AdminMessages from "./Components/Shared/DashBoard/Message/AdminMessages";
+import AdminNoticeBoard from "./Components/Shared/DashBoard/NoticeBoard/AdminNoticeBoard";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +31,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home/>
       },
+// user section --------------------
       {
         path: "/userLogin",
         element: <UserLogin/>
@@ -29,6 +40,7 @@ const router = createBrowserRouter([
         path: "/userSignup",
         element: <UserSignUp/>
       },
+// Admin Section ----------------------------
       {
         path: "/adminLogin",
         element: <AdminLogin/>
@@ -37,6 +49,53 @@ const router = createBrowserRouter([
         path: "/dp",
         element: <AdminPanel/>
       },
+// AdminDashBoard section --------------------
+// Lead Management --------------------
+      {
+        path: "/AdminContracts",
+        element: <AdminContracts/>
+      },
+      {
+        path: "/AdminLeeds",
+        element: <AdminLeeds/>
+      },
+      {
+        path: "/AdminSubLeeds",
+        element: <AdminSubLeeds/>
+      },
+// Finance --------------------      
+      {
+        path: "/AdminEstimates",
+        element: <AdminEstimates/>
+      },
+      {
+        path: "/AdminInvoice",
+        element: <AdminInvoice/>
+      },
+      {
+        path: "/AdminPayment",
+        element: <AdminPayment/>
+      },
+      {
+        path: "/AdminCreditNote",
+        element: <AdminCreditNote/>
+      },
+// Tickets -------------------- 
+      {
+        path: "/AdminTickets",
+        element: <AdminTickets/>
+      },
+// Message -------------------- 
+      {
+        path: "/AdminMessage",
+        element: <AdminMessages/>
+      },
+// NOtice Board -------------------- 
+      {
+        path: "/AdminNoticeBoard",
+        element: <AdminNoticeBoard/>
+      },
+
     ],
   },
 ]);

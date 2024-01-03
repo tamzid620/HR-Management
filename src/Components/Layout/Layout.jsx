@@ -7,7 +7,27 @@ const Layout = () => {
 
 const location = useLocation();
 const noHeaderFooter  = 
-location.pathname.includes('')
+// user Section -----------
+location.pathname.includes('userLogin') ||
+location.pathname.includes('userSignup') ||
+// Admin Section ----------
+location.pathname.includes('adminLogin') ||
+location.pathname.includes('dp') ||
+// Lead Management ----------
+location.pathname.includes('AdminContracts') ||
+location.pathname.includes('AdminLeeds') ||
+location.pathname.includes('AdminSubLeeds') ||
+// Finance --------------------
+location.pathname.includes('AdminEstimates') ||
+location.pathname.includes('AdminInvoice') ||
+location.pathname.includes('AdminPayment') ||
+location.pathname.includes('AdminCreditNote') ||
+// Tickets------------------
+location.pathname.includes('AdminTickets') ||
+// Message------------------
+location.pathname.includes('AdminMessage') ||
+// Notice Board------------------
+location.pathname.includes('AdminNoticeBoard') 
 
     return (
         <div>

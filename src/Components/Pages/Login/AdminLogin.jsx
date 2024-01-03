@@ -88,7 +88,7 @@ const AdminLogin = () => {
       style={backgroundStyles}
       className="relative flex items-center justify-center min-h-screen"
     >
-      <div className="absolute inset-0 bg-black opacity-30" />
+      <div className="absolute inset-0 bg-black opacity-20" />
       {/* transparent  div  */}
       <div className="md:hidden lg:flex w-full relative flex justify-center">
         {/* form section  */}

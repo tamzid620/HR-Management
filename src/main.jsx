@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         path: "/dp",
         element: <AdminPanel/>
       },
-// AdminDashBoard section --------------------
+// AdminDashBoard section --------------------------------------------------------
 // Lead Management --------------------
       {
         path: "/AdminContracts",

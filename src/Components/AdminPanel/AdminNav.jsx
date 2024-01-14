@@ -28,15 +28,15 @@ const AdminNav = () => {
       >
         {/* Sidebar content goes here */}
         <div className="p-4 flex">
-          <p className="text-2xl font-bold">Admin Panel</p>
+          <p className="text-2xl font-bold lg:mt-0 md:mt-10 sm: mt-10">Admin Panel</p>
           {/* nav close button  */}
           <p>
-            <button
+            {/* <button
               className="ms-[50px] mt-1 z-10 lg:hidden md:flex fixed p-2 bg-gray-800 text-white rounded-full"
               onClick={toggleSidebar}
             >
               {isSidebarOpen ? <FaArrowAltCircleLeft /> : "Open"}
-            </button>
+            </button> */}
           </p>
         </div>
         {/* Navlist  */}

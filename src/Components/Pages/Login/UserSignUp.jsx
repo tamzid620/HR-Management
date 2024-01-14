@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import showPasswordIcon from "../../../../public/icons/show-password-icon-19.jpg";
 import hidePasswordIcon from "../../../../public/icons/show-password-icon-18.jpg";
-import { IoPersonCircleSharp } from "react-icons/io5";
+
 
 const UserSignUp = () => {
   const navigate = useNavigate();
@@ -43,17 +43,6 @@ const UserSignUp = () => {
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
-    // const image = e.target.files[0];
-    // if (image) {
-    //   console.log("Selected Image:", image)
-    //   const reader = new FileReader();
-
-    //   reader.onload = (e) => {
-    //     const imagePreviewURL = e.target.result;
-    //     setImage(imagePreviewURL);
-    //   };
-    //   reader.readAsDataURL(image);
-    // }
   };
 
   const handlephoneNoChange = (e) => {

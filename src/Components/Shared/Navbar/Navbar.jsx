@@ -46,6 +46,10 @@ const handleourServiceMouseEnter = () => {
           px-4
           text-lg text-gray-700
           bg-white
+          shadow-lg
+          shadow-gray-800
+          fixed
+          z-10
         "
       >
         <div>
@@ -122,7 +126,6 @@ const handleourServiceMouseEnter = () => {
         </svg>
 
         <div
-          //   className="hidden w-full md:flex md:items-center md:w-auto"
           className={`${
             menuOpen ? "block" : "hidden"
           } w-full md:flex md:items-center md:w-auto`}

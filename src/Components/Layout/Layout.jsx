@@ -31,7 +31,7 @@ location.pathname.includes('AdminNoticeBoard')
 
     return (
         <div>
-            {noHeaderFooter || <Navbar/>} 
+            {noHeaderFooter || <Navbar />} 
             <Outlet/>
             {noHeaderFooter || <Footer/>}
         </div>

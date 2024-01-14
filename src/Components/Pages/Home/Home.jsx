@@ -1,3 +1,4 @@
+import Banner from "../../Shared/Banner/Banner";
 
 
 const Home = () => {
@@ -18,7 +19,7 @@ const Home = () => {
           <button className="btn bg-purple-500 text-white">AdminLogin</button>
         </Link>
       </div> */}
-
+<Banner/>
     </div>
   );
 };

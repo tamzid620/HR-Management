@@ -1,5 +1,6 @@
 import Banner from "../../Shared/HomeSection/Banner/Banner";
 import HomeSlider from "../../Shared/HomeSection/HomeSlider/HomeSlider";
+import Support from "../../Shared/HomeSection/Support/Support";
 
 
 const Home = () => {
@@ -22,7 +23,7 @@ const Home = () => {
       </div> */}
 <Banner/>
 <HomeSlider/>
-
+<Support/>
     </div>
   );
 };

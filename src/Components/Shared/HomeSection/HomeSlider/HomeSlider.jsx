@@ -40,7 +40,7 @@ const HomeSlider = () => {
   };
 
   return (
-    <div className="my-20 mx-[100px]">
+    <div className="my-20 lg:mx-[100px] md:mx-[50px] sm: mx-[50px]">
       <Slider {...settings}>
           <div className="flex items-center justify-center border border-gray-300 mx-3 ">
             <div className="flex justify-center"><img className=" w-[200px] h-[200px] p-5" src={photo1} alt="" /></div>

@@ -1,12 +1,10 @@
-import Banner from "../../Shared/HomeSection/Banner/Banner";
+import HomeBanner from "../../Shared/HomeSection/HomeBanner/HomeBanner";
+import HomeCounter from "../../Shared/HomeSection/HomeCounter/HomeCounter";
 import HomeSlider from "../../Shared/HomeSection/HomeSlider/HomeSlider";
-import Support from "../../Shared/HomeSection/Support/Support";
-
+import HomeSupport from "../../Shared/HomeSection/HomeSupport/HomeSupport";
+import HomeVIsitOffice from "../../Shared/HomeSection/HomeVIsitOffice/HomeVIsitOffice";
 
 const Home = () => {
-
-
-
   return (
     <div>
       {/* <h1>Home</h1>
@@ -21,9 +19,11 @@ const Home = () => {
           <button className="btn bg-purple-500 text-white">AdminLogin</button>
         </Link>
       </div> */}
-<Banner/>
-<HomeSlider/>
-<Support/>
+      <HomeBanner />
+      <HomeSlider />
+      <HomeSupport />
+      <HomeCounter/>
+      <HomeVIsitOffice/>
     </div>
   );
 };

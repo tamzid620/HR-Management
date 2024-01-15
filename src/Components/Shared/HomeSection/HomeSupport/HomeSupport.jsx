@@ -1,6 +1,6 @@
 import { FaGraduationCap ,FaBookReader,FaBusinessTime,FaUserCheck ,FaTicketAlt ,FaUserTie} from "react-icons/fa";
 
-const Support = () => {
+const HomeSupport = () => {
     return (
         <div className="my-20">
                 <h1 className="flex justify-center ">WE OFFER SUPPORT</h1>
@@ -83,4 +83,4 @@ const Support = () => {
     );
 };
 
-export default Support;
+export default HomeSupport;

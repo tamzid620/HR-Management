@@ -1,5 +1,5 @@
-// import homeBanner from '../../../../public/images/HomeBanner.jpg'
-import homeBanner1 from "../../../../public/images/pxfuel.jpg";
+
+import homeBanner1 from "../../../../../public/images/pxfuel.jpg";
 
 const Banner = () => {
 

@@ -1,4 +1,5 @@
-import Banner from "../../Shared/Banner/Banner";
+import Banner from "../../Shared/HomeSection/Banner/Banner";
+import HomeSlider from "../../Shared/HomeSection/HomeSlider/HomeSlider";
 
 
 const Home = () => {
@@ -20,6 +21,8 @@ const Home = () => {
         </Link>
       </div> */}
 <Banner/>
+<HomeSlider/>
+
     </div>
   );
 };

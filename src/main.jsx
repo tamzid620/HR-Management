@@ -21,6 +21,7 @@ import AdminTickets from "./Components/Shared/DashBoard/Tickets/AdminTickets";
 import AdminMessages from "./Components/Shared/DashBoard/Message/AdminMessages";
 import AdminNoticeBoard from "./Components/Shared/DashBoard/NoticeBoard/AdminNoticeBoard";
 import EnterOTP from "./Components/Pages/EnterOTP/EnterOTP";
+import ConfirmPhoneNo from "./Components/Pages/ConfirmPhoneNo/ConfirmPhoneNo";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/userSignup",
         element: <UserSignUp/>
+      },
+      {
+        path: "/confirmPhoneNo",
+        element: <ConfirmPhoneNo/>
       },
       {
         path: "/enterOtp",

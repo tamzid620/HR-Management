@@ -4,8 +4,11 @@ import photo2 from "../../../../../public/images/oxford2.jpg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const HomeSlider = () => {
+  Aos.init();
   const settings = {
     dots: true,
     infinite: true,
@@ -40,7 +43,10 @@ const HomeSlider = () => {
   };
 
   return (
-    <div className="my-20 lg:mx-[100px] md:mx-[50px] sm: mx-[50px]">
+    <div 
+    data-aos="fade-down"
+    data-aos-duration="2000" 
+     className="my-20 lg:mx-[100px] md:mx-[50px] sm: mx-[50px]">
       <Slider {...settings}>
           <div className="flex items-center justify-center border border-gray-300 mx-3 ">
             <div className="flex justify-center"><img className=" w-[200px] h-[200px] p-5" src={photo1} alt="" /></div>

@@ -1,12 +1,18 @@
 import { FaGraduationCap ,FaBookReader,FaBusinessTime,FaUserCheck ,FaTicketAlt ,FaUserTie} from "react-icons/fa";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const HomeSupport = () => {
+    Aos.init();
     return (
         <div className="my-20">
                 <h1 className="flex justify-center ">WE OFFER SUPPORT</h1>
                 <p className="flex justify-center font-bold text-3xl">How We Can Help You?</p>
                 {/* support parent div  */}
-            <div className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 sm: grid-cols-1 gap-5 lg:mx-20">
+            <div 
+            data-aos="fade-down"
+            data-aos-duration="2000" 
+             className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 sm: grid-cols-1 gap-5 lg:mx-20">
                 {/* STUDENT VISA div  ------------------- */}
             <div className="flex justify-center">
                 <div className="rounded-tl-3xl w-[350px] h-[350px] bg-[#25476a] text-white px-3 leading-7 hover:shadow-lg hover:shadow-gray-500">

@@ -1,9 +1,17 @@
 import officePhoto from "../../../../../public/images/officePhoto.jpg";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const HomeVIsitOffice = () => {
+  Aos.init();
+
   return (
     <div className="my-20 mx-20">
-      <div className="grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1 gap-5">
+      <div
+        data-aos="fade-down"
+        data-aos-duration="2000"
+        className="grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1 gap-5"
+      >
         {/* information section  */}
         <div className="flex justify-center items-center">
           <div>
@@ -33,8 +41,8 @@ const HomeVIsitOffice = () => {
         </div>
         {/* office picture section  */}
         <div className="flex justify-center items-center">
-                    <img className='w-[450px]' src={officePhoto} alt="" />
-                </div>
+          <img className="w-[450px]" src={officePhoto} alt="" />
+        </div>
       </div>
     </div>
   );

@@ -1,18 +1,7 @@
-import { useEffect, useState } from "react";
 
 
 const EnterOTP = () => {
 
-    const [phoneNo, setPhoneNo] = useState('');
-
-useEffect(() => {
-
-    const storedPhoneNo = localStorage.getItem('phoneNo');
-
-    if (storedPhoneNo) {
-      setPhoneNo(storedPhoneNo);
-    }
-  }, []);
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -23,11 +12,10 @@ useEffect(() => {
           <input
             required
             className="shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
-            
+            placeholder="Enter Phone Number"
             type="text"
             name="phoneNo"
             id="phoneNo"
-            value={phoneNo}
             readOnly
           />
         </div>

@@ -11,6 +11,7 @@ const noHeaderFooter  =
 location.pathname.includes('userLogin') ||
 location.pathname.includes('userSignup') ||
 // OTP Section ------------------
+location.pathname.includes('confirmPhoneNo') ||
 location.pathname.includes('enterOtp') ||
 // Admin Section ----------
 location.pathname.includes('adminLogin') ||

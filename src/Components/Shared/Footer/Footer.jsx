@@ -2,10 +2,11 @@ import footerimg from "../../../../public/images/footer_logo.png";
 import faceBookLogo from "../../../../public/icons/Facebook_Logo.png";
 import LinkdinLogo from "../../../../public/icons/Linkdin_logo.png";
 import YoutubeLogo from "../../../../public/icons/Youtube_logo.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div>
+    <div className="">
       <div
         style={{ fontFamily: "Roboto, sans-serif" }}
         className="bg-[#25476a] text-white grid lg:grid-cols-4 md:grid-cols-2 sm: grid-cols-1 gap-10 mx-auto p-8"
@@ -65,6 +66,8 @@ const Footer = () => {
           <p>+8801569569523</p>
         </div>
       </div>
+      <p className="flex justify-center py-2 uppercase">© 2024 LoremIpsum. All rights reserved. Developed by
+      <span className="ms-1 hover:text-[#539ce6]"><Link to="https://marketien.online/" target="_blank">Marketien</Link></span></p>
     </div>
   );
 };

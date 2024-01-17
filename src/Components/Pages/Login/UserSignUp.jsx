@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import showPasswordIcon from "../../../../public/icons/show-password-icon-19.jpg";
 import hidePasswordIcon from "../../../../public/icons/show-password-icon-18.jpg";
 
-
 const UserSignUp = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -16,7 +15,7 @@ const UserSignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [image, setImage] = useState("");
-  const [phoneNo, setphoneNo] = useState("");
+  const [phoneNo, setphoneNo] = useState("+880");
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -46,7 +45,11 @@ const UserSignUp = () => {
   };
 
   const handlephoneNoChange = (e) => {
-    setphoneNo(e.target.value);
+    // setphoneNo(e.target.value);
+    const inputValue = e.target.value;
+    if (/^\+880\d*$/.test(inputValue) || /^\d*$/.test(inputValue)) {
+      setphoneNo(inputValue);
+    }
   };
 
   // handle button section ----------------
@@ -67,6 +70,15 @@ const UserSignUp = () => {
     const headers = {
       "Content-Type": "multipart/form-data",
     };
+
+    // data for localStorage --------
+    localStorage.setItem("name", name);
+    localStorage.setItem("fatherName", fatherName);
+    localStorage.setItem("motherName", motherName);
+    localStorage.setItem("birthDate", birthDate);
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
+    localStorage.setItem("phoneNo", phoneNo);
 
     axios
       .post("https://backend.ap.loclx.io/api/student-reg", data, {
@@ -95,6 +107,10 @@ const UserSignUp = () => {
     // setphoneNo('');
     // setImage('');
   };
+
+  // data for localStorage --------
+  // const localStorageData = [name, fatherName, motherName, birthDate,email, password, phoneNo, image]
+  // localStorage.setItem("registerData", JSON.stringify(localStorageData));
 
   const backgroundStyles = {
     backgroundImage: `url(${userloginbanner})`,
@@ -349,7 +365,7 @@ const UserSignUp = () => {
                   required
                   className="shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="Your Phone Number"
-                  type="number"
+                  type="text"
                   name="phoneNo"
                   id="phoneNo"
                   value={phoneNo}
@@ -433,15 +449,15 @@ const UserSignUp = () => {
               />
             </div>
 
-{/* submit button div  */}
-<div className="flex justify-center">
-            <button
-              className=" bg-[#25476a] hover:bg-gray-500 text-white text-xl hover:text-black font-bold py-1.5 px-4 rounded focus:outline-none focus:shadow-outline  mt-3"
-              type="submit"
-            >
-              Submit
-            </button>
-</div>
+            {/* submit button div  */}
+            <div className="flex justify-center">
+              <button
+                className=" bg-[#25476a] hover:bg-gray-500 text-white text-xl hover:text-black font-bold py-1.5 px-4 rounded focus:outline-none focus:shadow-outline  mt-3"
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
 
             {/* extra paragraph -------------  */}
 

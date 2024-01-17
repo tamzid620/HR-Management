@@ -20,6 +20,7 @@ import AdminCreditNote from "./Components/Shared/DashBoard/Finance/AdminCreditNo
 import AdminTickets from "./Components/Shared/DashBoard/Tickets/AdminTickets";
 import AdminMessages from "./Components/Shared/DashBoard/Message/AdminMessages";
 import AdminNoticeBoard from "./Components/Shared/DashBoard/NoticeBoard/AdminNoticeBoard";
+import EnterOTP from "./Components/Pages/EnterOTP/EnterOTP";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/userSignup",
         element: <UserSignUp/>
+      },
+      {
+        path: "/enterOtp",
+        element: <EnterOTP/>
       },
 // Admin Section ----------------------------
       {

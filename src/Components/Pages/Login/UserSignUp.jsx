@@ -2,7 +2,7 @@ import { useState } from "react";
 import userloginbanner from "../../../../public/images/loginBackground.jpg";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import showPasswordIcon from "../../../../public/icons/show-password-icon-19.jpg";
 import hidePasswordIcon from "../../../../public/icons/show-password-icon-18.jpg";
 
@@ -451,12 +451,14 @@ const UserSignUp = () => {
 
             {/* submit button div  */}
             <div className="flex justify-center">
+              <Link to="/confirmPhoneNo">
               <button
                 className=" bg-[#25476a] hover:bg-gray-500 text-white text-xl hover:text-black font-bold py-1.5 px-4 rounded focus:outline-none focus:shadow-outline  mt-3"
                 type="submit"
               >
                 Submit
               </button>
+              </Link>
             </div>
 
             {/* extra paragraph -------------  */}

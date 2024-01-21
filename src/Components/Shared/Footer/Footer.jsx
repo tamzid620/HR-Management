@@ -66,8 +66,8 @@ const Footer = () => {
           <p>+8801569569523</p>
         </div>
       </div>
-      <p className="flex justify-center py-2 uppercase">© 2024 LoremIpsum. All rights reserved. Developed by
-      <span className="ms-1 hover:text-[#539ce6]"><Link to="https://marketien.online/" target="_blank">Marketien</Link></span></p>
+      <p className="flex justify-center py-2 uppercase text-xs">© 2024 LoremIpsum. All rights reserved by
+      <span className="ms-1 hover:text-[#539ce6]"><Link to="https://marketien.online/" target="_blank"> Marketien</Link></span></p>
     </div>
   );
 };

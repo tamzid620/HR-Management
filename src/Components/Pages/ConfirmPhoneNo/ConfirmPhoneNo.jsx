@@ -37,8 +37,8 @@ useEffect(() => {
               value={phoneNo}
             />
           </div>
-          {/* OTP Input  */}
-          <div>
+          {/* Email Input  */}
+          <div hidden>
             <label htmlFor="otp">Email:</label>
             <br />
             <input

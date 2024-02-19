@@ -7,6 +7,7 @@ import "aos/dist/aos.css";
 import { useEffect, useRef, useState } from "react";
 import { Element } from "react-scroll";
 
+
 const HomeCounter = () => {
 
   const [countersVisible, setCountersVisible] = useState(false);

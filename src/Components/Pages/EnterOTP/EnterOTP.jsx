@@ -1,7 +1,22 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const EnterOTP = () => {
+  const navigate = useNavigate();
+  const [phoneNo, setPhoneNo] = useState("");
 
+
+  useEffect(() => {
+    const storedPhoneNo = localStorage.getItem("phoneNo");
+    const storedEmail = localStorage.getItem("email");
+    if (!storedPhoneNo || !storedEmail) {
+      navigate("/userSignup");
+      return;
+    }else{
+      setPhoneNo(storedPhoneNo);
+    }
+  }, [navigate]);
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -16,6 +31,7 @@ const EnterOTP = () => {
             type="text"
             name="phoneNo"
             id="phoneNo"
+            value={phoneNo}
             readOnly
           />
         </div>

@@ -1,11 +1,11 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 
 const ConfirmPhoneNo = () => {
   const navigate = useNavigate();
   const [phoneNo, setPhoneNo] = useState("");
-  const [email, setEmail] = useState("");
+  const [generateOtp, setGenerateOtp] = useState("");
 
   useEffect(() => {
     const storedPhoneNo = localStorage.getItem("phoneNo");
@@ -15,7 +15,6 @@ const ConfirmPhoneNo = () => {
       return;
     }else{
       setPhoneNo(storedPhoneNo);
-      setEmail(storedEmail);
     }
   }, [navigate]);
 
@@ -27,6 +26,21 @@ const ConfirmPhoneNo = () => {
       localStorage.setItem("phoneNo", inputValue);
     }
   };
+
+  const handleSubmit = () => {
+    axios
+      .post("https://backend.ap.loclx.io/api/otp-generate")
+      .then((res) => {
+        const data = res.data;
+        setGenerateOtp(data);
+        console.log(data);
+        console.log("button clicked"); 
+      })
+      .catch((error) => {
+        console.error("Error fetching OTP:", error); 
+      });
+  };
+
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -44,30 +58,16 @@ const ConfirmPhoneNo = () => {
             onChange={handlePhoneNoChange}
           />
         </div>
-        {/* Email Input  */}
-        <div hidden>
-          <label htmlFor="otp">Email:</label>
-          <br />
-          <input
-            required
-            className="shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5"
-            placeholder="Your Email"
-            type="text"
-            name="email"
-            id="email"
-            value={email}
-          />
-        </div>
         {/* submit button div  */}
         <div className="flex justify-center">
-          <Link to="/enterOtp">
+          {/* <Link to="/enterOtp"> */}
             <button
               className=" bg-[#25476a] hover:bg-gray-500 text-white text-md hover:text-black py-1 px-2 rounded focus:outline-none focus:shadow-outline  mt-3"
-              type="submit"
+              onClick={handleSubmit}
             >
               Generate OTP
             </button>
-          </Link>
+          {/* </Link> */}
         </div>
       </div>
      

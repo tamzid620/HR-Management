@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import userloginbanner from "../../../../public/images/loginBackground.jpg";
-import axios from "axios";
 import Swal from "sweetalert2";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import showPasswordIcon from "../../../../public/icons/show-password-icon-19.jpg";
 import hidePasswordIcon from "../../../../public/icons/show-password-icon-18.jpg";
 
@@ -13,13 +12,30 @@ const UserSignUp = () => {
   const [motherName, setmotherName] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
   const [image, setImage] = useState("");
   const [phoneNo, setphoneNo] = useState("+880");
-  const [showPassword, setShowPassword] = useState(false);
-  const handleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
+  // const [showPassword, setShowPassword] = useState(false);
+
+  // const handleShowPassword = () => {
+  //   setShowPassword(!showPassword);
+  // };
+
+
+  useEffect(() => {
+    const storedPhoneNo = localStorage.getItem("phoneNo");
+    const storedEmail = localStorage.getItem("email");
+    if (!storedPhoneNo || !storedEmail) {
+    
+      Swal.fire({
+        icon: "warning",
+        title: "You need to fillup this form first",
+        showConfirmButton: false,
+        timer: 2500
+      });
+    }
+
+  }, [navigate]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -36,40 +52,39 @@ const UserSignUp = () => {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+  // const handlePasswordChange = (e) => {
+  //   setPassword(e.target.value);
+  // };
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
 
   const handlephoneNoChange = (e) => {
-    // setphoneNo(e.target.value);
-    const inputValue = e.target.value;
-    if (/^\+880\d*$/.test(inputValue) || /^\d*$/.test(inputValue)) {
-      setphoneNo(inputValue);
-    }
+    setphoneNo(e.target.value);
+    // const inputValue = e.target.value;
+    // if (/^\+880\d*$/.test(inputValue) || /^\d*$/.test(inputValue)) {
+    //   setphoneNo(inputValue);}
   };
 
   // handle button section ----------------
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = new FormData();
-    data.append("name", name);
-    data.append("fatherName", fatherName);
-    data.append("motherName", motherName);
-    data.append("birthDate", birthDate);
-    data.append("email", email);
-    data.append("password", password);
-    data.append("phoneNo", phoneNo);
-    data.append("image", image);
-    console.log(data);
-    console.log("Selected Image:", image);
-    const headers = {
-      "Content-Type": "multipart/form-data",
-    };
+    // const data = new FormData();
+    // data.append("name", name);
+    // data.append("fatherName", fatherName);
+    // data.append("motherName", motherName);
+    // data.append("birthDate", birthDate);
+    // data.append("email", email);
+    // // data.append("password", password);
+    // data.append("phoneNo", phoneNo);
+    // data.append("image", image);
+    // console.log(data);
+    // console.log("Selected Image:", image);
+    // const headers = {
+    //   "Content-Type": "multipart/form-data",
+    // };
 
     // data for localStorage --------
     localStorage.setItem("name", name);
@@ -77,27 +92,10 @@ const UserSignUp = () => {
     localStorage.setItem("motherName", motherName);
     localStorage.setItem("birthDate", birthDate);
     localStorage.setItem("email", email);
-    localStorage.setItem("password", password);
+    // localStorage.setItem("password", password);
     localStorage.setItem("phoneNo", phoneNo);
-
-    axios
-      .post("https://backend.ap.loclx.io/api/student-reg", data, {
-        headers: headers,
-      })
-      .then((res) => {
-        console.log("Data:", res.data);
-        Swal.fire({
-          position: "center",
-          icon: "warning",
-          title: res.data.message,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error);
-      });
+    localStorage.setItem("image", image);
+    navigate("/confirmPhoneNo");
     // setName('');
     // setfatherName('');
     // setmotherName('');
@@ -106,9 +104,10 @@ const UserSignUp = () => {
     // setPassword('');
     // setphoneNo('');
     // setImage('');
-  };
+  }
+  // ---
 
-  // data for localStorage --------
+  // // data for localStorage --------
   // const localStorageData = [name, fatherName, motherName, birthDate,email, password, phoneNo, image]
   // localStorage.setItem("registerData", JSON.stringify(localStorageData));
 
@@ -209,7 +208,7 @@ const UserSignUp = () => {
             </div>
           </div>
 
-          {/* email and password section  */}
+          {/* email section  */}
           <div className="flex gap-2 mb-3">
             <div>
               <label htmlFor="email">Email:</label>
@@ -224,7 +223,8 @@ const UserSignUp = () => {
                 onChange={handleEmailChange}
               />
             </div>
-            <div>
+            {/* password section  */}
+            {/* <div>
               <label htmlFor="password">Password</label>
               <div className="relative">
                 <input
@@ -256,7 +256,7 @@ const UserSignUp = () => {
                   )}
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* picture section  */}
@@ -297,10 +297,10 @@ const UserSignUp = () => {
           </p>
         </form>
       </div>
-      {/* ------------------login div--------------------  */}
+    {/* ------------------Signup div--------------------  */}
       <div
         style={{ minHeight: "100vh" }}
-        className=" w-full  relative flex justify-center items-center "
+        className=" w-full  relative flex justify-center items-center"
       >
         <div>
           {/* form section  */}
@@ -385,13 +385,13 @@ const UserSignUp = () => {
               </div>
             </div>
 
-            {/* email and password section  */}
-            <div className="flex gap-2 mb-3">
+            {/* email section  */}
+            {/* <div className="flex gap-2 mb-3"> */}
               <div>
                 <label htmlFor="email">Email:</label>
                 <input
                   required
-                  className="shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
                   placeholder="Your Email"
                   type="email"
                   name="email"
@@ -400,7 +400,8 @@ const UserSignUp = () => {
                   onChange={handleEmailChange}
                 />
               </div>
-              <div>
+              {/* password section   */}
+              {/* <div>
                 <label htmlFor="password">Password</label>
                 <div className="relative">
                   <input
@@ -432,8 +433,8 @@ const UserSignUp = () => {
                     )}
                   </span>
                 </div>
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
 
             {/* picture section  */}
             <div>
@@ -451,14 +452,14 @@ const UserSignUp = () => {
 
             {/* submit button div  */}
             <div className="flex justify-center">
-              <Link to="/confirmPhoneNo">
+              {/* <Link to="/confirmPhoneNo"> */}
               <button
                 className=" bg-[#25476a] hover:bg-gray-500 text-white text-xl hover:text-black font-bold py-1.5 px-4 rounded focus:outline-none focus:shadow-outline  mt-3"
                 type="submit"
               >
                 Submit
               </button>
-              </Link>
+              {/* </Link> */}
             </div>
 
             {/* extra paragraph -------------  */}
@@ -479,6 +480,7 @@ const UserSignUp = () => {
           </form>
         </div>
       </div>
+
     </div>
   );
 };

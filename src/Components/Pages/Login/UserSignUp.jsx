@@ -13,7 +13,7 @@ const UserSignUp = () => {
   const [birthDate, setBirthDate] = useState("");
   const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
-  const [image, setImage] = useState("");
+  const [file, setFile] = useState("");
   const [phoneNo, setphoneNo] = useState("+880");
   // const [showPassword, setShowPassword] = useState(false);
 
@@ -57,7 +57,7 @@ const UserSignUp = () => {
   // };
 
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+    setFile(e.target.files[0]);
   };
 
   const handlephoneNoChange = (e) => {
@@ -95,7 +95,7 @@ const UserSignUp = () => {
     localStorage.setItem("email", email);
     // localStorage.setItem("password", password);
     localStorage.setItem("phoneNo", phoneNo);
-    localStorage.setItem("image", image);
+    localStorage.setItem("image", file);
     navigate("/confirmPhoneNo");
     // setName('');
     // setfatherName('');
@@ -104,7 +104,7 @@ const UserSignUp = () => {
     // setEmail('');
     // setPassword('');
     // setphoneNo('');
-    // setImage('');
+    // setFile('');
   }
   // ---
 
@@ -453,14 +453,12 @@ const UserSignUp = () => {
 
             {/* submit button div  */}
             <div className="flex justify-center">
-              <Link to="/confirmPhoneNo">
               <button
                 className=" bg-[#25476a] hover:bg-gray-500 text-white text-xl hover:text-black font-bold py-1.5 px-4 rounded focus:outline-none focus:shadow-outline  mt-3"
                 type="submit"
               >
                 Submit
               </button>
-              </Link>
             </div>
 
             {/* extra paragraph -------------  */}

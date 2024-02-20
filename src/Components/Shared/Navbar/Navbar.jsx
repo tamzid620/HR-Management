@@ -233,7 +233,7 @@ const handleourServiceMouseEnter = () => {
                  hover:text-black hover:bg-gray-300 text-white bg-[#25476a] rounded-lg"
                 href="/userLogin"
               >
-                Sign Up
+                Sign In
               </a>
             </li>
             <li>
@@ -241,7 +241,7 @@ const handleourServiceMouseEnter = () => {
                 className="lg:hidden md:flex sm: flex md:p-4 py-2  hover:text-[#539ce6] text-purple-500"
                 href="#"
               >
-                Sign Up
+                Sign In
               </a>
             </li>
           </ul>

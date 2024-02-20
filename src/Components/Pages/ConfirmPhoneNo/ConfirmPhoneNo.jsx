@@ -17,7 +17,7 @@ const ConfirmPhoneNo = () => {
     } else {
       setPhoneNo(storedPhoneNo);
     }
-  }, [navigate]);
+  }, []);
 
   const handlePhoneNoChange = (e) => {
     // setPhoneNo(e.target.value)
@@ -38,22 +38,28 @@ const ConfirmPhoneNo = () => {
       .post("https://backend.ap.loclx.io/api/otp-generate", data)
       .then((res) => {
         const data = res.data;
-        setGenerateOtp(data.message);
-        if (res.data.message === "201") {
-          navigate("/enterOtp");
+        setGenerateOtp(data);
+        if (res.data.status === "201") {
           Swal.fire({
             icon: "success",
-            title: "OTP Sent Successfully",
+            title: res.data.message,
             showConfirmButton: false,
             timer: 2500
           });
-        } else {
-          window.location.reload() ;
+          navigate("/enterOtp");
+        }if (res.data.status === "202"){
+          Swal.fire({
+            icon: "success",
+            title: res.data.message,
+            showConfirmButton: false,
+            timer: 2500
+          });
         }
       })
       .catch((error) => {
         console.error("Error fetching OTP:", error);
       });
+      console.log(generateOtp);
   };
 
   return (

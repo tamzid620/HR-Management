@@ -34,7 +34,7 @@ const AdminPanel = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate("/adminlogin");
+      navigate("/adminLogin");
     } 
   }, [navigate]);
 

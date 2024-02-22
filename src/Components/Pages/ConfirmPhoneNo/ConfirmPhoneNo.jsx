@@ -17,7 +17,7 @@ const ConfirmPhoneNo = () => {
     } else {
       setPhoneNo(storedPhoneNo);
     }
-  }, []);
+  }, [navigate]);
 
   const handlePhoneNoChange = (e) => {
     // setPhoneNo(e.target.value)

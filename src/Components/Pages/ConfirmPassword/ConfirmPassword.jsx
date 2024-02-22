@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import showPasswordIcon from "../../../../public/icons/show-password-icon-19.jpg";
 import hidePasswordIcon from "../../../../public/icons/show-password-icon-18.jpg";
 import axios from "axios";
@@ -6,17 +6,31 @@ import axios from "axios";
 const ConfirmPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword0, setShowPassword0] = useState(false);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [submitState, setSubmitState] = useState("");
-  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("email");
+    if (storedEmail) {
+      setEmail(storedEmail);
+    }
+    const storedName = localStorage.getItem("name");
+    if (storedName) {
+      setName(storedName);
+    }
+}, []);
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
   const handleShowPassword0 = () => {
     setShowPassword0(!showPassword0);
+  };
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   };
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -28,40 +42,53 @@ const ConfirmPassword = () => {
     setConfirmPassword(e.target.value);
   };
 
+  // handle submit ----------------------------------------------------------------
   const handleSubmit = (e) => {
+    console.log("button clicked");
     e.preventDefault();
-    if (password !== confirmpassword) {
-        setError("Passwords do not match");
-        return;
-    }
-    setError("");
 
     const data = new FormData();
+    data.append("name", name);
     data.append("email", email);
-    data.append("confirmpassword", confirmpassword);
+    data.append("confirmPassword", confirmPassword);
 
     axios
-        .post("", data)
-        .then((res) => {
-            const responseData = res.data;
-            setSubmitState(responseData);
-        })
-        .catch((error) => {
-            console.error("Error submitting form:", error);
-        });
-    console.log("email", email, "confirmpassword", confirmpassword);
-    console.log(submitState);
-};
-
+      .post("https://backend.ap.loclx.io/api/student-reg", data)
+      .then((res) => {
+        const responseData = res.data;
+        setSubmitState(responseData);
+      })
+      .catch((error) => {
+        console.error("Error submitting form:", error);
+      });
+  };
+  console.log(submitState);
+  console.log("name",name, "email---",email,"password---",password)
 
   return (
     <div className="flex justify-center items-center h-screen">
       <form onClick={handleSubmit}>
+        {/* Name section  */}
+        <div>
+          <label htmlFor="name">Name:</label>
+          <input
+            required
+            readOnly
+            className="shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
+            placeholder="Your Name"
+            type="name"
+            name="name"
+            id="name"
+            value={name}
+            onChange={handleNameChange}
+          />
+        </div>
         {/* email section  */}
         <div>
           <label htmlFor="email">Email:</label>
           <input
             required
+            readOnly
             className="shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
             placeholder="Your Email"
             type="email"
@@ -107,15 +134,15 @@ const ConfirmPassword = () => {
         </div>
         {/*confirm password section  */}
         <div>
-          <label htmlFor="confirmpassword">Confirm Password:</label>
+          <label htmlFor="confirmPassword">Confirm Password:</label>
           <div className="relative">
             <input
               className="shadow appearance-none border rounded w-full py-1.5 px-3 leading-tight focus:outline-none focus:shadow-outline mb-2"
-              id="confirmpassword"
+              id="confirmPassword"
               type={showPassword0 ? "text" : "password"}
-              name="confirmpassword"
+              name="confirmPassword"
               placeholder="rewrite password"
-              value={confirmpassword}
+              value={confirmPassword}
               onChange={handleConfirmPasswordChange}
               required
             />
@@ -139,8 +166,17 @@ const ConfirmPassword = () => {
             </span>
           </div>
         </div>
-         {/* error message section */}
-         {error && <div className="text-red-500">{error}</div>}
+
+        {/* error message section */}
+        {
+          // passwordMatchErrorVisible &&
+          password === confirmPassword && password !== "" ? (
+            <p className="text-green-500">password matched </p>
+          ) : (
+            <p className="text-red-500">password do not matching </p>
+          )
+        }
+
         {/* submit button div  */}
         <div className="flex justify-center">
           <button

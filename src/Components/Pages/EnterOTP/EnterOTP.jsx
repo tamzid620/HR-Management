@@ -64,6 +64,7 @@ const EnterOTP = () => {
                 showConfirmButton: false,
                 timer: 2500,
               });
+              navigate('/confirmPassword')
             }else{
               Swal.fire({
                 icon: "error",

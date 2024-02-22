@@ -268,7 +268,7 @@ const UserLogin = () => {
                 </button>{" "}
                 <span className="ms-2 me-2">or</span>
                 <button className="bg-[#25476a] hover:bg-gray-500 text-white hover:text-black  font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
-                  <a href="/">return home</a>
+                  <a href="/">Return home</a>
                 </button>
               </div>
             </p>

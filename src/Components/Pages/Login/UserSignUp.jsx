@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import userloginbanner from "../../../../public/images/loginBackground.jpg";
 import Swal from "sweetalert2";
-import {Link, useNavigate } from "react-router-dom";
-import showPasswordIcon from "../../../../public/icons/show-password-icon-19.jpg";
-import hidePasswordIcon from "../../../../public/icons/show-password-icon-18.jpg";
+import { useNavigate } from "react-router-dom";
 
 const UserSignUp = () => {
   const navigate = useNavigate();
@@ -12,14 +10,8 @@ const UserSignUp = () => {
   const [motherName, setmotherName] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  const [file, setFile] = useState("");
   const [phoneNo, setphoneNo] = useState("+880");
-  // const [showPassword, setShowPassword] = useState(false);
 
-  // const handleShowPassword = () => {
-  //   setShowPassword(!showPassword);
-  // };
 
 
   useEffect(() => {
@@ -52,13 +44,6 @@ const UserSignUp = () => {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-  // const handlePasswordChange = (e) => {
-  //   setPassword(e.target.value);
-  // };
-
-  const handleImageChange = (e) => {
-    setFile(e.target.files[0]);
-  };
 
   const handlephoneNoChange = (e) => {
     // setphoneNo(e.target.value);
@@ -72,21 +57,6 @@ const UserSignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // const data = new FormData();
-    // data.append("name", name);
-    // data.append("fatherName", fatherName);
-    // data.append("motherName", motherName);
-    // data.append("birthDate", birthDate);
-    // data.append("email", email);
-    // // data.append("password", password);
-    // data.append("phoneNo", phoneNo);
-    // data.append("image", image);
-    // console.log(data);
-    // console.log("Selected Image:", image);
-    // const headers = {
-    //   "Content-Type": "multipart/form-data",
-    // };
-
     // data for localStorage --------
     localStorage.setItem("name", name);
     localStorage.setItem("fatherName", fatherName);
@@ -95,22 +65,14 @@ const UserSignUp = () => {
     localStorage.setItem("email", email);
     // localStorage.setItem("password", password);
     localStorage.setItem("phoneNo", phoneNo);
-    localStorage.setItem("image", file);
     navigate("/confirmPhoneNo");
-    // setName('');
-    // setfatherName('');
-    // setmotherName('');
-    // setBirthDate('');
-    // setEmail('');
-    // setPassword('');
-    // setphoneNo('');
-    // setFile('');
+    setName('');
+    setfatherName('');
+    setmotherName('');
+    setBirthDate('');
+    setEmail('');
+    setphoneNo('');
   }
-  // ---
-
-  // // data for localStorage --------
-  // const localStorageData = [name, fatherName, motherName, birthDate,email, password, phoneNo, image]
-  // localStorage.setItem("registerData", JSON.stringify(localStorageData));
 
   const backgroundStyles = {
     backgroundImage: `url(${userloginbanner})`,
@@ -210,7 +172,6 @@ const UserSignUp = () => {
           </div>
 
           {/* email section  */}
-          <div className="flex gap-2 mb-3">
             <div>
               <label htmlFor="email">Email:</label>
               <input
@@ -224,55 +185,6 @@ const UserSignUp = () => {
                 onChange={handleEmailChange}
               />
             </div>
-            {/* password section  */}
-            {/* <div>
-              <label htmlFor="password">Password</label>
-              <div className="relative">
-                <input
-                  className="shadow appearance-none border rounded w-full py-1.5 px-3 leading-tight focus:outline-none focus:shadow-outline"
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={handlePasswordChange}
-                  required
-                />
-                <span
-                  onClick={handleShowPassword}
-                  className="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
-                >
-                  {showPassword ? (
-                    <img
-                      className="w-[20px] h-[20px]"
-                      src={showPasswordIcon}
-                      alt=""
-                    />
-                  ) : (
-                    <img
-                      className="w-[20px] h-[20px]"
-                      src={hidePasswordIcon}
-                      alt=""
-                    />
-                  )}
-                </span>
-              </div>
-            </div> */}
-          </div>
-
-          {/* picture section  */}
-          <div>
-            <label htmlFor="file">Picture: </label> <br />
-            <input
-              // required
-              className="file-input file-input-bordered file-input-primary w-full max-w-lg"
-              type="file"
-              name="file"
-              id="file"
-              // value={image}
-              onChange={handleImageChange}
-            />
-          </div>
 
           <button
             className="bg-blue-300 hover:bg-blue-600 font-bold py-1.5 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-3"
@@ -387,7 +299,6 @@ const UserSignUp = () => {
             </div>
 
             {/* email section  */}
-            {/* <div className="flex gap-2 mb-3"> */}
               <div>
                 <label htmlFor="email">Email:</label>
                 <input
@@ -401,55 +312,6 @@ const UserSignUp = () => {
                   onChange={handleEmailChange}
                 />
               </div>
-              {/* password section   */}
-              {/* <div>
-                <label htmlFor="password">Password</label>
-                <div className="relative">
-                  <input
-                    className="shadow appearance-none border rounded w-full py-1.5 px-3 leading-tight focus:outline-none focus:shadow-outline"
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    name="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={handlePasswordChange}
-                    required
-                  />
-                  <span
-                    onClick={handleShowPassword}
-                    className="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
-                  >
-                    {showPassword ? (
-                      <img
-                        className="w-[20px] h-[20px]"
-                        src={showPasswordIcon}
-                        alt=""
-                      />
-                    ) : (
-                      <img
-                        className="w-[20px] h-[20px]"
-                        src={hidePasswordIcon}
-                        alt=""
-                      />
-                    )}
-                  </span>
-                </div>
-              </div> */}
-            {/* </div> */}
-
-            {/* picture section  */}
-            <div>
-              <label htmlFor="file">Picture: </label> <br />
-              <input
-                // required
-                className="file-input file-input-bordered file-input-info w-full max-w-xs"
-                type="file"
-                name="file"
-                id="file"
-                // value={image}
-                onChange={handleImageChange}
-              />
-            </div>
 
             {/* submit button div  */}
             <div className="flex justify-center">

@@ -12,21 +12,17 @@ const UserSignUp = () => {
   const [email, setEmail] = useState("");
   const [phoneNo, setphoneNo] = useState("+880");
 
-
-
   useEffect(() => {
     const storedPhoneNo = localStorage.getItem("phoneNo");
     const storedEmail = localStorage.getItem("email");
     if (!storedPhoneNo || !storedEmail) {
-    
       Swal.fire({
         icon: "warning",
         title: "You need to fillup this form first",
         showConfirmButton: false,
-        timer: 2500
+        timer: 2500,
       });
     }
-
   }, [navigate]);
 
   const handleNameChange = (e) => {
@@ -45,11 +41,14 @@ const UserSignUp = () => {
     setEmail(e.target.value);
   };
 
+
+  
+
   const handlephoneNoChange = (e) => {
     // setphoneNo(e.target.value);
     const inputValue = e.target.value;
     if (/^\+880\d*$/.test(inputValue) || /^\d*$/.test(inputValue)) {
-      setphoneNo(inputValue)
+      setphoneNo(inputValue);
     }
   };
 
@@ -65,14 +64,16 @@ const UserSignUp = () => {
     localStorage.setItem("email", email);
     // localStorage.setItem("password", password);
     localStorage.setItem("phoneNo", phoneNo);
+    
+
     navigate("/confirmPhoneNo");
-    setName('');
-    setfatherName('');
-    setmotherName('');
-    setBirthDate('');
-    setEmail('');
-    setphoneNo('');
-  }
+    setName("");
+    setfatherName("");
+    setmotherName("");
+    setBirthDate("");
+    setEmail("");
+    setphoneNo("");
+  };
 
   const backgroundStyles = {
     backgroundImage: `url(${userloginbanner})`,
@@ -172,19 +173,19 @@ const UserSignUp = () => {
           </div>
 
           {/* email section  */}
-            <div>
-              <label htmlFor="email">Email:</label>
-              <input
-                required
-                className="shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Your Email"
-                type="email"
-                name="email"
-                id="email"
-                value={email}
-                onChange={handleEmailChange}
-              />
-            </div>
+          <div>
+            <label htmlFor="email">Email:</label>
+            <input
+              required
+              className="shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Your Email"
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={handleEmailChange}
+            />
+          </div>
 
           <button
             className="bg-blue-300 hover:bg-blue-600 font-bold py-1.5 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-3"
@@ -210,7 +211,7 @@ const UserSignUp = () => {
           </p>
         </form>
       </div>
-    {/* ------------------Signup div--------------------  */}
+      {/* ------------------Signup div--------------------  */}
       <div
         style={{ minHeight: "100vh" }}
         className=" w-full  relative flex justify-center items-center"
@@ -299,19 +300,20 @@ const UserSignUp = () => {
             </div>
 
             {/* email section  */}
-              <div>
-                <label htmlFor="email">Email:</label>
-                <input
-                  required
-                  className="shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
-                  placeholder="Your Email"
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                />
-              </div>
+            <div>
+              <label htmlFor="email">Email:</label>
+              <input
+                required
+                className="shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
+                placeholder="Your Email"
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={handleEmailChange}
+              />
+            </div>
+
 
             {/* submit button div  */}
             <div className="flex justify-center">
@@ -341,7 +343,6 @@ const UserSignUp = () => {
           </form>
         </div>
       </div>
-
     </div>
   );
 };

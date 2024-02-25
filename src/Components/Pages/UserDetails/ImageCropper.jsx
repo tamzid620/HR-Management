@@ -3,8 +3,9 @@ import ReactCrop, {
   centerCrop,
   convertToPixelCrop,
   makeAspectCrop,
-} from "react-image-crop";
-import setCanvasPreview from "../setCanvasPreview";
+} from "react-image-crop" ;
+import 'react-image-crop/dist/ReactCrop.css'
+import setCanvasPreview from "../setCanvasPreview" ;
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
@@ -55,7 +56,7 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
     );
     const centeredCrop = centerCrop(crop, width, height);
     setCrop(centeredCrop);
-  };
+  } ;
 
   return (
     <>

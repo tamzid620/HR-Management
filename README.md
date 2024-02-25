@@ -1,5 +1,8 @@
 • primary_color :  #25476a ;
 • secondary_color : gray-100 ;
+• .top-padding {
+    padding-top: 70px;
+}
 
 
   <!-- const [image, setImage] = useState([]); -->

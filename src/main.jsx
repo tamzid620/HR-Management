@@ -23,7 +23,7 @@ import AdminNoticeBoard from "./Components/Shared/DashBoard/NoticeBoard/AdminNot
 import EnterOTP from "./Components/Pages/EnterOTP/EnterOTP";
 import ConfirmPhoneNo from "./Components/Pages/ConfirmPhoneNo/ConfirmPhoneNo";
 import ConfirmPassword from "./Components/Pages/ConfirmPassword/ConfirmPassword";
-import UserDetails from "./Components/Pages/Login/UserDetails";
+import UserDetails from "./Components/Pages/UserDetails/UserDetails";
 
 const router = createBrowserRouter([
   {

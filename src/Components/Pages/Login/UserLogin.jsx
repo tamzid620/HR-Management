@@ -37,39 +37,19 @@ const UserLogin = () => {
 
   const data = { email, password };
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (!token) {
-  //     Swal.fire({
-  //       position: "center",
-  //       icon: "warning",
-  //       title: "You have to Login first",
-  //       showConfirmButton: false,
-  //       timer: 1500,
-  //     });
-  //     navigate("/userLogin");
-  //   } else {
-  //     const user = JSON.parse(localStorage.getItem("user"));
-  //     const headers = {
-  //       accept: "application/json",
-  //       Authorization: "Bearer " + user.token,
-  //     };
-
-  //   }
-  // }, [navigate]);
 
   // handle submit button -------------
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Email:", email, "Password:", password);
+    console.log("Email:", email,",", "Password:", password);
 
-    axios.post(`http://backend.ap.loclx.io/api/login`, data)
+    axios.post(`https://backend.ap.loclx.io/api/login`, data)
     .then((res) => {
       if (res.data.status === "201") {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data));
-        if (res.data.user.role === 2) {
+        if (res.data.user.role === '2') {
           Swal.fire({
             position: "center",
             icon: "success",

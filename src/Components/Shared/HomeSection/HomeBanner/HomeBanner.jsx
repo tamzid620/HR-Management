@@ -13,7 +13,7 @@ const HomeBanner = () => {
   };
 
   return (
-    <div className="pt-[70px]">
+    <div className="top-padding">
       <div
         style={backgroundStyles}
         className="relative flex items-center justify-center min-h-screen"

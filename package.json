@@ -1,5 +1,6 @@
 {
-  "name": "hr-management",
+  "name": "student-consultancy",
+  "proxy": "http://backend.ap.loclx.io/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -19,6 +20,7 @@
     "react-countup": "^6.5.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
+    "react-image-crop": "^11.0.5",
     "react-router-dom": "^6.21.1",
     "react-scroll": "^1.9.0",
     "react-slick": "^0.29.0",

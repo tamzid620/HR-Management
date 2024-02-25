@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import showPasswordIcon from "../../../../public/icons/show-password-icon-19.jpg";
 import hidePasswordIcon from "../../../../public/icons/show-password-icon-18.jpg";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const ConfirmPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,6 +24,7 @@ const ConfirmPassword = () => {
       setName(storedName);
     }
 }, []);
+const navigate = useNavigate();
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -57,13 +60,19 @@ const ConfirmPassword = () => {
       .then((res) => {
         const responseData = res.data;
         setSubmitState(responseData);
+        Swal.fire({
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 2500
+        });
+        localStorage.clear() ;
+        navigate('/userLogin')
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
       });
   };
-  console.log(submitState);
-  console.log("name",name, "email---",email,"password---",password)
 
   return (
     <div className="flex justify-center items-center h-screen">

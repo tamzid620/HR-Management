@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import adminloginbanner from "../../../../public/images/loginBackground.jpg";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -37,40 +37,57 @@ const UserLogin = () => {
 
   const data = { email, password };
 
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token) {
+  //     Swal.fire({
+  //       position: "center",
+  //       icon: "warning",
+  //       title: "You have to Login first",
+  //       showConfirmButton: false,
+  //       timer: 1500,
+  //     });
+  //     navigate("/userLogin");
+  //   } else {
+  //     const user = JSON.parse(localStorage.getItem("user"));
+  //     const headers = {
+  //       accept: "application/json",
+  //       Authorization: "Bearer " + user.token,
+  //     };
+
+  //   }
+  // }, [navigate]);
+
   // handle submit button -------------
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Email:", email, "Password:", password);
 
-    axios.post(`http://backend.ap.loclx.io/api/login`, data).then((res) => {
+    axios.post(`http://backend.ap.loclx.io/api/login`, data)
+    .then((res) => {
       if (res.data.status === "201") {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data));
-        if (res.data.user.role === 1) {
-          navigate("/dp");
-        } else if (res.data.user.role === 2) {
-          navigate("/deliverymanPanel");
+        if (res.data.user.role === 2) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: res.data.message,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/userDetails");
+        }else{
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: res.data.message,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/userLogin");
         }
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: res.data.message,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else if (res.data.status === "403") {
-        Swal.fire({
-          icon: "error",
-          title: res.data.message,
-          text: res.data.message,
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: res.data.message,
-          text: res.data.message,
-        });
       }
     });
   };

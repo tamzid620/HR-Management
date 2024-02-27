@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import PencilIcon from "./PencilIcon";
 import Modal from "./Modal";
+import axios from "axios";
 
 const UserDetails = () => {
   const [userDetails, setUserDetails] = useState([]);
+  const [imageUpload, setImageUpload] = useState([]) 
   const navigate = useNavigate();
   const avatarUrl = useRef(
     "https://avatarfiles.alphacoders.com/161/161002.jpg"
@@ -35,6 +37,19 @@ const UserDetails = () => {
       };
     }
   }, [navigate]);
+
+
+// upload image method -----------------
+const handleImageUpload = () => {
+// axios.post("YOUR_UPLOAD_ENDPOINT",{image: avatarUrl.current, })
+// .then((response) => {
+// console.log("Image uploaded successfully:", response.data);
+// })
+// .catch((error) => {
+// console.error("Error uploading image:", error);
+// });
+console.log(avatarUrl.current);
+};
 
 // const handlesubmit =() => {
 
@@ -72,6 +87,7 @@ const UserDetails = () => {
           closeModal={() => setModalOpen(false)}
         />
       )}
+      <button onClick={handleImageUpload} className='mt-[30px] hover:underline'>Upload</button>
     </div>
         {/* Educational informaiton*/}
         <div></div>

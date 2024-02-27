@@ -13,13 +13,10 @@ const UserDetailsInfo = () => {
         certificates: null,
         markSheet: null,
       },
-      otherDoc: {
-        documentName: "",
-        file: null,
-      },
-    }
+      otherDoc:[],
+    },
   ]);
-  
+
   const navigate = useNavigate();
 
   // Barrer Token useEffect --------------------
@@ -53,8 +50,8 @@ const UserDetailsInfo = () => {
     }
   }, [navigate]);
 
-
-  const addEducationalInfoField = () => {
+  // add Educational Info Field button handler ----------------
+  const handleAddEducation = () => {
     setFormData((prevState) => [
       ...prevState,
       {
@@ -64,14 +61,20 @@ const UserDetailsInfo = () => {
           certificates: null,
           markSheet: null,
         },
-        otherDoc: {
-          documentName: "",
-          file: null,
-        },
+        otherDoc:[] ,
       },
     ]);
   };
-  
+  // add Document Field button handler --------------------
+
+  const handleAddDocument = (index) => {
+    const updatedInfo = [...formData];
+    updatedInfo[index].otherDoc.push({
+      documentName: "",
+      file: null,
+    });
+    setFormData(updatedInfo);
+  };
 
   return (
     <div className="container mx-auto">
@@ -123,15 +126,16 @@ const UserDetailsInfo = () => {
       {/* Educational Information div  */}
       <div className="my-[50px]  leading-[50px] font-semibold ">
         <h1 className="text-3xl mb-[20px]">Educational Information</h1>
-        {/* Add Educational button -------------- */}
-        <button
-          onClick={addEducationalInfoField}
-          className="btn btn-sm btn-success text-white "
-        >
-          Add Educational
-        </button>
+
         {formData.map((edu, index) => (
           <div key={index} className="mb-[100px]">
+            {/* Add Educational button -------------- */}
+            <button
+              onClick={handleAddEducation}
+              className="btn btn-sm btn-success text-white "
+            >
+              Add Educational
+            </button>
             <div>
               {/* Degree Name */}
               <div className="user_Details_paragraph">
@@ -170,10 +174,10 @@ const UserDetailsInfo = () => {
                     className="user_Details_span file-input  file-input-sm w-full max-w-x"
                     onChange={(e) => {
                       const updatedInfo = [...formData];
-                      updatedInfo[index].eduInfo.certificates = e.target.files[0];
+                      updatedInfo[index].eduInfo.certificates =
+                        e.target.files[0];
                       setFormData(updatedInfo);
                     }}
-
                   />
                 </div>
                 {/* MarkSheet */}
@@ -184,7 +188,8 @@ const UserDetailsInfo = () => {
                     className="user_Details_span file-input  file-input-sm w-full max-w-x"
                     onChange={(e) => {
                       const updatedInfo = [...formData];
-                      updatedInfo[index].eduInfo.certificates = e.target.files[0];
+                      updatedInfo[index].eduInfo.certificates =
+                        e.target.files[0];
                       setFormData(updatedInfo);
                     }}
                   />
@@ -196,38 +201,50 @@ const UserDetailsInfo = () => {
 
             <div>
               {/* Add Documents button -------------- */}
-              <button className="btn btn-sm btn-info text-white ">
+              <button
+                onClick={() => handleAddDocument(index)}
+                className="btn btn-sm btn-info text-white "
+              >
                 Add Documents
               </button>
-              <div className="grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1">
-                <div className="user_Details_paragraph">
-                  <label>Document_Name:</label>
-                  <input
-                    type="text"
-                    name="documentName"
-                    className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
-                    value={edu.documentName}
-                  onChange={(e) => {
-                    const updatedInfo = [...formData];
-                    updatedInfo[index].otherDoc.documentName = e.target.value;
-                    setFormData(updatedInfo);
-                  }}
-                  />
+              {edu.otherDoc.map((doc, docIndex) => (
+                <div
+                  key={docIndex}
+                  className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1"
+                >
+                  {/* Document Name */}
+                  <div className="user_Details_paragraph">
+                    <label>Document_Name:</label>
+                    <input
+                      type="text"
+                      name={`documentName-${docIndex}`}
+                      className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent px-3 py-1 border-b-2 border-gray-600"
+                      value={doc.documentName}
+                      onChange={(e) => {
+                        const updatedInfo = [...formData];
+                        updatedInfo[index].otherDoc[docIndex].documentName =
+                          e.target.value;
+                        setFormData(updatedInfo);
+                      }}
+                    />
+                  </div>
+                  {/* Document File */}
+                  <div className="user_Details_paragraph">
+                    <label>File:</label>
+                    <input
+                      type="file"
+                      name={`documentFile-${docIndex}`}
+                      className="user_Details_span file-input file-input-sm w-full max-w-x"
+                      onChange={(e) => {
+                        const updatedInfo = [...formData];
+                        updatedInfo[index].otherDoc[docIndex].file =
+                          e.target.files[0];
+                        setFormData(updatedInfo);
+                      }}
+                    />
+                  </div>
                 </div>
-                <div className="user_Details_paragraph">
-                  <label>File:</label>
-                  <input
-                    type="file"
-                    name="documentFile"
-                    className="user_Details_span file-input  file-input-sm w-full max-w-x"
-                    onChange={(e) => {
-                      const updatedInfo = [...formData];
-                      updatedInfo[index].otherDoc.file = e.target.files[0];
-                      setFormData(updatedInfo);
-                    }}
-                  />
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         ))}

@@ -1,0 +1,11 @@
+.user_Details_paragraph{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.user_Details_span{
+    font-size: large;
+    font-weight: 400;
+    margin-left: 20px;
+    margin-top: 8px;
+}

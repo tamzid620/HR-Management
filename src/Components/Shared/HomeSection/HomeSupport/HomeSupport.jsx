@@ -16,7 +16,7 @@ const HomeSupport = () => {
                 {/* STUDENT VISA div  ------------------- */}
             <div className="flex justify-center">
                 <div className="rounded-tl-3xl w-[350px] h-[350px] bg-[#25476a] text-white px-3 leading-7 hover:shadow-lg hover:shadow-gray-500">
-                    <span className="flex justify-center py-3"><FaGraduationCap size={60}/></span>
+                    <span className="flex justify-center py-3"><FaGraduationCap color="white" size={60}/></span>
                     <h1 style={{ fontFamily: 'Montserrat, sans-serif' }} className="flex justify-center font-bold text-xl">STUDENT VISA</h1>
                     <p style={{ fontFamily: 'Roboto, sans-serif' }} className="font-light my-5">With us you will get expert guidelines regarding all your Study abroad needs. We have been fulfilling the study abroad dreams of students in 30 countries for over 10 years.</p>
                     <div className=" flex justify-center mt-10 mb-10">
@@ -27,7 +27,7 @@ const HomeSupport = () => {
                 {/* English Learning Platform div  ------------------- */}
             <div className="flex justify-center items-center">
                 <div className=" w-[350px] h-[350px] bg-[#25476a] text-white px-3 leading-7 hover:shadow-lg hover:shadow-gray-500">
-                    <span className="flex justify-center py-3"><FaBookReader size={60}/></span>
+                    <span className="flex justify-center py-3"><FaBookReader color="white" size={60}/></span>
                     <h1 style={{ fontFamily: 'Montserrat, sans-serif' }} className="flex justify-center font-bold text-xl">English Learning Platform</h1>
                     <p style={{ fontFamily: 'Roboto, sans-serif' }} className="font-light my-5">With us you will get expert guidelines regarding all your Study abroad needs. We have been fulfilling the study abroad dreams of students in 30 countries for over 10 years.</p>
                     <div className=" flex justify-center mt-10 mb-10">
@@ -39,7 +39,7 @@ const HomeSupport = () => {
                 {/* BUSINESS INVESTOR VISA div  ------------------- */}
             <div className="flex justify-center items-center">
                 <div className="rounded-tr-3xl w-[350px] h-[350px] bg-[#25476a] text-white px-3 leading-7 hover:shadow-lg hover:shadow-gray-500">
-                    <span className="flex justify-center py-3"><FaBusinessTime size={60}/></span>
+                    <span className="flex justify-center py-3"><FaBusinessTime color="white" size={60}/></span>
                     <h1 style={{ fontFamily: 'Montserrat, sans-serif' }} className="flex justify-center font-bold text-xl">BUSINESS INVESTOR VISA</h1>
                     <p style={{ fontFamily: 'Roboto, sans-serif' }} className="font-light my-5">With us you will get expert guidelines regarding all your Study abroad needs. We have been fulfilling the study abroad dreams of students in 30 countries for over 10 years.</p>
                     <div className=" flex justify-center mt-10 mb-10">
@@ -51,7 +51,7 @@ const HomeSupport = () => {
                 {/* SKILLED MIGRATION div  ------------------- */}
             <div className="flex justify-center items-center">
                 <div className="rounded-bl-3xl w-[350px] h-[350px] bg-[#25476a] text-white px-3 leading-7 hover:shadow-lg hover:shadow-gray-500">
-                    <span className="flex justify-center py-3"><FaUserCheck size={60}/></span>
+                    <span className="flex justify-center py-3"><FaUserCheck color="white" size={60}/></span>
                     <h1 style={{ fontFamily: 'Montserrat, sans-serif' }} className="flex justify-center font-bold text-xl">SKILLED MIGRATION</h1>
                     <p style={{ fontFamily: 'Roboto, sans-serif' }} className="font-light my-5">With us you will get expert guidelines regarding all your Study abroad needs. We have been fulfilling the study abroad dreams of students in 30 countries for over 10 years.</p>
                     <div className=" flex justify-center mt-10 mb-10">
@@ -63,7 +63,7 @@ const HomeSupport = () => {
                 {/* E-TICKETING div  ------------------- */}
             <div className="flex justify-center items-center">
                 <div className=" w-[350px] h-[350px] bg-[#25476a] text-white px-3 leading-7 hover:shadow-lg hover:shadow-gray-500">
-                    <span className="flex justify-center py-3"><FaTicketAlt size={60}/></span>
+                    <span className="flex justify-center py-3"><FaTicketAlt color="white" size={60}/></span>
                     <h1 style={{ fontFamily: 'Montserrat, sans-serif' }} className="flex justify-center font-bold text-xl">E-TICKETING</h1>
                     <p style={{ fontFamily: 'Roboto, sans-serif' }} className="font-light my-5">With us you will get expert guidelines regarding all your Study abroad needs. We have been fulfilling the study abroad dreams of students in 30 countries for over 10 years.</p>
                     <div className=" flex justify-center mt-10 mb-10">
@@ -75,7 +75,7 @@ const HomeSupport = () => {
                 {/* VISIT VISA div  ------------------- */}
                 <div className="flex justify-center items-center">
                 <div className="rounded-br-3xl w-[350px] h-[350px] bg-[#25476a] text-white px-3 leading-7 hover:shadow-lg hover:shadow-gray-500">
-                    <span className="flex justify-center py-3"><FaUserTie size={60}/></span>
+                    <span className="flex justify-center py-3"><FaUserTie color="white" size={60}/></span>
                     <h1 style={{ fontFamily: 'Montserrat, sans-serif' }} className="flex justify-center font-bold text-xl">VISIT VISA</h1>
                     <p style={{ fontFamily: 'Roboto, sans-serif' }} className="font-light my-5">With us you will get expert guidelines regarding all your Study abroad needs. We have been fulfilling the study abroad dreams of students in 30 countries for over 10 years.</p>
                     <div className=" flex justify-center mt-10 mb-10">

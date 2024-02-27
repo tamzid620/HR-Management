@@ -56,7 +56,7 @@ const HomeCounter = () => {
           {/* Countries div ----------- */}
           <div className=" px-10 py-5">
             <span className="flex justify-center mb-5">
-              <FaLocationDot size={60} />
+              <FaLocationDot color="white" size={60} />
             </span>
             <p className="font-bold  text-4xl mb-5 flex justify-center">
             {countersVisible && (

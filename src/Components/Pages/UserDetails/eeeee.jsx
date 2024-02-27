@@ -1,10 +1,9 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UserDetailsInfo = () => {
-  const [getToken, setGetToken] = useState([]);
+  const [userDetails, setUserDetails] = useState([]);
   const [eduInfo, setEduInfo] = useState([{ degreeName: "", institutionName: "", certificates: null, markSheet: null }]);
   const [otherDocs, setOtherDocs] = useState([{documentsName:"", file:null}]);
   const navigate = useNavigate();
@@ -26,15 +25,6 @@ const UserDetailsInfo = () => {
         accept: "application/json",
         Authorization: "Bearer " + user.token,
       };
-      axios.get("https://backend.ap.loclx.io/api/login", {
-         headers :headers
-        })
-      .then(res => {
-        setGetToken(res.data) ;
-      })
-      .catch(error => {
-        console.error("Error uploading image:", error);
-      });
     }
   }, [navigate]);
 
@@ -188,7 +178,7 @@ const UserDetailsInfo = () => {
                 <label>Documents_Name:</label>
                 <input
                   type="text"
-                  name="documentName"
+                  name="documentsName"
                   onChange={(event) => handleDocumentNameChange(index, event)}
                   className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
                 />
@@ -197,7 +187,7 @@ const UserDetailsInfo = () => {
                 <label>File:</label>
                 <input
                   type="file"
-                  name= "documentFile"
+                  name= "file"
                   onChange={(event) => handleFileInputChange(index, event)}
                   className="user_Details_span file-input  file-input-sm w-full max-w-x"
                 />

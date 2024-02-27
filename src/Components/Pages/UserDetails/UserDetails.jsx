@@ -7,7 +7,7 @@ const UserDetails = () => {
 
   return (
     <div>
-      <h1 className="pt-[100px] text-3xl text-center ">
+      <h1 className="lg:pt-[100px] md:pt-[100px] sm: pt-[150px] text-3xl text-center ">
         Welcome <span></span>
       </h1>
         {/* image upload  div*/}

@@ -6,6 +6,7 @@ import ReactCrop, {
 } from "react-image-crop" ;
 import 'react-image-crop/dist/ReactCrop.css'
 import setCanvasPreview from "../setCanvasPreview" ;
+import { setItem } from "localforage";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
@@ -14,12 +15,12 @@ const MIN_DIMENSION = 150;
 const ImageCropper = ({ closeModal, updateAvatar }) => {
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
-  const [imgSrc, setImgSrc] = useState("");
+  const [image, setImage] = useState("");
   const [crop, setCrop] = useState();
   const [error, setError] = useState("");
 
   const onSelectFile = (e) => {
-    const file = e.target.files?.[0];
+    const file = e.target.files[0];
     if (!file) return;
 
     const reader = new FileReader();
@@ -33,10 +34,10 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
         const { naturalWidth, naturalHeight } = e.currentTarget;
         if (naturalWidth < MIN_DIMENSION || naturalHeight < MIN_DIMENSION) {
           setError("Image must be at least 150 x 150 pixels.");
-          return setImgSrc("");
+          return setImage("");
         }
       });
-      setImgSrc(imageUrl);
+      setImage(imageUrl);
     });
     reader.readAsDataURL(file);
   };
@@ -64,13 +65,14 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
         <span className="sr-only">Choose profile photo</span>
         <input
           type="file"
+          name="file"
           accept="image/*"
           onChange={onSelectFile}
           className="block w-full text-sm text-slate-500 file:mr-4 file:py-1 file:px-2 file:rounded-full file:border-0 file:text-xs file:bg-gray-200 file:text-sky-300 hover:file:bg-gray-400"
         />
       </label>
       {error && <p className="text-red-400 text-xs">{error}</p>}
-      {imgSrc && (
+      {image && (
         <div className="flex flex-col items-center">
           <ReactCrop
             crop={crop}
@@ -82,7 +84,7 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
           >
             <img
               ref={imgRef}
-              src={imgSrc}
+              src={image}
               alt="Upload"
               style={{ maxHeight: "70vh" }}
               onLoad={onImageLoad}

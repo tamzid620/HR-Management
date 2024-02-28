@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -5,6 +6,7 @@ import Swal from "sweetalert2";
 const UserDetailsInfo = () => {
   const [eduInfo, setEduInfo] = useState([]);
   const [docInfo, setDocInfo] = useState([]);
+  const [ userDetails, setUserDetails ] = useState([]) ;
   const navigate = useNavigate();
 
   // Barrer Token useEffect --------------------
@@ -48,6 +50,56 @@ const UserDetailsInfo = () => {
       },
     ]);
   };
+
+
+  // handle Submit  method -----------------
+const handleSubmit = () => {
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const headers = {
+    accept: "application/json",
+    Authorization: "Bearer " + user.token,
+  };
+
+  const data = new FormData();
+  data.append([{... eduInfo},{docInfo}]);
+
+  axios
+    .post("https://backend.ap.loclx.io/api/", data, {
+      headers
+    })
+    .then((res) => {
+      if (res.status === 201) { 
+        Swal.fire({
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 2500,
+        });
+        console.log(res.data.message);
+        setUserDetails(res.data); 
+      } else if (res.status === 403) { 
+        Swal.fire({
+          icon: "error",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 2500,
+        });
+        console.log(res.data.message);
+      }
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.response.data.message,
+        showConfirmButton: false,
+        timer: 2500,
+      });
+    });
+  console.log("userDetails",userDetails);
+  console.log("data",[{... eduInfo},{docInfo}]);
+};
 
   return (
     <div className="container mx-auto">
@@ -206,6 +258,13 @@ const UserDetailsInfo = () => {
             </div>
           </div>
 ))}
+{/* submit Button  */}
+<span className="flex justify-center mt-[50px]">
+  <button 
+  onClick={handleSubmit}
+  className="btn bg-[#25476a] text-white hover:text-black">Submit</button>
+  </span>
+
         </div>
       </div>
     </div>

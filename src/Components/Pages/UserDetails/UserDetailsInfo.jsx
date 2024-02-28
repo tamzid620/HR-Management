@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 
 const UserDetailsInfo = () => {
   const [eduInfo, setEduInfo] = useState([]);
+  const [docInfo, setDocInfo] = useState([]);
   const navigate = useNavigate();
 
   // Barrer Token useEffect --------------------
@@ -35,6 +36,15 @@ const UserDetailsInfo = () => {
         institutionName: "",
         certificates: null,
         markSheet: null,
+      },
+    ]);
+  };
+  const handleAddDocInfo = () => {
+    setDocInfo([
+      ...docInfo,
+      {
+        documentName: "",
+        file: null,
       },
     ]);
   };
@@ -88,15 +98,15 @@ const UserDetailsInfo = () => {
 
       {/* Educational Information div  */}
       <div className="my-[50px]  leading-[50px] font-semibold ">
-        <h1 className="text-3xl mb-[20px]">Educational Information</h1>
+        <h1 className="text-3xl">Educational Information</h1>
 
         {/*---------------------- Add Educational button -------------- */}
+
         <button
         onClick={handleAddEduInfo}
-        className="btn btn-sm mt-[100px] btn-success text-white">
+        className="btn btn-sm btn-success text-white">
           Add Educational
         </button>
-
         {eduInfo.map((edu, index) => (
         <div key={index} className="mb-[100px]">
           {/* Degree Name */}
@@ -162,15 +172,23 @@ const UserDetailsInfo = () => {
         <h1 className="text-3xl mt-[100px]">Other Documents</h1>
         <div>
           {/*------------------------ Add Documents button -------------- */}
-          <button className="btn btn-sm btn-info text-white ">Add Documents</button>
+          <button onClick={handleAddDocInfo}
+           className="btn btn-sm btn-info text-white ">Add Documents</button>
 
-          <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
+{docInfo.map((doc, index) => (
+          <div key={index} className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
             {/* Document Name */}
             <div className="user_Details_paragraph">
               <label>Document_Name:</label>
               <input
                 type="text"
                 className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent px-3 py-1 border-b-2 border-gray-600"
+                value={doc.documentName}
+                onChange={(e) => {
+                  const updatedInfo = [...docInfo];
+                  updatedInfo[index].documentName = e.target.value;
+                  setDocInfo(updatedInfo);
+                }}
               />
             </div>
             {/* Document File */}
@@ -179,9 +197,15 @@ const UserDetailsInfo = () => {
               <input
                 type="file"
                 className="user_Details_span file-input file-input-sm w-full max-w-x"
+                onChange={(e) => {
+                  const updatedInfo = [...docInfo];
+                  updatedInfo[index].file = e.target.files[0];
+                  setDocInfo(updatedInfo);
+                }}
               />
             </div>
           </div>
+))}
         </div>
       </div>
     </div>

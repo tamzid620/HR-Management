@@ -1,10 +1,9 @@
-import axios from "axios";
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UserDetailsInfo = () => {
-  const [getToken, setGetToken] = useState([]);
   const [formData, setFormData] = useState([
     {
       eduInfo: {
@@ -31,23 +30,13 @@ const UserDetailsInfo = () => {
         timer: 1500,
       });
       navigate("/userLogin");
-    } else {
-      const user = JSON.parse(localStorage.getItem("user"));
-      const headers = {
-        accept: "application/json",
-        Authorization: "Bearer " + user.token,
-      };
-      axios
-        .get("https://backend.ap.loclx.io/api/login", {
-          headers: headers,
-        })
-        .then((res) => {
-          setGetToken(res.data);
-        })
-        .catch((error) => {
-          console.error("Error uploading image:", error);
-        });
-    }
+    } 
+    // else {
+    //   const user = JSON.parse(localStorage.getItem("user"));
+    //   const headers = {
+    //     accept: "application/json",
+    //     Authorization: "Bearer " + user.token,
+    //   }}
   }, [navigate]);
 
   // add Educational Info Field button handler ----------------
@@ -129,10 +118,10 @@ const UserDetailsInfo = () => {
 
         {formData.map((edu, index) => (
           <div key={index} className="mb-[100px]">
-            {/* Add Educational button -------------- */}
+{/*---------------------- Add Educational button -------------- */}
             <button
               onClick={handleAddEducation}
-              className="btn btn-sm btn-success text-white "
+              className="btn btn-sm mt-[100px] btn-success text-white "
             >
               Add Educational
             </button>
@@ -196,11 +185,13 @@ const UserDetailsInfo = () => {
                 </div>
               </section>
             </div>
+
+
             {/* Other DOcuments div */}
-            <h1 className="text-3xl my-[20px]">Other Documents</h1>
+            <h1 className="text-3xl mt-[100px]">Other Documents</h1>
 
             <div>
-              {/* Add Documents button -------------- */}
+{/*------------------------ Add Documents button -------------- */}
               <button
                 onClick={() => handleAddDocument(index)}
                 className="btn btn-sm btn-info text-white "
@@ -217,15 +208,8 @@ const UserDetailsInfo = () => {
                     <label>Document_Name:</label>
                     <input
                       type="text"
-                      name={`documentName-${docIndex}`}
                       className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent px-3 py-1 border-b-2 border-gray-600"
-                      value={doc.documentName}
-                      onChange={(e) => {
-                        const updatedInfo = [...formData];
-                        updatedInfo[index].otherDoc[docIndex].documentName =
-                          e.target.value;
-                        setFormData(updatedInfo);
-                      }}
+                      
                     />
                   </div>
                   {/* Document File */}
@@ -233,14 +217,7 @@ const UserDetailsInfo = () => {
                     <label>File:</label>
                     <input
                       type="file"
-                      name={`documentFile-${docIndex}`}
                       className="user_Details_span file-input file-input-sm w-full max-w-x"
-                      onChange={(e) => {
-                        const updatedInfo = [...formData];
-                        updatedInfo[index].otherDoc[docIndex].file =
-                          e.target.files[0];
-                        setFormData(updatedInfo);
-                      }}
                     />
                   </div>
                 </div>

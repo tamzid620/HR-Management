@@ -6,7 +6,6 @@ import ReactCrop, {
 } from "react-image-crop" ;
 import 'react-image-crop/dist/ReactCrop.css'
 import setCanvasPreview from "../setCanvasPreview" ;
-import { setItem } from "localforage";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
@@ -33,7 +32,7 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
         if (error) setError("");
         const { naturalWidth, naturalHeight } = e.currentTarget;
         if (naturalWidth < MIN_DIMENSION || naturalHeight < MIN_DIMENSION) {
-          setError("Image must be at least 150 x 150 pixels.");
+          setError("Image dimensions are too small.");
           return setImage("");
         }
       });
@@ -41,6 +40,7 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
     });
     reader.readAsDataURL(file);
   };
+
 
   const onImageLoad = (e) => {
     const { width, height } = e.currentTarget;
@@ -57,7 +57,24 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
     );
     const centeredCrop = centerCrop(crop, width, height);
     setCrop(centeredCrop);
-  } ;
+  };
+
+  const handleCropImage = () => {
+    setCanvasPreview(
+      imgRef.current, 
+      previewCanvasRef.current, 
+      convertToPixelCrop(
+        crop,
+        imgRef.current.width,
+        imgRef.current.height
+      )
+    );
+    const dataUrl = previewCanvasRef.current.toDataURL();
+    // Save the cropped image to localStorage
+    localStorage.setItem("image", dataUrl);
+    updateAvatar(dataUrl);
+    closeModal();
+  };
 
   return (
     <>
@@ -92,20 +109,7 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
           </ReactCrop>
           <button
             className="btn  font-mono text-xs py-2 px-4 rounded-2xl mt-4 bg-[#25476a] text-white hover:text-black"
-            onClick={() => {
-              setCanvasPreview(
-                imgRef.current, 
-                previewCanvasRef.current, 
-                convertToPixelCrop(
-                  crop,
-                  imgRef.current.width,
-                  imgRef.current.height
-                )
-              );
-              const dataUrl = previewCanvasRef.current.toDataURL();
-              updateAvatar(dataUrl);
-              closeModal();
-            }}
+            onClick={handleCropImage}
           >
             Crop Image
           </button>

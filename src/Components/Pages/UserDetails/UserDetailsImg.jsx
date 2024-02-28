@@ -7,18 +7,16 @@ import axios from "axios";
 import "./UserDetails.css";
 
 const UserDetailsImg = () => {
-  const [getToken, setGetToken ] = useState([]) ; 
-  const [image, setImage] = useState("");
+  const [imageUpload, setImageUpload] = useState([]);
   const navigate = useNavigate();
   const avatarUrl = useRef(
     "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
   );
   const [modalOpen, setModalOpen] = useState(false);
 
-  const updateAvatar = (upImage) => {
-    avatarUrl.current = upImage;
+  const updateAvatar = (image) => {
+    avatarUrl.current = image;
   };
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -30,114 +28,94 @@ const UserDetailsImg = () => {
         timer: 1500,
       });
       navigate("/userLogin");
-    } else {
-      const user = JSON.parse(localStorage.getItem("user"));
-      const headers = {
-        accept: "application/json",
-        Authorization: "Bearer " + user.token,
-      };
-      axios.get("https://backend.ap.loclx.io/api/login", {
-         headers :headers
-        })
-      .then(res => {
-        setGetToken(res.data) ;
-      })
-      .catch(error => {
-        console.error("Error uploading image:", error);
-      });
     }
   }, [navigate]);
 
-  // upload input  image method -----------------
-  // const handleImageUpload = (e) => {
 
-  //     const user = JSON.parse(localStorage.getItem("user"));
-  //     const headers = {
-  //       accept: "application/json",
-  //       Authorization: "Bearer " + user.token,
-  //     };
 
-  //     e.preventDefault();
-  //     const data = new FormData();
-  //  data.append("image", image);
-  //     console.log("Selected Image:", image);
+// upload image method -----------------
+const handleImageUpload = () => {
 
-  //     axios
-  //       .post("https://backend.ap.loclx.io/api/save-photo", data, { headers })
-  //       .then((res) => {
-  //           if(res.data.status === '201'){
-  //               Swal.fire({
-  //                   icon: "success",
-  //                   title: res.data.message,
-  //                   showConfirmButton: false,
-  //                   timer: 2500
-  //                 });
-  //                 setImageUpload(res.data);
-  //         }
-  //          else if (res.data.status === '403'){
-  //               Swal.fire({
-  //                   icon: "success",
-  //                   title: res.data.message,
-  //                   showConfirmButton: false,
-  //                   timer: 2500
-  //                 });
-  //                 setImageUpload(res.data);
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         Swal.fire({
-  //           icon: "error",
-  //           title: "Error uploading image",
-  //           showConfirmButton: false,
-  //           timer: 2500
-  //         });
-  //         console.error("Error uploading image:", error);
-  //       });
-  //       console.log(avatarUrl.current);
-  //       console.log(imageUpload);
-  //   };
+  const user = JSON.parse(localStorage.getItem("user"));
+  const headers = {
+    accept: "application/json",
+    Authorization: "Bearer " + user.token,
+  };
+  
+  // Convert base64 string to Blob
+  const base64ToBlob = (base64String) => {
+    const byteCharacters = atob(base64String);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], { type: "image/jpeg" }); 
+  };
 
-  // upload image method -----------------
-  const handleImageUpload = () => {
-    const data = new FormData();
-    data.append("image", image);
-    data.append("avatarUrl", avatarUrl.current);
+  const blob = base64ToBlob(avatarUrl.current.split(",")[1]);
 
-    axios
-      .post("https://backend.ap.loclx.io/api/save-photo", data)
-      .then((res) => {
-        if (res.data.status === "201") {
-          Swal.fire({
-            icon: "success",
-            title: res.data.message,
-            showConfirmButton: false,
-            timer: 2500,
-          });
-          setImage(res.data);
-        } else if (res.data.status === "403") {
-          Swal.fire({
-            icon: "error",
-            title: res.data.message,
-            showConfirmButton: false,
-            timer: 2500,
-          });
-        }
-      })
-      .catch((error) => {
+  // Create a File object from Blob
+  const image = new File([blob], "avatar.jpg", { type: "image/jpeg" });
+
+  const data = new FormData();
+  data.append("image", image);
+
+  // const imageData = localStorage.getItem("image");
+  // if (!imageData) {
+  //   Swal.fire({
+  //     icon: "error",
+  //     title: "Error",
+  //     text: "Image data not found in localStorage",
+  //     showConfirmButton: false,
+  //     timer: 2500,
+  //   });
+  //   return;
+  // }
+  // const image = new Blob([imageData], { type: "image/png" });
+  // const formData = new FormData();
+  // formData.append("image", image);
+
+  axios
+    .post("https://backend.ap.loclx.io/api/save-photo", data, {
+      headers
+    })
+    .then((res) => {
+      if (res.status === 201) { 
         Swal.fire({
-          icon: "error",
-          title: "Error uploading image",
+          icon: "success",
+          title: res.data.message,
           showConfirmButton: false,
           timer: 2500,
         });
+        console.log(res.data.message);
+        setImageUpload(res.data); 
+      } else if (res.status === 403) { 
+        Swal.fire({
+          icon: "error",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 2500,
+        });
+        console.log(res.data.message);
+      }
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.response.data.message,
+        showConfirmButton: false,
+        timer: 2500,
       });
-    console.log("avatarURl:" ,avatarUrl.current);
-    console.log("image:",image);
-  };
+    });
+  console.log("avatarUrl.current", avatarUrl.current);
+  console.log("image",image);
+};
 
+  
   return (
     <div className="flex flex-col items-center py-12">
-      {/* <input onChange={handleImage} type="file" name="image" id="" /> */}
 
       <div className="relative">
         <img

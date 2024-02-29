@@ -55,50 +55,60 @@ const UserDetailsInfo = () => {
   // handle Submit  method -----------------
 const handleSubmit = () => {
 
-  const user = JSON.parse(localStorage.getItem("user"));
-  const headers = {
-    accept: "application/json",
-    Authorization: "Bearer " + user.token,
-  };
+  // const user = JSON.parse(localStorage.getItem("user"));
+  // const headers = {
+  //   accept: "application/json",
+  //   Authorization: "Bearer " + user.token,
+  // };
 
-  const data = new FormData();
-  data.append([{... eduInfo},{docInfo}]);
+  // const data = new FormData();
+  // data.append(
+  //   [
+  //     {...eduInfo},
+  //     {...docInfo}
+  //   ]
+  //   );
 
-  axios
-    .post("https://backend.ap.loclx.io/api/", data, {
-      headers
-    })
-    .then((res) => {
-      if (res.status === 201) { 
-        Swal.fire({
-          icon: "success",
-          title: res.data.message,
-          showConfirmButton: false,
-          timer: 2500,
-        });
-        console.log(res.data.message);
-        setUserDetails(res.data); 
-      } else if (res.status === 403) { 
-        Swal.fire({
-          icon: "error",
-          title: res.data.message,
-          showConfirmButton: false,
-          timer: 2500,
-        });
-        console.log(res.data.message);
-      }
-    })
-    .catch((error) => {
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: error.response.data.message,
-        showConfirmButton: false,
-        timer: 2500,
-      });
-    });
+  // axios
+  //   .post("https://backend.ap.loclx.io/api/", data, {
+  //     headers
+  //   })
+  //   .then((res) => {
+  //     if (res.status === 201) { 
+  //       Swal.fire({
+  //         icon: "success",
+  //         title: res.data.message,
+  //         showConfirmButton: false,
+  //         timer: 2500,
+  //       });
+  //       console.log(res.data.message);
+  //       setUserDetails(res.data); 
+  //     } else if (res.status === 403) { 
+  //       Swal.fire({
+  //         icon: "error",
+  //         title: res.data.message,
+  //         showConfirmButton: false,
+  //         timer: 2500,
+  //       });
+  //       console.log(res.data.message);
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Error",
+  //       text: error.response.data.message,
+  //       showConfirmButton: false,
+  //       timer: 2500,
+  //     });
+  //   });
   console.log("userDetails",userDetails);
-  console.log("data",[{... eduInfo},{docInfo}]);
+  console.log("data",
+    [
+      {...eduInfo},
+      {...docInfo}
+    ]
+    );
 };
 
   return (

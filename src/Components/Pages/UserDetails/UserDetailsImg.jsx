@@ -7,6 +7,7 @@ import axios from "axios";
 import "./UserDetails.css";
 
 const UserDetailsImg = () => {
+  const [uploading, setUploading] = useState(false);
   const [imageUpload, setImageUpload] = useState([]);
   const navigate = useNavigate();
   const avatarUrl = useRef(
@@ -61,56 +62,45 @@ const handleImageUpload = () => {
   const data = new FormData();
   data.append("image", image);
 
-  // const imageData = localStorage.getItem("image");
-  // if (!imageData) {
-  //   Swal.fire({
-  //     icon: "error",
-  //     title: "Error",
-  //     text: "Image data not found in localStorage",
-  //     showConfirmButton: false,
-  //     timer: 2500,
-  //   });
-  //   return;
-  // }
-  // const image = new Blob([imageData], { type: "image/png" });
-  // const formData = new FormData();
-  // formData.append("image", image);
-
+  setUploading(true);
   axios
-    .post("https://backend.ap.loclx.io/api/save-photo", data, {
-      headers
-    })
-    .then((res) => {
-      if (res.status === 201) { 
-        Swal.fire({
-          icon: "success",
-          title: res.data.message,
-          showConfirmButton: false,
-          timer: 2500,
-        });
-        console.log(res.data.message);
-        setImageUpload(res.data); 
-      } else if (res.status === 403) { 
-        Swal.fire({
-          icon: "error",
-          title: res.data.message,
-          showConfirmButton: false,
-          timer: 2500,
-        });
-        console.log(res.data.message);
-      }
-    })
-    .catch((error) => {
+  .post("https://backend.ap.loclx.io/api/save-photo", data, { headers })
+  .then((res) => {
+    if (res.data.status === "201") { 
       Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: error.response.data.message,
+        icon: "success",
+        title: res.data.message,
         showConfirmButton: false,
         timer: 2500,
       });
+      console.log(res.data.message);
+      setImageUpload(res.data); 
+    } else if (res.data.status === "403") { 
+      Swal.fire({
+        icon: "error",
+        title: res.data.message,
+        showConfirmButton: false,
+        timer: 2500,
+      });
+      console.log(res.data.message);
+    }
+  })
+  .catch((error) => {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: error.response.data.message,
+      showConfirmButton: false,
+      timer: 2500,
     });
+  })
+  .finally(() => {
+    setUploading(false); // Set uploading to false when upload completes or fails
+  });
+ 
+
   console.log("avatarUrl.current", avatarUrl.current);
-  console.log("image",image);
+  console.log("image---",image);
 };
 
   
@@ -142,6 +132,9 @@ const handleImageUpload = () => {
       <button onClick={handleImageUpload} className="mt-[30px] hover:underline">
         Upload
       </button>
+      
+    {/* Loading indicator */}
+    {uploading && <progress className="progress bg-red-500 w-56"></progress>}
     </div>
   );
 };

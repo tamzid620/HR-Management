@@ -14,7 +14,7 @@ const MIN_DIMENSION = 150;
 const ImageCropper = ({ closeModal, updateAvatar }) => {
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [crop, setCrop] = useState();
   const [error, setError] = useState("");
 
@@ -82,7 +82,7 @@ const ImageCropper = ({ closeModal, updateAvatar }) => {
         <span className="sr-only">Choose profile photo</span>
         <input
           type="file"
-          name="file"
+          name="image"
           accept="image/*"
           onChange={onSelectFile}
           className="block w-full text-sm text-slate-500 file:mr-4 file:py-1 file:px-2 file:rounded-full file:border-0 file:text-xs file:bg-gray-200 file:text-sky-300 hover:file:bg-gray-400"

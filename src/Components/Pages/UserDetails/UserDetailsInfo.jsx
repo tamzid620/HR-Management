@@ -54,61 +54,70 @@ const UserDetailsInfo = () => {
 
   // handle Submit  method -----------------
 const handleSubmit = () => {
+  
+  const user = JSON.parse(localStorage.getItem("user"));
+  const headers = {
+    accept: "application/json",
+    Authorization: "Bearer " + user.token,
+  };
 
-  // const user = JSON.parse(localStorage.getItem("user"));
-  // const headers = {
-  //   accept: "application/json",
-  //   Authorization: "Bearer " + user.token,
-  // };
+  const data = new FormData();
 
-  // const data = new FormData();
-  // data.append(
-  //   [
-  //     {...eduInfo},
-  //     {...docInfo}
-  //   ]
-  //   );
+  // Append educational info----------------------
+  eduInfo.forEach((edu) => {
+    data.append("degreeName", edu.degreeName);
+    data.append("institutionName", edu.institutionName);
+    if (edu.certificates) {
+      data.append("certificates", edu.certificates);
+    }
+    if (edu.markSheet) {
+      data.append("markSheet", edu.markSheet);
+    }
+  })
+  // Append document info
+  docInfo.forEach((doc) => {
+    data.append("documentName", doc.documentName);
+    if (doc.file) {
+      data.append("file", doc.file);
+    }
+  })
 
-  // axios
-  //   .post("https://backend.ap.loclx.io/api/", data, {
-  //     headers
-  //   })
-  //   .then((res) => {
-  //     if (res.status === 201) { 
-  //       Swal.fire({
-  //         icon: "success",
-  //         title: res.data.message,
-  //         showConfirmButton: false,
-  //         timer: 2500,
-  //       });
-  //       console.log(res.data.message);
-  //       setUserDetails(res.data); 
-  //     } else if (res.status === 403) { 
-  //       Swal.fire({
-  //         icon: "error",
-  //         title: res.data.message,
-  //         showConfirmButton: false,
-  //         timer: 2500,
-  //       });
-  //       console.log(res.data.message);
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     Swal.fire({
-  //       icon: "error",
-  //       title: "Error",
-  //       text: error.response.data.message,
-  //       showConfirmButton: false,
-  //       timer: 2500,
-  //     });
-  //   });
+  axios
+    .post("https://backend.ap.loclx.io/api/save-docs", data, {
+      headers
+    })
+    .then((res) => {
+      if (res.status === 201) { 
+        Swal.fire({
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 2500,
+        });
+        console.log(res.data.message);
+        setUserDetails(res.data); 
+      } else if (res.status === 403) { 
+        Swal.fire({
+          icon: "error",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 2500,
+        });
+        console.log(res.data.message);
+      }
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.response.data.message,
+        showConfirmButton: false,
+        timer: 2500,
+      });
+    });
   console.log("userDetails",userDetails);
-  console.log("data",
-    [
-      {...eduInfo},
-      {...docInfo}
-    ]
-    );
+  console.log("eduInfo:",eduInfo)
+    console.log("docInfo:",docInfo)
 };
 
   return (
@@ -169,7 +178,7 @@ const handleSubmit = () => {
         className="btn btn-sm btn-success text-white">
           Add Educational
         </button>
-        {eduInfo.map((edu, index) => (
+        {eduInfo && eduInfo.map((edu, index) => (
         <div key={index} className="mb-[100px]">
           {/* Degree Name */}
           <div className="user_Details_paragraph">
@@ -237,7 +246,7 @@ const handleSubmit = () => {
           <button onClick={handleAddDocInfo}
            className="btn btn-sm btn-info text-white ">Add Documents</button>
 
-{docInfo.map((doc, index) => (
+{docInfo && docInfo.map((doc, index) => (
           <div key={index} className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
             {/* Document Name */}
             <div className="user_Details_paragraph">

@@ -6,7 +6,22 @@ import Swal from "sweetalert2";
 const UserDetailsInfo = () => {
   const [eduInfo, setEduInfo] = useState([]);
   const [docInfo, setDocInfo] = useState([]);
-  const [ userDetails, setUserDetails ] = useState([]) ;
+  const [ userDetails, setUserDetails ] = useState({
+    eduInfo:[
+     {
+            degreeName: "",
+            institutionName: "",
+            certificates: null,
+            markSheet: null,
+          }
+    ],
+    docInfo:[
+    {
+            documentName: "",
+            file: null,
+          }
+    ]
+    }) ;
   const navigate = useNavigate();
 
   // Barrer Token useEffect --------------------
@@ -22,12 +37,6 @@ const UserDetailsInfo = () => {
       });
       navigate("/userLogin");
     }
-    // else {
-    //   const user = JSON.parse(localStorage.getItem("user"));
-    //   const headers = {
-    //     accept: "application/json",
-    //     Authorization: "Bearer " + user.token,
-    //   }}
   }, [navigate]);
 
   const handleAddEduInfo = () => {
@@ -61,33 +70,33 @@ const handleSubmit = () => {
     Authorization: "Bearer " + user.token,
   };
 
-  const data = new FormData();
 
-  // Append educational info----------------------
-  eduInfo.forEach((edu) => {
-    data.append("degreeName", edu.degreeName);
-    data.append("institutionName", edu.institutionName);
-    if (edu.certificates) {
-      data.append("certificates", edu.certificates);
-    }
-    if (edu.markSheet) {
-      data.append("markSheet", edu.markSheet);
-    }
-  })
-  // Append document info
-  docInfo.forEach((doc) => {
-    data.append("documentName", doc.documentName);
-    if (doc.file) {
-      data.append("file", doc.file);
-    }
-  })
+  const data = new FormData();
+ // Append educational info----------------------
+ eduInfo.forEach((edu) => {
+  data.append("degreeName", edu.degreeName);
+  data.append("institutionName", edu.institutionName);
+  if (edu.certificates) {
+    data.append("certificates", edu.certificates);
+  }
+  if (edu.markSheet) {
+    data.append("markSheet", edu.markSheet);
+  }
+})
+// Append document info
+docInfo.forEach((doc) => {
+  data.append("documentName", doc.documentName);
+  if (doc.file) {
+    data.append("file", doc.file);
+  }
+})
 
   axios
     .post("https://backend.ap.loclx.io/api/save-docs", data, {
       headers
     })
     .then((res) => {
-      if (res.status === 201) { 
+      if (res.data.status === 201) { 
         Swal.fire({
           icon: "success",
           title: res.data.message,
@@ -96,7 +105,7 @@ const handleSubmit = () => {
         });
         console.log(res.data.message);
         setUserDetails(res.data); 
-      } else if (res.status === 403) { 
+      } else if (res.data.status === 403) { 
         Swal.fire({
           icon: "error",
           title: res.data.message,
@@ -115,9 +124,10 @@ const handleSubmit = () => {
         timer: 2500,
       });
     });
-  console.log("userDetails",userDetails);
-  console.log("eduInfo:",eduInfo)
-    console.log("docInfo:",docInfo)
+  console.log("userDetails:",userDetails);
+  console.log("eduInfo:", eduInfo); // Check the type of eduInfo
+console.log("docInfo:", docInfo); // Check the type of docInfo
+
 };
 
   return (

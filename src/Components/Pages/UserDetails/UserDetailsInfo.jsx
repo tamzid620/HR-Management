@@ -6,25 +6,11 @@ import Swal from "sweetalert2";
 const UserDetailsInfo = () => {
   const [eduInfo, setEduInfo] = useState([]);
   const [docInfo, setDocInfo] = useState([]);
-  const [ userDetails, setUserDetails ] = useState({
-    eduInfo:[
-     {
-            degreeName: "",
-            institutionName: "",
-            certificates: null,
-            markSheet: null,
-          }
-    ],
-    docInfo:[
-    {
-            documentName: "",
-            file: null,
-          }
-    ]
-    }) ;
+ const [userDetails, setUserDetails] = useState([]) ;
+
   const navigate = useNavigate();
 
-  // Barrer Token useEffect --------------------
+  // Check for token useEffect
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -38,7 +24,6 @@ const UserDetailsInfo = () => {
       navigate("/userLogin");
     }
   }, [navigate]);
-
   const handleAddEduInfo = () => {
     setEduInfo([
       ...eduInfo,
@@ -59,76 +44,89 @@ const UserDetailsInfo = () => {
       },
     ]);
   };
-
-
-  // handle Submit  method -----------------
-const handleSubmit = () => {
   
-  const user = JSON.parse(localStorage.getItem("user"));
-  const headers = {
-    accept: "application/json",
-    Authorization: "Bearer " + user.token,
-  };
 
+  const handleSubmit = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
 
-  const data = new FormData();
- // Append educational info----------------------
- eduInfo.forEach((edu) => {
-  data.append("degreeName", edu.degreeName);
-  data.append("institutionName", edu.institutionName);
-  if (edu.certificates) {
-    data.append("certificates", edu.certificates);
-  }
-  if (edu.markSheet) {
-    data.append("markSheet", edu.markSheet);
-  }
-})
-// Append document info
-docInfo.forEach((doc) => {
-  data.append("documentName", doc.documentName);
-  if (doc.file) {
-    data.append("file", doc.file);
-  }
-})
-
-  axios
-    .post("https://backend.ap.loclx.io/api/save-docs", data, {
-      headers
-    })
-    .then((res) => {
-      if (res.data.status === 201) { 
-        Swal.fire({
-          icon: "success",
-          title: res.data.message,
-          showConfirmButton: false,
-          timer: 2500,
-        });
-        console.log(res.data.message);
-        setUserDetails(res.data); 
-      } else if (res.data.status === 403) { 
+    const formData = [
+      {
+        eduInfo: eduInfo.map(edu => ({
+          degreeName: edu.degreeName ? JSON.stringify(edu.degreeName) : null,
+          institutionName: edu.institutionName ? JSON.stringify(edu.institutionName) : null,
+          certificates: edu.certificates,
+          markSheet: edu.markSheet
+        }))
+      },
+      {
+        docInfo: docInfo.map(doc => ({
+          documentName: doc.documentName ? JSON.stringify(doc.documentName) : null,
+          file: doc.file
+        }))
+      }
+    ];
+    
+    const data = new FormData();
+    data.append("formData:" , formData)
+    // eduInfo.forEach((edu) => {
+    //   if (edu.degreeName) {data.append("degreeName:", JSON.stringify(edu?.degreeName))}
+    //   if (edu.institutionName) {data.append("institutionName:", JSON.stringify(edu?.institutionName))}
+    //   if (edu.certificates) {data.append("certificates:", edu?.certificates)}
+    //   if (edu.markSheet) {data.append("markSheet:", edu?.markSheet)}
+    // })
+    // docInfo.forEach((doc) => {
+    //   if (doc.documentName) {data.append("documentName:", JSON.stringify(doc?.documentName))}
+    //   if (doc.file) {data.append("file:", doc?.file)}
+    // })
+    
+    axios .post("https://backend.ap.loclx.io/api/save-docs", data, {headers,})
+      .then((res) => {
+        if (res.data.status === '201') {
+          Swal.fire({
+            icon: "success",
+            title: res.data.message,
+            showConfirmButton: false,
+            timer: 2500,
+          });
+          // setUserDetails({ eduInfo, docInfo, ...res.data })
+          
+        } else if (res.data.status === '403') {
+          Swal.fire({
+            icon: "error",
+            title: res.data.message,
+            showConfirmButton: false,
+            timer: 2500,
+          });
+        }
+      })
+      .catch((error) => {
         Swal.fire({
           icon: "error",
-          title: res.data.message,
+          title: "Error",
+          text: error.response.data.message,
           showConfirmButton: false,
           timer: 2500,
         });
-        console.log(res.data.message);
-      }
-    })
-    .catch((error) => {
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: error.response.data.message,
-        showConfirmButton: false,
-        timer: 2500,
       });
-    });
-  console.log("userDetails:",userDetails);
-  console.log("eduInfo:", eduInfo); // Check the type of eduInfo
-console.log("docInfo:", docInfo); // Check the type of docInfo
 
-};
+// console.log() section ---------------------
+  // eduInfo.forEach((edu) => {
+  //   if (edu.degreeName) {console.log("degreeName:", JSON.stringify(edu?.degreeName))}
+  //   if (edu.institutionName) {console.log("institutionName:", JSON.stringify(edu?.institutionName))}
+  //   if (edu.certificates) {console.log("certificates:", edu?.certificates)}
+  //   if (edu.markSheet) {console.log("markSheet:", edu?.markSheet)}
+  // })
+  // docInfo.forEach((doc) => {
+  //   if (doc.documentName) {console.log("documentName:", JSON.stringify(doc?.documentName))}
+  //   if (doc.file) {console.log("file:", doc?.file)}
+  // })
+
+  };
+
 
   return (
     <div className="container mx-auto">
@@ -195,6 +193,7 @@ console.log("docInfo:", docInfo); // Check the type of docInfo
             <label>Degree_Name:</label>
             <input
               type="text"
+              name= "degreeName"
               className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
               value={edu.degreeName}
               onChange={(e) => {
@@ -209,6 +208,7 @@ console.log("docInfo:", docInfo); // Check the type of docInfo
             <label>Institution_Name:</label>
             <input
               type="text"
+              name="institutionName"
               className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
               value={edu.institutionName}
                   onChange={(e) => {
@@ -224,6 +224,7 @@ console.log("docInfo:", docInfo); // Check the type of docInfo
               <label>Certificates:</label>
               <input
                 type="file"
+                name="certificates"
                 className="user_Details_span file-input  file-input-sm w-full max-w-x"
                 onChange={(e) => {
                   const updatedInfo = [...eduInfo];
@@ -237,6 +238,7 @@ console.log("docInfo:", docInfo); // Check the type of docInfo
               <label>MarkSheet:</label>
               <input
                 type="file"
+                name="markSheet"
                 className="user_Details_span file-input  file-input-sm w-full max-w-x"
                 onChange={(e) => {
                   const updatedInfo = [...eduInfo];
@@ -263,6 +265,7 @@ console.log("docInfo:", docInfo); // Check the type of docInfo
               <label>Document_Name:</label>
               <input
                 type="text"
+                name="documentName" 
                 className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent px-3 py-1 border-b-2 border-gray-600"
                 value={doc.documentName}
                 onChange={(e) => {
@@ -277,6 +280,7 @@ console.log("docInfo:", docInfo); // Check the type of docInfo
               <label>File:</label>
               <input
                 type="file"
+                name="file"
                 className="user_Details_span file-input file-input-sm w-full max-w-x"
                 onChange={(e) => {
                   const updatedInfo = [...docInfo];

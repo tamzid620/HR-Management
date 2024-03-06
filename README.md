@@ -4,6 +4,7 @@
     padding-top: 70px;
 }
 
+<!-- userDetailsInfo backup : UdBackup.jsx  -->
 
   <!-- const [image, setImage] = useState([]); -->
 

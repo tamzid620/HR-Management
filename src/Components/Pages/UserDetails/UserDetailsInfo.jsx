@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 const UserDetailsInfo = () => {
   const [eduInfo, setEduInfo] = useState([]);
   const [docInfo, setDocInfo] = useState([]);
- const [userDetails, setUserDetails] = useState([]) ;
 
   const navigate = useNavigate();
 
@@ -53,35 +52,24 @@ const UserDetailsInfo = () => {
       Authorization: "Bearer " + user.token,
     };
 
-    const formData = [
-      {
-        eduInfo: eduInfo.map(edu => ({
-          degreeName: edu.degreeName ? JSON.stringify(edu.degreeName) : null,
-          institutionName: edu.institutionName ? JSON.stringify(edu.institutionName) : null,
-          certificates: edu.certificates,
-          markSheet: edu.markSheet
-        }))
-      },
-      {
-        docInfo: docInfo.map(doc => ({
-          documentName: doc.documentName ? JSON.stringify(doc.documentName) : null,
-          file: doc.file
-        }))
-      }
-    ];
-    
+    const formData = {
+      eduInfo: eduInfo.map(edu => ({
+        degreeName: edu.degreeName ? edu.degreeName : null,
+        institutionName: edu.institutionName ? edu.institutionName : null,
+        certificates: edu.certificates,
+        markSheet: edu.markSheet
+      })),
+      docInfo: docInfo.map(doc => ({
+        documentName: doc.documentName ? doc.documentName : null,
+        file: doc.file
+      }))
+    };
     const data = new FormData();
-    data.append("formData:" , formData)
-    // eduInfo.forEach((edu) => {
-    //   if (edu.degreeName) {data.append("degreeName:", JSON.stringify(edu?.degreeName))}
-    //   if (edu.institutionName) {data.append("institutionName:", JSON.stringify(edu?.institutionName))}
-    //   if (edu.certificates) {data.append("certificates:", edu?.certificates)}
-    //   if (edu.markSheet) {data.append("markSheet:", edu?.markSheet)}
-    // })
-    // docInfo.forEach((doc) => {
-    //   if (doc.documentName) {data.append("documentName:", JSON.stringify(doc?.documentName))}
-    //   if (doc.file) {data.append("file:", doc?.file)}
-    // })
+    data.append("formData", JSON.stringify(formData));
+    console.log("formData:" , formData);
+    console.log("eduInfo:" , formData.eduInfo);
+    console.log("docInfo:" , formData.docInfo);
+
     
     axios .post("https://backend.ap.loclx.io/api/save-docs", data, {headers,})
       .then((res) => {
@@ -124,7 +112,6 @@ const UserDetailsInfo = () => {
   //   if (doc.documentName) {console.log("documentName:", JSON.stringify(doc?.documentName))}
   //   if (doc.file) {console.log("file:", doc?.file)}
   // })
-
   };
 
 

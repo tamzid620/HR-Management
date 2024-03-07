@@ -6,21 +6,15 @@ const UserDetailsInfo = () => {
   const navigate = useNavigate();
   const [eduInfo, setEduInfo] = useState([]);
   const [docInfo, setDocInfo] = useState([]);
-    const [eduDocumentType, setEduDocumentType] = useState("eduInfo");
-    const [degreeName, setDegreeName] = useState("");
     const [institutionName, setInstitutionName] = useState("");
     const [certificates, setCertificates] = useState([]);
     const [markSheet, setMarkSheet] = useState([]);
-    const [docDocumentType, setDocDocumentType] = useState("docinfo");
     const [documentName, setDocumentName] = useState("");
     const [docFile, setDocFile] = useState([]);
 
     // handleChange section -------------------
-   const eduDocumentTypeChange =(e) =>{
-    setEduDocumentType(e.target.value)
-   }
    const degreeNameChange =(e) =>{
-    setDegreeName(e.target.value)
+    setDocumentName(e.target.value)
    }
    const institutionNameChange =(e) =>{
     setInstitutionName(e.target.value)
@@ -30,9 +24,6 @@ const UserDetailsInfo = () => {
    }
    const markSheetChange =(e) =>{
     setMarkSheet(e.target.value)
-   }
-   const docDocumentTypeChange =(e) =>{
-    setDocDocumentType(e.target.value)
    }
    const documentNameChange =(e) =>{
     setDocumentName(e.target.value)
@@ -57,15 +48,13 @@ const UserDetailsInfo = () => {
   }, [navigate]);
 
   const handleAddEduInfo = () => {
-    console.log( "eduDocumentType:", eduDocumentType);
-    console.log( "degreeName:",degreeName );
+    console.log( "degreeName:",documentName );
     console.log( "institutionName:",institutionName );
     console.log( "certificates:",certificates );
     console.log( "markSheet:", markSheet);
   };
 
   const handleAddDocInfo = () => {
-console.log( "docDocumentType:",docDocumentType );
 console.log( "documentName:",documentName );
 console.log( "docFile:",docFile );
   };
@@ -122,24 +111,12 @@ console.log( "docFile:",docFile );
         {/*------------------ Educational Information div---------------------- */}
         <div>
           <h1 className="text-3xl">Educational Information</h1>
-          {/* Document Type */}
-          <div className="user_Details_paragraph">
-            <label>Document_Type:</label>
-            <input
-              type="text"
-              name="eduDocumentType"
-              value="eduInfo"
-              className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent px-3 py-1 border-b-2 border-gray-600"
-              onChange={eduDocumentTypeChange}
-              readOnly
-            />
-          </div>
           {/* Degree Name */}
           <div className="user_Details_paragraph">
             <label>Degree_Name:</label>
             <input
               type="text"
-              name="degreeName"
+              name="documentName"
               className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
               onChange={degreeNameChange}
             />
@@ -190,18 +167,6 @@ console.log( "docFile:",docFile );
         <div>
           <h1 className="text-3xl mt-[100px]">Other Documents</h1>
           <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
-            {/* Document Type */}
-            <div className="user_Details_paragraph">
-              <label>Document_Type:</label>
-              <input
-                type="text"
-                name="docDocumentType"
-                value="docInfo"
-                className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent px-3 py-1 border-b-2 border-gray-600"
-                onChange={docDocumentTypeChange}
-                readOnly
-              />
-            </div>
             {/* Document Name */}
             <div className="user_Details_paragraph">
               <label>Document_Name:</label>
@@ -233,6 +198,29 @@ console.log( "docFile:",docFile );
             </button>
           </div>
         </div>
+        {/* table div  */}
+        <div className="overflow-x-auto my-[50px]">
+  <table className="table">
+    {/* head */}
+    <thead>
+      <tr>
+        <th>index</th>
+        <th>Document Name</th>
+        <th>Institute Name</th>
+        <th>Files</th>
+      </tr>
+    </thead>
+    <tbody>
+      {/* row 1 */}
+      <tr>
+        <th>1</th>
+        <td>Cy Ganderton</td>
+        <td>Quality Control Specialist</td>
+        <td>Blue</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
       </div>
     </div>
   );

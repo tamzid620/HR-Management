@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -6,31 +7,33 @@ const UserDetailsInfo = () => {
   const navigate = useNavigate();
   const [eduInfo, setEduInfo] = useState([]);
   const [docInfo, setDocInfo] = useState([]);
-    const [institutionName, setInstitutionName] = useState("");
-    const [certificates, setCertificates] = useState([]);
-    const [markSheet, setMarkSheet] = useState([]);
-    const [documentName, setDocumentName] = useState("");
-    const [docFile, setDocFile] = useState([]);
+  const [institutionName, setInstitutionName] = useState("");
+  const [certificates, setCertificates] = useState(null);
+  const [markSheet, setMarkSheet] = useState(null);
+  const [documentName, setDocumentName] = useState("");
+  const [docFile, setDocFile] = useState("");
 
-    // handleChange section -------------------
-   const degreeNameChange =(e) =>{
-    setDocumentName(e.target.value)
-   }
-   const institutionNameChange =(e) =>{
-    setInstitutionName(e.target.value)
-   }
-   const certificatesChange =(e) =>{
-    setCertificates(e.target.value)
-   }
-   const markSheetChange =(e) =>{
-    setMarkSheet(e.target.value)
-   }
-   const documentNameChange =(e) =>{
-    setDocumentName(e.target.value)
-   }
-   const docFileChange =(e) =>{
-    setDocFile(e.target.value)
-   }
+  // handleChange section -------------------
+  const degreeNameChange = (e) => {
+    setDocumentName(e.target.value);
+  };
+  const institutionNameChange = (e) => {
+    setInstitutionName(e.target.value);
+  };
+  const certificatesChange = (e) => {
+    console.log("Certificates:", e.target.files[0]);
+    setCertificates(e.target.files[0]);
+  };
+  const markSheetChange = (e) => {
+    console.log("MarkSheet:", e.target.files[0]);
+    setMarkSheet(e.target.files[0]);
+  };
+  const documentNameChange = (e) => {
+    setDocumentName(e.target.value);
+  };
+  const docFileChange = (e) => {
+    setDocFile(e.target.files[0]);
+  };
 
   // Check for token useEffect
   useEffect(() => {
@@ -48,15 +51,56 @@ const UserDetailsInfo = () => {
   }, [navigate]);
 
   const handleAddEduInfo = () => {
-    console.log( "degreeName:",documentName );
-    console.log( "institutionName:",institutionName );
-    console.log( "certificates:",certificates );
-    console.log( "markSheet:", markSheet);
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+    console.log("documentName:", documentName);
+    console.log("institutionName:", institutionName);
+    console.log("certificates:", certificates);
+    console.log("markSheet:", markSheet)
+
+    const data = new FormData();
+    data.append("documentName", documentName);
+    data.append("institutionName", institutionName);
+    data.append("certificates", certificates);
+    data.append("markSheet", markSheet);
+
+    axios
+      .post("https://backend.ap.loclx.io/api/save-docs", data, { headers })
+      .then((res) => {
+        if (res.data.status === "201") {
+          Swal.fire({
+            icon: "success",
+            title: res.data.message,
+            showConfirmButton: false,
+            timer: 2500,
+          });
+          // setUserDetails({ eduInfo, docInfo, ...res.data })
+        } else if (res.data.status === "403") {
+          Swal.fire({
+            icon: "error",
+            title: res.data.message,
+            showConfirmButton: false,
+            timer: 2500,
+          });
+        }
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: error.response.data.message,
+          showConfirmButton: false,
+          timer: 2500,
+        });
+      });
   };
 
   const handleAddDocInfo = () => {
-console.log( "documentName:",documentName );
-console.log( "docFile:",docFile );
+    console.log("documentName:", documentName);
+    console.log("docFile:", docFile);
   };
 
   return (
@@ -134,20 +178,22 @@ console.log( "docFile:",docFile );
           <section className="grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1">
             {/* Certificates */}
             <div className="user_Details_paragraph">
-              <label>Certificates:</label>
+              <label htmlFor="file">Certificates:</label>
               <input
                 type="file"
-                name="certificates"
+                name="file"
+                id="file"
                 className="user_Details_span file-input  file-input-sm w-full max-w-x"
                 onChange={certificatesChange}
               />
             </div>
             {/* MarkSheet */}
             <div className="user_Details_paragraph">
-              <label>MarkSheet:</label>
+              <label htmlFor="file">MarkSheet:</label>
               <input
                 type="file"
-                name="markSheet"
+                name="file"
+                id="file"
                 className="user_Details_span file-input  file-input-sm w-full max-w-x"
                 onChange={markSheetChange}
               />
@@ -179,10 +225,11 @@ console.log( "docFile:",docFile );
             </div>
             {/* Document File */}
             <div className="user_Details_paragraph">
-              <label>File:</label>
+              <label htmlFor="file">File:</label>
               <input
                 type="file"
-                name="docFile"
+                name="file"
+                id="file"
                 className="user_Details_span file-input file-input-sm w-full max-w-x"
                 onChange={docFileChange}
               />
@@ -200,27 +247,27 @@ console.log( "docFile:",docFile );
         </div>
         {/* table div  */}
         <div className="overflow-x-auto my-[50px]">
-  <table className="table">
-    {/* head */}
-    <thead>
-      <tr>
-        <th>index</th>
-        <th>Document Name</th>
-        <th>Institute Name</th>
-        <th>Files</th>
-      </tr>
-    </thead>
-    <tbody>
-      {/* row 1 */}
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>index</th>
+                <th>Document Name</th>
+                <th>Institute Name</th>
+                <th>Files</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+              <tr>
+                <th>1</th>
+                <td>Cy Ganderton</td>
+                <td>Quality Control Specialist</td>
+                <td>Blue</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

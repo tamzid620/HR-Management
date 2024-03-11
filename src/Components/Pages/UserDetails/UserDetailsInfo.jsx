@@ -101,6 +101,47 @@ const UserDetailsInfo = () => {
   const handleAddDocInfo = () => {
     console.log("documentName:", documentName);
     console.log("docFile:", docFile);
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+    console.log("documentName:", documentName);
+    console.log("docFile:", docFile);
+
+    const data = new FormData();
+    data.append("documentName", documentName);
+    data.append("docFile", docFile);
+
+    axios
+      .post("https://backend.ap.loclx.io/api/save-docs", data, { headers })
+      .then((res) => {
+        if (res.data.status === "201") {
+          Swal.fire({
+            icon: "success",
+            title: res.data.message,
+            showConfirmButton: false,
+            timer: 2500,
+          });
+          // setUserDetails({ eduInfo, docInfo, ...res.data })
+        } else if (res.data.status === "403") {
+          Swal.fire({
+            icon: "error",
+            title: res.data.message,
+            showConfirmButton: false,
+            timer: 2500,
+          });
+        }
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: error.response.data.message,
+          showConfirmButton: false,
+          timer: 2500,
+        });
+      });
   };
 
   return (
@@ -161,6 +202,7 @@ const UserDetailsInfo = () => {
             <input
               type="text"
               name="documentName"
+              required
               className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
               onChange={degreeNameChange}
             />
@@ -171,6 +213,7 @@ const UserDetailsInfo = () => {
             <input
               type="text"
               name="institutionName"
+              required
               className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
               onChange={institutionNameChange}
             />
@@ -183,6 +226,7 @@ const UserDetailsInfo = () => {
                 type="file"
                 name="file"
                 id="file"
+                required
                 className="user_Details_span file-input  file-input-sm w-full max-w-x"
                 onChange={certificatesChange}
               />
@@ -194,6 +238,7 @@ const UserDetailsInfo = () => {
                 type="file"
                 name="file"
                 id="file"
+                required
                 className="user_Details_span file-input  file-input-sm w-full max-w-x"
                 onChange={markSheetChange}
               />
@@ -219,6 +264,7 @@ const UserDetailsInfo = () => {
               <input
                 type="text"
                 name="documentName"
+                required
                 className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent px-3 py-1 border-b-2 border-gray-600"
                 onChange={documentNameChange}
               />
@@ -229,6 +275,7 @@ const UserDetailsInfo = () => {
               <input
                 type="file"
                 name="file"
+                required
                 id="file"
                 className="user_Details_span file-input file-input-sm w-full max-w-x"
                 onChange={docFileChange}

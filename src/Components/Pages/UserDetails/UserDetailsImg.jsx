@@ -9,6 +9,7 @@ import "./UserDetails.css";
 const UserDetailsImg = () => {
   const [uploading, setUploading] = useState(false);
   const [imageUpload, setImageUpload] = useState([]);
+  const [userImg, setUserImg] = useState(null);
   const navigate = useNavigate();
   const avatarUrl = useRef(
     "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
@@ -29,7 +30,21 @@ const UserDetailsImg = () => {
         timer: 1500,
       });
       navigate("/userLogin");
-    }
+    }   
+     const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+    axios
+    .get("https://backend.ap.loclx.io/api/leed-info",{
+      headers
+    })
+    .then((res) => {
+      setUserImg(res.data?.file ||  null);
+     
+    })
+    console.log("user:" , userImg);
   }, [navigate]);
 
 
@@ -110,7 +125,8 @@ const handleImageUpload = () => {
       <div className="relative">
         <img
           name="file"
-          src={avatarUrl.current}
+          src={userImg || avatarUrl.current}
+          value={userImg}
           alt="Avatar"
           className="w-[150px] h-[150px] rounded-full border-2 border-gray-400"
         />

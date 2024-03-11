@@ -51,38 +51,32 @@ const UdBackup = () => {
       accept: "application/json",
       Authorization: "Bearer " + user.token,
     };
-
-    const formData = {
-      eduInfo: eduInfo.map(edu => ({
-        degreeName: edu.degreeName ? edu.degreeName : null,
-        institutionName: edu.institutionName ? edu.institutionName : null,
-        certificates: edu.certificates,
-        markSheet: edu.markSheet
-      })),
-      docInfo: docInfo.map(doc => ({
-        documentName: doc.documentName ? doc.documentName : null,
-        file: doc.file
-      }))
-    };
-    const data = new FormData();
-    data.append("formData", JSON.stringify(formData));
-    console.log("formData:" , formData);
-    console.log("eduInfo:" , formData.eduInfo);
-    console.log("docInfo:" , formData.docInfo);
-
-    
-    axios .post("https://backend.ap.loclx.io/api/save-docs", data, {headers,})
+  
+    const formData = new FormData();
+  
+    eduInfo.forEach((edu, index) => {
+      formData.append(`eduInfo[${index}][degreeName]`, edu.degreeName);
+      formData.append(`eduInfo[${index}][institutionName]`, edu.institutionName);
+      formData.append(`eduInfo[${index}][certificates]`, edu.certificates);
+      formData.append(`eduInfo[${index}][markSheet]`, edu.markSheet);
+    });
+  
+    docInfo.forEach((doc, index) => {
+      formData.append(`docInfo[${index}][documentName]`, doc.documentName);
+      formData.append(`docInfo[${index}][file]`, doc.file);
+    });
+  
+    axios
+      .post("https://backend.ap.loclx.io/api/save-docs", formData, { headers })
       .then((res) => {
-        if (res.data.status === '201') {
+        if (res.data.status === "201") {
           Swal.fire({
             icon: "success",
             title: res.data.message,
             showConfirmButton: false,
             timer: 2500,
           });
-          // setUserDetails({ eduInfo, docInfo, ...res.data })
-          
-        } else if (res.data.status === '403') {
+        } else if (res.data.status === "403") {
           Swal.fire({
             icon: "error",
             title: res.data.message,
@@ -100,19 +94,8 @@ const UdBackup = () => {
           timer: 2500,
         });
       });
-
-// console.log() section ---------------------
-  // eduInfo.forEach((edu) => {
-  //   if (edu.degreeName) {console.log("degreeName:", JSON.stringify(edu?.degreeName))}
-  //   if (edu.institutionName) {console.log("institutionName:", JSON.stringify(edu?.institutionName))}
-  //   if (edu.certificates) {console.log("certificates:", edu?.certificates)}
-  //   if (edu.markSheet) {console.log("markSheet:", edu?.markSheet)}
-  // })
-  // docInfo.forEach((doc) => {
-  //   if (doc.documentName) {console.log("documentName:", JSON.stringify(doc?.documentName))}
-  //   if (doc.file) {console.log("file:", doc?.file)}
-  // })
   };
+  
 
 
   return (
@@ -211,7 +194,7 @@ const UdBackup = () => {
               <label>Certificates:</label>
               <input
                 type="file"
-                name="certificates"
+                name="file"
                 className="user_Details_span file-input  file-input-sm w-full max-w-x"
                 onChange={(e) => {
                   const updatedInfo = [...eduInfo];
@@ -225,7 +208,7 @@ const UdBackup = () => {
               <label>MarkSheet:</label>
               <input
                 type="file"
-                name="markSheet"
+                name="file"
                 className="user_Details_span file-input  file-input-sm w-full max-w-x"
                 onChange={(e) => {
                   const updatedInfo = [...eduInfo];

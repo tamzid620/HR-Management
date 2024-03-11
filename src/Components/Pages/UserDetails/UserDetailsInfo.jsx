@@ -7,6 +7,7 @@ const UserDetailsInfo = () => {
   const navigate = useNavigate();
   const [eduInfo, setEduInfo] = useState([]);
   const [docInfo, setDocInfo] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
   const [institutionName, setInstitutionName] = useState("");
   const [certificates, setCertificates] = useState(null);
   const [markSheet, setMarkSheet] = useState(null);
@@ -48,6 +49,19 @@ const UserDetailsInfo = () => {
       });
       navigate("/userLogin");
     }
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+    axios
+    .get("https://backend.ap.loclx.io/api/leed-info",{
+      headers
+    })
+    .then((res) => {
+      setUserInfo(res.data);
+     
+    })
   }, [navigate]);
 
   const handleAddEduInfo = () => {
@@ -152,7 +166,7 @@ const UserDetailsInfo = () => {
           <label>Name:</label>
           <input
             type="text"
-            value="Tamzid"
+            value={userInfo.user?.name}
             readOnly
             className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
           />
@@ -161,6 +175,7 @@ const UserDetailsInfo = () => {
           <label>Father_Name:</label>
           <input
             type="text"
+            value={userInfo.user?.fatherName}
             readOnly
             className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
           />
@@ -169,6 +184,7 @@ const UserDetailsInfo = () => {
           <label>Mother_Name:</label>
           <input
             type="text"
+            value={userInfo.user?.motherName}
             readOnly
             className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
           />
@@ -177,6 +193,7 @@ const UserDetailsInfo = () => {
           <label>Birth_Date:</label>
           <input
             type="text"
+            value={userInfo.user?.birthDate}
             readOnly
             className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
           />
@@ -185,6 +202,7 @@ const UserDetailsInfo = () => {
           <label>Email:</label>
           <input
             type="text"
+            value={userInfo.user?.email}
             readOnly
             className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
           />

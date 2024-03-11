@@ -24,6 +24,7 @@ import EnterOTP from "./Components/Pages/EnterOTP/EnterOTP";
 import ConfirmPhoneNo from "./Components/Pages/ConfirmPhoneNo/ConfirmPhoneNo";
 import ConfirmPassword from "./Components/Pages/ConfirmPassword/ConfirmPassword";
 import UserDetails from "./Components/Pages/UserDetails/UserDetails";
+import UdBackup from "./Components/Pages/UserDetails/UdBackup";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         element: <Home/>
       },
 // user section --------------------
+      {
+        path: "/udb",
+        element: <UdBackup/>
+      },
       {
         path: "/userLogin",
         element: <UserLogin/>

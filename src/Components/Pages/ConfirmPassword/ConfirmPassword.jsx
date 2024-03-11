@@ -66,7 +66,7 @@ const navigate = useNavigate();
           showConfirmButton: false,
           timer: 2500
         });
-        localStorage.clear() ;
+        // localStorage.clear() ; 
         navigate('/userLogin')
       })
       .catch((error) => {
@@ -82,7 +82,7 @@ const navigate = useNavigate();
           <label htmlFor="name">Name:</label>
           <input
             required
-            readOnly
+            // readOnly 
             className="shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
             placeholder="Your Name"
             type="name"
@@ -97,7 +97,7 @@ const navigate = useNavigate();
           <label htmlFor="email">Email:</label>
           <input
             required
-            readOnly
+            // readOnly
             className="shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
             placeholder="Your Email"
             type="email"

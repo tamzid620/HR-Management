@@ -54,8 +54,27 @@ const UserDetailsInfo = () => {
       accept: "application/json",
       Authorization: "Bearer " + user.token,
     };
+    // user informaiton  get method-------------------
     axios
     .get("https://backend.ap.loclx.io/api/leed-info",{
+      headers
+    })
+    .then((res) => {
+      setUserInfo(res.data);
+     
+    })
+    // Educational Information table  get method------------------------
+    axios
+    .get("https://backend.ap.loclx.io/api/",{
+      headers
+    })
+    .then((res) => {
+      setUserInfo(res.data);
+     
+    })
+    // Other Documents table get method------------------------
+    axios
+    .get("https://backend.ap.loclx.io/api/",{
       headers
     })
     .then((res) => {
@@ -272,6 +291,29 @@ const UserDetailsInfo = () => {
             </button>
           </div>
         </div>
+        {/* Educational Information table */}
+        <div className="overflow-x-auto mt-[50px] mb-[150px]">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>index</th>
+                <th>Document Name</th>
+                <th>Institute Name</th>
+                <th>Files</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+              <tr>
+                <th>1</th>
+                <td>Cy Ganderton</td>
+                <td>Quality Control Specialist</td>
+                <td>Blue</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         {/*------------------ Other Documents div---------------------- */}
         <div>
           <h1 className="text-3xl mt-[100px]">Other Documents</h1>
@@ -310,8 +352,8 @@ const UserDetailsInfo = () => {
             </button>
           </div>
         </div>
-        {/* table div  */}
-        <div className="overflow-x-auto my-[50px]">
+        {/* Other Documents table */}
+        <div className="overflow-x-auto mt-[50px] mb-[150px]">
           <table className="table">
             {/* head */}
             <thead>

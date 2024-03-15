@@ -1,0 +1,40 @@
+{
+    "data": [
+      {
+        "id": 1,
+        "documentType": "eduInfo",
+        "leedId": 15,
+        "documentName": "Bsc.Certificate",
+        "institutionName": "RMSTU",
+        "docFile": null,
+        "created_at": "2024-03-10T09:43:07.000000Z",
+        "updated_at": "2024-03-10T09:43:07.000000Z",
+        "crtLink": "http://backend.ap.loclx.io/upload/image/1710063787.jpg",
+        "markLink": "http://backend.ap.loclx.io/upload/image/1710063787.jpg"
+      },
+      {
+        "id": 2,
+        "documentType": "eduInfo",
+        "leedId": 15,
+        "documentName": "Bsc.Certificate",
+        "institutionName": "RMSTU",
+        "docFile": null,
+        "created_at": "2024-03-10T09:46:23.000000Z",
+        "updated_at": "2024-03-10T09:46:23.000000Z",
+        "crtLink": "http://backend.ap.loclx.io/upload/image/CERT1710063983.jpg",
+        "markLink": "http://backend.ap.loclx.io/upload/image/MARK1710063983.jpg"
+      },
+      {
+        "id": 16,
+        "documentType": "eduInfo",
+        "leedId": 15,
+        "documentName": "1Mrjb5fSry",
+        "institutionName": "kXeClTshw1",
+        "docFile": null,
+        "created_at": "2024-03-11T07:52:50.000000Z",
+        "updated_at": "2024-03-11T07:52:50.000000Z",
+        "crtLink": "http://backend.ap.loclx.io/upload/image/CERT1710143570.png",
+        "markLink": "http://backend.ap.loclx.io/upload/image/MARK1710143570.png"
+      }
+    ]
+  }

@@ -5,8 +5,8 @@ import Swal from "sweetalert2";
 
 const UserDetailsInfo = () => {
   const navigate = useNavigate();
-  const [eduInfo, setEduInfo] = useState([]);
-  const [docInfo, setDocInfo] = useState([]);
+  const [eduInfos, setEduInfos] = useState([]);
+  const [docInfos, setDocInfos] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const [institutionName, setInstitutionName] = useState("");
   const [certificates, setCertificates] = useState(null);
@@ -56,31 +56,29 @@ const UserDetailsInfo = () => {
     };
     // user informaiton  get method-------------------
     axios
-    .get("https://backend.ap.loclx.io/api/leed-info",{
-      headers
-    })
-    .then((res) => {
-      setUserInfo(res.data);
-     
-    })
+      .get("https://backend.ap.loclx.io/api/leed-info", {
+        headers,
+      })
+      .then((res) => {
+        setUserInfo(res.data);
+      });
     // Educational Information table  get method------------------------
     axios
-    .get("https://backend.ap.loclx.io/api/",{
-      headers
-    })
-    .then((res) => {
-      setUserInfo(res.data);
-     
-    })
+      .get("https://backend.ap.loclx.io/api/edu-info", {
+        headers,
+      })
+      .then((res) => {
+        setEduInfos(res.data.data);
+      });
+    console.log(eduInfos);
     // Other Documents table get method------------------------
-    axios
-    .get("https://backend.ap.loclx.io/api/",{
-      headers
-    })
-    .then((res) => {
-      setUserInfo(res.data);
-     
-    })
+    // axios
+    //   .get("https://backend.ap.loclx.io/api/doc-info", {
+    //     headers,
+    //   })
+    //   .then((res) => {
+    //     setDocInfos(res.data);
+    //   });
   }, [navigate]);
 
   const handleAddEduInfo = () => {
@@ -92,7 +90,7 @@ const UserDetailsInfo = () => {
     console.log("documentName:", documentName);
     console.log("institutionName:", institutionName);
     console.log("certificates:", certificates);
-    console.log("markSheet:", markSheet)
+    console.log("markSheet:", markSheet);
 
     const data = new FormData();
     data.append("documentName", documentName);
@@ -304,13 +302,15 @@ const UserDetailsInfo = () => {
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
-              </tr>
+              {eduInfos && eduInfos.map((eduInfo, index) => (
+                  <tr key={index}>
+                    <th>{index + 1}</th>
+                    <td>{eduInfo.documentName}</td>
+                    <td>{eduInfo.institutionName}</td>
+                    <td>{eduInfo.crtLink}</td>
+                    <td>{eduInfo.markLink}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

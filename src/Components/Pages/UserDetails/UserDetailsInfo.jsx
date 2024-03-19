@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { BsFiletypePdf } from "react-icons/bs";
 
 const UserDetailsInfo = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const UserDetailsInfo = () => {
   const [markSheet, setMarkSheet] = useState(null);
   const [documentName, setDocumentName] = useState("");
   const [docFile, setDocFile] = useState("");
+  const [Loading, setLoading] = useState(true);
 
   // handleChange section -------------------
   const degreeNameChange = (e) => {
@@ -63,12 +65,14 @@ const UserDetailsInfo = () => {
         setUserInfo(res.data);
       });
     // Educational Information table  get method------------------------
+    setLoading(true);
     axios
-      .get("https://backend.ap.loclx.io/api/edu-info", {
-        headers,
-      })
-      .then((res) => {
+    .get("https://backend.ap.loclx.io/api/edu-info", {
+      headers,
+    })
+    .then((res) => {
         setEduInfos(res.data.data);
+        setLoading(false);
       });
     console.log(eduInfos);
     // Other Documents table get method------------------------
@@ -80,6 +84,14 @@ const UserDetailsInfo = () => {
     //     setDocInfos(res.data);
     //   });
   }, [navigate]);
+    // markLink section -----------------
+    const handleMarkLinkDownload = (markLink) => {
+      window.open(markLink, "_blank");
+    };
+    // crtLink section -----------------
+    const handleCrtLinkDownload = (crtLink) => {
+      window.open(crtLink, "_blank");
+    };
 
   const handleAddEduInfo = () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -299,19 +311,37 @@ const UserDetailsInfo = () => {
                 <th>Document Name</th>
                 <th>Institute Name</th>
                 <th>Files</th>
+                <th>Files</th>
+                <th>Action</th>
               </tr>
             </thead>
+            {
+            Loading ? 
+            ( <p className="mt-[30px] text-center"><span className="w-[50px] loading loading-spinner text-neutral"></span></p>) :(
             <tbody>
               {eduInfos && eduInfos.map((eduInfo, index) => (
                   <tr key={index}>
                     <th>{index + 1}</th>
                     <td>{eduInfo.documentName}</td>
                     <td>{eduInfo.institutionName}</td>
-                    <td>{eduInfo.crtLink}</td>
-                    <td>{eduInfo.markLink}</td>
+                    <td onClick={() => handleCrtLinkDownload(eduInfo.crtLink)}>
+                    <BsFiletypePdf
+                      className="p-1 rounded-lg text-green-500 hover:bg-green-500 hover:text-white"
+                      size={40}
+                      />
+                      </td>
+                    <td onClick={() => handleMarkLinkDownload(eduInfo.markLink)}>
+                      <BsFiletypePdf
+                      className="p-1 rounded-lg text-blue-500 hover:bg-blue-500 hover:text-white"
+                      size={40}
+                      />
+                    </td>
+                    <button className="btn btn-xs mt-[20px] btn-error">Error</button>
                   </tr>
                 ))}
             </tbody>
+            ) 
+            }
           </table>
         </div>
         {/*------------------ Other Documents div---------------------- */}

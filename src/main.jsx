@@ -25,6 +25,7 @@ import ConfirmPhoneNo from "./Components/Pages/ConfirmPhoneNo/ConfirmPhoneNo";
 import ConfirmPassword from "./Components/Pages/ConfirmPassword/ConfirmPassword";
 import UserDetails from "./Components/Pages/UserDetails/UserDetails";
 import UdBackup from "./Components/Pages/UserDetails/UdBackup";
+import ContractPage from "./Components/Pages/UserDetails/ContractPage/ContractPage";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "/userDetails",
         element: <UserDetails/>
+      },
+      {
+        path: "/contractPage",
+        element: <ContractPage/>
       },
 // Admin Section ----------------------------
       {

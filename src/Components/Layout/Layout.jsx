@@ -10,6 +10,7 @@ const noHeaderFooter  =
 // user Section -----------
 location.pathname.includes('userLogin') ||
 location.pathname.includes('userSignup') ||
+location.pathname.includes('contractPage') ||
 // OTP Section ------------------
 location.pathname.includes('confirmPhoneNo') ||
 location.pathname.includes('enterOtp') ||

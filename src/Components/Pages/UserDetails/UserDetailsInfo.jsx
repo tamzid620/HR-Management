@@ -14,7 +14,8 @@ const UserDetailsInfo = () => {
   const [markSheet, setMarkSheet] = useState(null);
   const [documentName, setDocumentName] = useState("");
   const [docFile, setDocFile] = useState("");
-  const [Loading, setLoading] = useState(true);
+  const [eduLoading, setEduLoading] = useState(true);
+  const [docLoading, setDocLoading] = useState(true);
 
   // handleChange section -------------------
   const degreeNameChange = (e) => {
@@ -24,11 +25,11 @@ const UserDetailsInfo = () => {
     setInstitutionName(e.target.value);
   };
   const certificatesChange = (e) => {
-    console.log("Certificates:", e.target.files[0]);
+    // console.log("Certificates:", e.target.files[0]);
     setCertificates(e.target.files[0]);
   };
   const markSheetChange = (e) => {
-    console.log("MarkSheet:", e.target.files[0]);
+    // console.log("MarkSheet:", e.target.files[0]);
     setMarkSheet(e.target.files[0]);
   };
   const documentNameChange = (e) => {
@@ -65,24 +66,26 @@ const UserDetailsInfo = () => {
         setUserInfo(res.data);
       });
     // Educational Information table  get method------------------------
-    setLoading(true);
+    setEduLoading(true);
     axios
     .get("https://backend.ap.loclx.io/api/edu-info", {
       headers,
     })
     .then((res) => {
         setEduInfos(res.data.data);
-        setLoading(false);
+        setEduLoading(false);
       });
-    console.log(eduInfos);
+    // console.log(eduInfos);
     // Other Documents table get method------------------------
-    // axios
-    //   .get("https://backend.ap.loclx.io/api/doc-info", {
-    //     headers,
-    //   })
-    //   .then((res) => {
-    //     setDocInfos(res.data);
-    //   });
+    setDocLoading(true);
+    axios
+      .get("https://backend.ap.loclx.io/api/doc-info", {
+        headers,
+      })
+      .then((res) => {
+        setDocInfos(res.data.data);
+        setDocLoading(false);
+      });
   }, [navigate]);
     // markLink section -----------------
     const handleMarkLinkDownload = (markLink) => {
@@ -92,17 +95,17 @@ const UserDetailsInfo = () => {
     const handleCrtLinkDownload = (crtLink) => {
       window.open(crtLink, "_blank");
     };
-
+    // handleAddEduInfo button -----------------------
   const handleAddEduInfo = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
       accept: "application/json",
       Authorization: "Bearer " + user.token,
     };
-    console.log("documentName:", documentName);
-    console.log("institutionName:", institutionName);
-    console.log("certificates:", certificates);
-    console.log("markSheet:", markSheet);
+    // console.log("documentName:", documentName);
+    // console.log("institutionName:", institutionName);
+    // console.log("certificates:", certificates);
+    // console.log("markSheet:", markSheet);
 
     const data = new FormData();
     data.append("documentName", documentName);
@@ -142,15 +145,15 @@ const UserDetailsInfo = () => {
   };
 
   const handleAddDocInfo = () => {
-    console.log("documentName:", documentName);
-    console.log("docFile:", docFile);
+    // console.log("documentName:", documentName);
+    // console.log("docFile:", docFile);
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
       accept: "application/json",
       Authorization: "Bearer " + user.token,
     };
-    console.log("documentName:", documentName);
-    console.log("docFile:", docFile);
+    // console.log("documentName:", documentName);
+    // console.log("docFile:", docFile);
 
     const data = new FormData();
     data.append("documentName", documentName);
@@ -310,13 +313,13 @@ const UserDetailsInfo = () => {
                 <th>index</th>
                 <th>Document Name</th>
                 <th>Institute Name</th>
-                <th>Files</th>
-                <th>Files</th>
+                <th>Certificate</th>
+                <th>MarkSheet</th>
                 <th>Action</th>
               </tr>
             </thead>
             {
-            Loading ? 
+            eduLoading ? 
             ( <p className="mt-[30px] text-center"><span className="w-[50px] loading loading-spinner text-neutral"></span></p>) :(
             <tbody>
               {eduInfos && eduInfos.map((eduInfo, index) => (
@@ -336,7 +339,7 @@ const UserDetailsInfo = () => {
                       size={40}
                       />
                     </td>
-                    <button className="btn btn-xs mt-[20px] btn-error">Error</button>
+                    <button className="btn btn-xs mt-[20px] btn-error">Delete</button>
                   </tr>
                 ))}
             </tbody>
@@ -391,18 +394,38 @@ const UserDetailsInfo = () => {
                 <th>index</th>
                 <th>Document Name</th>
                 <th>Institute Name</th>
-                <th>Files</th>
+                <th>Certificate</th>
+                <th>MarkSheet</th>
+                <th>Action</th>
               </tr>
             </thead>
+            {
+            docLoading ? 
+            ( <p className="mt-[30px] text-center"><span className="w-[50px] loading loading-spinner text-neutral"></span></p>) :(
             <tbody>
-              {/* row 1 */}
-              <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
-              </tr>
+              {docInfos && docInfos.map((docInfo, index) => (
+                  <tr key={index}>
+                    <th>{index + 1}</th>
+                    <td>{docInfo.documentName}</td>
+                    <td>{docInfo.institutionName}</td>
+                    <td onClick={() => handleCrtLinkDownload(docInfo.crtLink)}>
+                    <BsFiletypePdf
+                      className="p-1 rounded-lg text-green-500 hover:bg-green-500 hover:text-white"
+                      size={40}
+                      />
+                      </td>
+                    <td onClick={() => handleMarkLinkDownload(docInfo.markLink)}>
+                      <BsFiletypePdf
+                      className="p-1 rounded-lg text-blue-500 hover:bg-blue-500 hover:text-white"
+                      size={40}
+                      />
+                    </td>
+                    <button className="btn btn-xs mt-[20px] btn-error">Delete</button>
+                  </tr>
+                ))}
             </tbody>
+            ) 
+            }
           </table>
         </div>
       </div>

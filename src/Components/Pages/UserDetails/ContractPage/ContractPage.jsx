@@ -33,7 +33,6 @@ const ContractPage = () => {
   const handleSubmit = () => {
     // Save form data to localStorage
     localStorage.setItem("contractFormData", JSON.stringify(formData));
-    console.log(formData);
   };
 
   return (

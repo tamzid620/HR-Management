@@ -1,3 +1,5 @@
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +10,6 @@ const UserDetailsInfo = () => {
   const navigate = useNavigate();
   const [eduInfos, setEduInfos] = useState([]);
   const [docInfos, setDocInfos] = useState([]);
-  const [userInfo, setUserInfo] = useState([]);
   const [institutionName, setInstitutionName] = useState("");
   const [certificates, setCertificates] = useState(null);
   const [markSheet, setMarkSheet] = useState(null);
@@ -57,14 +58,7 @@ const UserDetailsInfo = () => {
       accept: "application/json",
       Authorization: "Bearer " + user.token,
     };
-    // user informaiton  get method-------------------
-    axios
-      .get("https://backend.ap.loclx.io/api/leed-info", {
-        headers,
-      })
-      .then((res) => {
-        setUserInfo(res.data);
-      });
+    
     // Educational Information table  get method------------------------
     setEduLoading(true);
     axios
@@ -192,54 +186,20 @@ const UserDetailsInfo = () => {
 
   return (
     <div className="container mx-auto">
-      {/*------------------------user informaiton div--------------- */}
-      <div className=" leading-[50px] font-semibold ">
-        <p className="user_Details_paragraph">
-          <label>Name:</label>
-          <input
-            type="text"
-            value={userInfo.user?.name}
-            readOnly
-            className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
-          />
-        </p>
-        <p className="user_Details_paragraph">
-          <label>Father_Name:</label>
-          <input
-            type="text"
-            value={userInfo.user?.fatherName}
-            readOnly
-            className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
-          />
-        </p>
-        <p className="user_Details_paragraph">
-          <label>Mother_Name:</label>
-          <input
-            type="text"
-            value={userInfo.user?.motherName}
-            readOnly
-            className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
-          />
-        </p>
-        <p className="user_Details_paragraph">
-          <label>Birth_Date:</label>
-          <input
-            type="text"
-            value={userInfo.user?.birthDate}
-            readOnly
-            className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
-          />
-        </p>
-        <p className="user_Details_paragraph">
-          <label>Email:</label>
-          <input
-            type="text"
-            value={userInfo.user?.email}
-            readOnly
-            className="user_Details_span focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-gray-600 "
-          />
-        </p>
-      </div>
+
+<Tabs>
+    <TabList>
+      <Tab>Title 1</Tab>
+      <Tab>Title 2</Tab>
+    </TabList>
+
+    <TabPanel>
+      <h2>Any content 1</h2>
+    </TabPanel>
+    <TabPanel>
+      <h2>Any content 2</h2>
+    </TabPanel>
+  </Tabs>
 
       {/* form div  */}
       <div className=" my-[50px] leading-[50px] font-semibold ">

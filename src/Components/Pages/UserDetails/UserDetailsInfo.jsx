@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { BsFiletypePdf } from "react-icons/bs";
+import { FaWpforms } from "react-icons/fa";
 
 const UserDetailsInfo = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const UserDetailsInfo = () => {
   const [docFile, setDocFile] = useState("");
   const [eduLoading, setEduLoading] = useState(true);
   const [docLoading, setDocLoading] = useState(true);
+  const [activeTab , setActiveTab] = useState(0);
 
   // handleChange section -------------------
   const degreeNameChange = (e) => {
@@ -89,7 +91,9 @@ const UserDetailsInfo = () => {
     const handleCrtLinkDownload = (crtLink) => {
       window.open(crtLink, "_blank");
     };
-    // handleAddEduInfo button -----------------------
+
+
+// handleAddEduInfo button -----------------------
   const handleAddEduInfo = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
@@ -137,7 +141,7 @@ const UserDetailsInfo = () => {
         });
       });
   };
-
+  // handleAddDocInfo button -----------------------
   const handleAddDocInfo = () => {
     // console.log("documentName:", documentName);
     // console.log("docFile:", docFile);
@@ -185,26 +189,30 @@ const UserDetailsInfo = () => {
   };
 
   return (
-    <div className="container mx-auto">
-
-<Tabs>
-    <TabList>
-      <Tab>Title 1</Tab>
-      <Tab>Title 2</Tab>
+    <div className="container mx-auto mt-[50px]">
+<Tabs selectedTab ={activeTab} onSelect={index => setActiveTab(index)} >
+        
+    <TabList className="flex">
+    {/* <Tab className={`Tab ${activeTabIndex === 0 ? 'active' : ''}`}>Educational Information</Tab> */}    
+      <Tab className={`flex items-center gap-2 py-[10px] px-[20px] ${activeTab === 0 ? 'border-b-4 border-b-[#25476a]' :'border-b-transparent'}`}>
+      <FaWpforms 
+                      className="p-1 rounded-lg text-[#25476a] hover:bg-[#25476a] hover:text-white"
+                      size={40}
+                      />
+         Educational Information
+         </Tab>
+      <Tab className={`flex items-center gap-2 py-[10px] px-[20px] ${activeTab === 1 ? 'border-b-4 border-b-[#25476a]' :'border-b-transparent'}`}>
+      <FaWpforms 
+                      className="p-1 rounded-lg text-[#25476a] hover:bg-[#25476a] hover:text-white"
+                      size={40}
+                      />
+        Other Documents
+        </Tab>
     </TabList>
 
-    <TabPanel>
-      <h2>Any content 1</h2>
-    </TabPanel>
-    <TabPanel>
-      <h2>Any content 2</h2>
-    </TabPanel>
-  </Tabs>
-
-      {/* form div  */}
+      {/*------------------ Educational Information TabPanel---------------------- */}
+    <TabPanel className="border-t-2">
       <div className=" my-[50px] leading-[50px] font-semibold ">
-        {/*------------------ Educational Information div---------------------- */}
-        <div>
           <h1 className="text-3xl">Educational Information</h1>
           {/* Degree Name */}
           <div className="user_Details_paragraph">
@@ -264,7 +272,7 @@ const UserDetailsInfo = () => {
             </button>
           </div>
         </div>
-        {/* Educational Information table */}
+        {/* Table Section */}
         <div className="overflow-x-auto mt-[50px] mb-[150px]">
           <table className="table">
             {/* head */}
@@ -307,9 +315,11 @@ const UserDetailsInfo = () => {
             }
           </table>
         </div>
-        {/*------------------ Other Documents div---------------------- */}
-        <div>
-          <h1 className="text-3xl mt-[100px]">Other Documents</h1>
+    </TabPanel>
+      {/*------------------ Other Documents TabPanel---------------------- */}
+    <TabPanel className="border-t-2">
+      <div className=" my-[50px] leading-[50px] font-semibold ">
+          <h1 className="text-3xl">Other Documents</h1>
           <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
             {/* Document Name */}
             <div className="user_Details_paragraph">
@@ -345,7 +355,7 @@ const UserDetailsInfo = () => {
             </button>
           </div>
         </div>
-        {/* Other Documents table */}
+        {/* Table Section */}
         <div className="overflow-x-auto mt-[50px] mb-[150px]">
           <table className="table">
             {/* head */}
@@ -388,6 +398,13 @@ const UserDetailsInfo = () => {
             }
           </table>
         </div>
+    </TabPanel>
+  </Tabs>
+
+      {/* form div  */}
+      <div>
+        
+        
       </div>
     </div>
   );

@@ -10,3 +10,16 @@
     margin-top: 8px;
     color: gray;
 }
+/* Tab section  */
+.TabList{
+    display: flex;
+}
+.Tab{
+    padding: 10px;
+    border-bottom: 5px solid #25476a;
+    border-bottom: transparent;
+}
+
+.TabPanel{
+    border-top-width: 2px;
+}

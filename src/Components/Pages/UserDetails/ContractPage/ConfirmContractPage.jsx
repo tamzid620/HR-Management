@@ -8,14 +8,10 @@ const ConfirmContractPage = () => {
   const contractFormData = JSON.parse(localStorage.getItem("contractFormData"));
 
   return (
-    <div className="lg:m-[50px] md:m-[20px]">
+    <div className="parentDiv">
       <div ref={ref}>
-        <div className="parentDiv lg:m-[20px] md:m-[20px]">
-          <h1
-            style={{ fontFamily: "Taviraj, serif" }}
-            className=" uppercase text-center text-4xl font-semibold my-[50px]
-             "
-          >
+        <div className="info">
+          <h1 className="infoH1">
             Consulting <br /> Agreement
           </h1>
           <section className="section">

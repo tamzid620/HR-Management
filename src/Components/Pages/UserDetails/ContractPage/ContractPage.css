@@ -1,32 +1,69 @@
-.parentDiv{
-border-color: #25476a;
-border-width: 10px;
+/* parentDiv   */
+@media (min-width: 960px) {
+  .parentDiv {
+    margin: 50px;
+  }
+}
+@media (min-width: 720px) {
+  .parentDiv {
+    margin: 20px;
+  }
+}
+/* info  */
+.info {
+  border-color: #25476a;
+  border-width: 10px;
+}
+.infoH1 {
+    text-align: center;
+  font-family: "Taviraj, serif";
+  text-transform: uppercase;
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 600;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
-.section{
-    margin-right: 50px;
-    margin-left: 50px;
-    margin-bottom: 50px;
+@media (min-width: 960px) {
+  .info {
+    margin: 20px;
+  }
 }
-.sectionTitle{
-    text-transform: uppercase;
-    font-size: 20px;
-    line-height: 28px;
-    font-weight: 600;
-    text-decoration: underline;
-    margin-top: 20px;
+@media (min-width: 720px) {
+  .info {
+    margin: 20px;
+  }
 }
-.sectionInfo{
-margin-top: 10px;
+
+/* ---------------------------------------- */
+.font-bold {
+    font-weight: 700;
 }
-.sectionInput{
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-    background-color: transparent;
-    padding-left:12px ;
-    padding-right: 12px ;
-    padding-top: 4px ;
-    padding-bottom: 4px;
-    border-bottom-width: 2px;
-    border-color: black;
+.section {
+  margin-right: 50px;
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+.sectionTitle {
+  text-transform: uppercase;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  text-decoration: underline;
+  margin-top: 20px;
+}
+.sectionInfo {
+  margin-top: 10px;
+}
+.sectionInput {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  background-color: transparent;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-width: 2px;
+  border-color: black;
 }

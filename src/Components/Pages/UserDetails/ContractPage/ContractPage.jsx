@@ -36,13 +36,10 @@ const ContractPage = () => {
   };
 
   return (
-    <div className="lg:m-[50px] md:m-[20px]">
-      <div className="border-[#25476a] border-[10px] lg:m-[20px] md:m-[20px]">
-        <h1
-          style={{ fontFamily: "Taviraj, serif" }}
-          className=" uppercase text-center text-4xl font-semibold my-[50px]
-             "
-        >
+    <div className="parentDiv">
+      {/* info div  */}
+      <div className="info">
+        <h1 className="infoH1">
           Consulting <br /> Agreement
         </h1>
         <section className="section">

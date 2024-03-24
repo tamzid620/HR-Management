@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import PencilIcon from "./PencilIcon";
 import Modal from "./Modal";
@@ -163,9 +163,13 @@ const UserDetailsImg = () => {
       </div>
       {/*------------------------user informaiton div--------------- */}
       <div className="container mx-auto leading-[50px] font-semibold mt-[50px]">
+        {/* title and contractPage section  */}
+        <section className="flex justify-between items-center">
         <h1 className="text-3xl">
           Welcome <span></span>
         </h1>
+        <Link to="/contractPage"><button className="btn bg-blue-500">Contract Page</button></Link>
+        </section>
 
         <p className="user_Details_paragraph">
           Name: <span className="user_Details_span">{userInfo.user?.name}</span>

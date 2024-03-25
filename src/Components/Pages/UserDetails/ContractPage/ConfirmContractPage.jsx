@@ -1,15 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import "./ContractPage.css";
-import ReactToPrint from "react-to-print";
-import { useRef } from "react";
 
 const ConfirmContractPage = () => {
-  const ref = useRef();
   const contractFormData = JSON.parse(localStorage.getItem("contractFormData"));
 
   return (
     <div className="parentDiv">
-      <div ref={ref}>
         <div className="info">
           <h1 className="infoH1">
             Consulting <br /> Agreement
@@ -79,22 +75,15 @@ const ConfirmContractPage = () => {
             </p>
           </section>
         </div>
+      {/* submit button ------------------------------ */}
+      <div className="flex justify-center mb-[50px]">
+          <button
+            className="submit"
+          >
+            Submit
+          </button>
       </div>
-      {/* print button ------------------------------ */}
-      <div className="flex justify-center gap-10 mb-[50px]">
-        <button className="btn bg-[#25476a] text-white border border-black shadow-lg shadow-black hover:text-black hover:border-black ">
-          Agree
-        </button>
-        <ReactToPrint
-          trigger={() => (
-            <button className="btn bg-[#25476a] text-white border border-black shadow-lg shadow-black hover:text-black hover:border-black ">
-              Print
-            </button>
-          )}
-          content={() => ref.current}
-        ></ReactToPrint>
-      </div>
-      {/* print button ------------------------------ */}
+      {/* submit button ------------------------------ */}
     </div>
   );
 };

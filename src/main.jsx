@@ -11,7 +11,6 @@ import Home from "./Components/Pages/Home/Home";
 import UserLogin from "./Components/Pages/Login/UserLogin";
 import UserSignUp from "./Components/Pages/Login/UserSignUp";
 import AdminContracts from "./Components/Shared/DashBoard/LeadMangement/AdminContracts";
-import AdminLeeds from "./Components/Shared/DashBoard/LeadMangement/AdminLeeds";
 import AdminSubLeeds from "./Components/Shared/DashBoard/LeadMangement/AdminSubLeeds";
 import AdminEstimates from "./Components/Shared/DashBoard/Finance/AdminEstimates";
 import AdminInvoice from "./Components/Shared/DashBoard/Finance/AdminInvoice";
@@ -27,6 +26,9 @@ import UserDetails from "./Components/Pages/UserDetails/UserDetails";
 import UdBackup from "./Components/Pages/UserDetails/UdBackup";
 import ContractPage from "./Components/Pages/UserDetails/ContractPage/ContractPage";
 import ConfirmContractPage from "./Components/Pages/UserDetails/ContractPage/ConfirmContractPage";
+import AdminLeedsList from "./Components/Shared/DashBoard/LeadMangement/AdminLeeds/AdminLeedsList";
+import AdminLeedsEdit from "./Components/Shared/DashBoard/LeadMangement/AdminLeeds/AdminLeedsEdit";
+import AdminLeedsAdd from "./Components/Shared/DashBoard/LeadMangement/AdminLeeds/AdminLeedsAdd";
 
 const router = createBrowserRouter([
   {
@@ -85,14 +87,27 @@ const router = createBrowserRouter([
         element: <AdminPanel/>
       },
 // AdminDashBoard section --------------------------------------------------------
-// Lead Management --------------------
+
+
+
+
+
+// Lead Management ------
       {
         path: "/AdminContracts",
         element: <AdminContracts/>
       },
       {
-        path: "/AdminLeeds",
-        element: <AdminLeeds/>
+        path: "/AdminLeedsList",
+        element: <AdminLeedsList/>
+      },
+      {
+        path: "/AdminLeedsEdit",
+        element: <AdminLeedsEdit/>
+      },
+      {
+        path: "/AdminLeedsAdd",
+        element: <AdminLeedsAdd/>
       },
       {
         path: "/AdminSubLeeds",

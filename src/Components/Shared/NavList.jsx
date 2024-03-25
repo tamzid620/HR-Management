@@ -27,7 +27,7 @@ const NavList = () => {
             </li>
           </Link>
           <hr className="mt-1" />
-          <Link to="/AdminLeeds">
+          <Link to="/AdminLeedsList">
             <li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">
               Leeds
             </li>

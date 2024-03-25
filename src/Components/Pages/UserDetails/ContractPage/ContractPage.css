@@ -67,3 +67,15 @@
   border-bottom-width: 2px;
   border-color: black;
 }
+/* submit button  */
+.submit{
+  width: 60px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #25476a;
+  color: white;
+  border: 1px solid black; 
+}
+.submit:hover {
+  box-shadow: 0px 0px 10px black;
+}

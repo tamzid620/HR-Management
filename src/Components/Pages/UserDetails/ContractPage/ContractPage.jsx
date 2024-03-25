@@ -177,22 +177,19 @@ const ContractPage = () => {
           </p>
         </section>
       </div>
-      {/* print button ------------------------------ */}
+      {/* submit button ------------------------------ */}
       <div className="flex justify-center mb-[50px]">
         <Link to="/confirmContractPage">
-        {/* <Link to={{
-    pathname: "/confirmContractPage",
-    state: formData
-}}> */}
+
           <button
             onClick={handleSubmit}
-            className="btn bg-[#25476a] text-white border border-black shadow-lg shadow-black hover:text-black hover:border-black "
+            className="submit"
           >
             Submit
           </button>
         </Link>
       </div>
-      {/* print button ------------------------------ */}
+      {/* submit button ------------------------------ */}
     </div>
   );
 };

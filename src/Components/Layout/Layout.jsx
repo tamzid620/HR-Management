@@ -21,7 +21,9 @@ location.pathname.includes('adminLogin') ||
 location.pathname.includes('dp') ||
 // Lead Management ----------
 location.pathname.includes('AdminContracts') ||
-location.pathname.includes('AdminLeeds') ||
+location.pathname.includes('AdminLeedsList') ||
+location.pathname.includes('AdminLeedsEdit') ||
+location.pathname.includes('AdminLeedsAdd') ||
 location.pathname.includes('AdminSubLeeds') ||
 // Finance --------------------
 location.pathname.includes('AdminEstimates') ||

@@ -88,7 +88,7 @@ const ConfirmContractPage = () => {
           <button
             className="submit"
           >
-            Submit
+            Print
           </button>
           )}
           content={() => ref.current}

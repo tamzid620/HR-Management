@@ -11,13 +11,17 @@ const UserDetailsInfo = () => {
   const navigate = useNavigate();
   const [eduInfos, setEduInfos] = useState([]);
   const [docInfos, setDocInfos] = useState([]);
+  const [contractInfos, setContracts] = useState([]);
   const [institutionName, setInstitutionName] = useState("");
   const [certificates, setCertificates] = useState(null);
   const [markSheet, setMarkSheet] = useState(null);
   const [documentName, setDocumentName] = useState("");
   const [docFile, setDocFile] = useState("");
+  const [ paymentSlip, setPaymentSlip] = useState("") ;
+  const [ contractPaper, setContractPaper] = useState("") ;
   const [eduLoading, setEduLoading] = useState(true);
   const [docLoading, setDocLoading] = useState(true);
+  const [contractLoading, setContractLoading] = useState(true);
   const [activeTab , setActiveTab] = useState(0);
 
   // handleChange section -------------------
@@ -41,8 +45,16 @@ const UserDetailsInfo = () => {
   const docFileChange = (e) => {
     setDocFile(e.target.files[0]);
   };
+  const paymentSlipChange = (e) => {
+    setPaymentSlip(e.target.files[0]);
+    console.log("paymentSlip:", e.target.files[0]);
+  };
+  const contractPaperChange = (e) => {
+    setContractPaper(e.target.files[0]);
+    console.log("contractPaper:", e.target.files[0]);
+  };
 
-  // Check for token useEffect
+  // Check for token useEffect-----------
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -71,7 +83,6 @@ const UserDetailsInfo = () => {
         setEduInfos(res.data.data);
         setEduLoading(false);
       });
-    // console.log(eduInfos);
     // Other Documents table get method------------------------
     setDocLoading(true);
     axios
@@ -82,14 +93,33 @@ const UserDetailsInfo = () => {
         setDocInfos(res.data.data);
         setDocLoading(false);
       });
+    //Contract table get method------------------------
+    setContractLoading(true);
+    axios
+      .get("https://backend.ap.loclx.io/api/~~~~~~~~", {
+        headers,
+      })
+      .then((res) => {
+        setContracts(res.data.data);
+        setContractLoading(false);
+      });
   }, [navigate]);
-    // markLink section -----------------
+
+//------------------- download handler section -----------------
     const handleMarkLinkDownload = (markLink) => {
       window.open(markLink, "_blank");
     };
-    // crtLink section -----------------
     const handleCrtLinkDownload = (crtLink) => {
       window.open(crtLink, "_blank");
+    };
+    const handleDocumentsLinkDownload = (docFile) => {
+      window.open(docFile, "_blank");
+    };
+    const handlePaymentSlipLinkDownload = (paymentSlip) => {
+      window.open(paymentSlip, "_blank");
+    };
+    const handleContractPaperLinkDownload = (contractPaper) => {
+      window.open(contractPaper, "_blank");
     };
 
 
@@ -187,6 +217,52 @@ const UserDetailsInfo = () => {
         });
       });
   };
+  // handleContract button -----------------------
+  const handleContract = () => {
+    // console.log("documentName:", documentName);
+    // console.log("docFile:", docFile);
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+    // console.log("documentName:", documentName);
+    // console.log("docFile:", docFile);
+
+    const data = new FormData();
+    data.append("paymentSlip", paymentSlip);
+    data.append("contractPaper", contractPaper);
+
+    axios
+      .post("https://backend.ap.loclx.io/api/create-contract", data, { headers })
+      .then((res) => {
+        if (res.data.status === "201") {
+          Swal.fire({
+            icon: "success",
+            title: res.data.message,
+            showConfirmButton: false,
+            timer: 2500,
+          });
+          // setUserDetails({ eduInfo, docInfo, ...res.data })
+        } else if (res.data.status === "403") {
+          Swal.fire({
+            icon: "error",
+            title: res.data.message,
+            showConfirmButton: false,
+            timer: 2500,
+          });
+        }
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: error.response.data.message,
+          showConfirmButton: false,
+          timer: 2500,
+        });
+      });
+  };
 
   return (
     <div className="container mx-auto mt-[50px]">
@@ -195,18 +271,25 @@ const UserDetailsInfo = () => {
     <TabList className="flex">
           
       <Tab className={`flex items-center gap-2 py-[10px] px-[20px] ${activeTab === 0 ? 'border-b-4 border-b-[#25476a]' :'border-b-transparent'}`}>
-      <FaWpforms 
-                      className="p-1 rounded-lg text-[#25476a] hover:bg-[#25476a] hover:text-white"
-                      size={40}
+        <FaWpforms 
+              className="p-1 rounded-lg text-[#25476a] hover:bg-[#25476a] hover:text-white"
+              size={40}
                       />
          Educational Information
-         </Tab>
+      </Tab>
       <Tab className={`flex items-center gap-2 py-[10px] px-[20px] ${activeTab === 1 ? 'border-b-4 border-b-[#25476a]' :'border-b-transparent'}`}>
       <FaWpforms 
                       className="p-1 rounded-lg text-[#25476a] hover:bg-[#25476a] hover:text-white"
                       size={40}
                       />
         Other Documents
+        </Tab>
+      <Tab className={`flex items-center gap-2 py-[10px] px-[20px] ${activeTab === 2 ? 'border-b-4 border-b-[#25476a]' :'border-b-transparent'}`}>
+      <FaWpforms 
+                      className="p-1 rounded-lg text-[#25476a] hover:bg-[#25476a] hover:text-white"
+                      size={40}
+                      />
+        Contracts
         </Tab>
     </TabList>
 
@@ -350,7 +433,7 @@ const UserDetailsInfo = () => {
           <div className="flex justify-center mt-[30px]">
             <button
               onClick={handleAddDocInfo}
-              className="btn btn-info text-white "
+              className="btn btn-success text-white "
             >
               Submit
             </button>
@@ -364,9 +447,7 @@ const UserDetailsInfo = () => {
               <tr>
                 <th>index</th>
                 <th>Document Name</th>
-                <th>Institute Name</th>
-                <th>Certificate</th>
-                <th>MarkSheet</th>
+                <th>Documents</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -378,14 +459,90 @@ const UserDetailsInfo = () => {
                   <tr key={index}>
                     <th>{index + 1}</th>
                     <td>{docInfo.documentName}</td>
-                    <td>{docInfo.institutionName}</td>
-                    <td onClick={() => handleCrtLinkDownload(docInfo.crtLink)}>
+                    <td onClick={() => handleDocumentsLinkDownload(docInfo.docFile)}>
                     <BsFiletypePdf
                       className="p-1 rounded-lg text-green-500 hover:bg-green-500 hover:text-white"
                       size={40}
                       />
                       </td>
-                    <td onClick={() => handleMarkLinkDownload(docInfo.markLink)}>
+                    <button className="btn btn-xs mt-[20px] btn-error">Delete</button>
+                  </tr>
+                ))}
+            </tbody>
+            ) 
+            }
+          </table>
+        </div>
+    </TabPanel>
+      {/*------------------ Contracts TabPanel---------------------- */}
+    <TabPanel className="border-t-2">
+      <div className=" my-[50px] leading-[50px] font-semibold ">
+          <h1 className="text-3xl mb-[20px]">Contracts</h1>
+          <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
+            
+            {/* Payment Slip File */}
+            <div className="user_Details_paragraph">
+              <label htmlFor="file">Payment_Slip:</label>
+              <input
+                type="file"
+                name="file"
+                required
+                id="file"
+                className="user_Details_span file-input file-input-sm w-full max-w-x"
+                onChange={paymentSlipChange}
+              />
+            </div>
+            {/* Contract_Paper File */}
+            <div className="user_Details_paragraph">
+              <label htmlFor="file">Contract_Paper:</label>
+              <input
+                type="file"
+                name="file"
+                required
+                id="file"
+                className="user_Details_span file-input file-input-sm w-full max-w-x"
+                onChange={contractPaperChange}
+              />
+            </div>
+          </div>
+          {/* handleAddDocInfo section  */}
+          <div className="flex justify-center mt-[30px]">
+            <button
+              onClick={handleContract}
+              className="btn btn-success text-white "
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+        {/* Table Section */}
+        <div className="overflow-x-auto mt-[50px] mb-[150px]">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>index</th>
+                <th>Contract Code</th>
+                <th>Payment Slip</th>
+                <th>Contract Paper</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            {
+            contractLoading ? 
+            ( <p className="mt-[30px] text-center"><span className="w-[50px] loading loading-spinner text-neutral"></span></p>) :(
+            <tbody>
+              {contractInfos && contractInfos.map((contractInfo, index) => (
+                  <tr key={index}>
+                    <th>{index + 1}</th>
+                    <td>{contractInfo.contractCode}</td>
+                    <td onClick={() => handlePaymentSlipLinkDownload(contractInfo.paymentSlip)}>
+                    <BsFiletypePdf
+                      className="p-1 rounded-lg text-green-500 hover:bg-green-500 hover:text-white"
+                      size={40}
+                      />
+                      </td>
+                    <td onClick={() => handleContractPaperLinkDownload(contractInfo.contractPaper)}>
                       <BsFiletypePdf
                       className="p-1 rounded-lg text-blue-500 hover:bg-blue-500 hover:text-white"
                       size={40}

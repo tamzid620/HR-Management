@@ -2,7 +2,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { BsFiletypePdf } from "react-icons/bs";
 import { FaWpforms } from "react-icons/fa";
@@ -193,7 +193,7 @@ const UserDetailsInfo = () => {
 <Tabs selectedTab ={activeTab} onSelect={index => setActiveTab(index)} >
         
     <TabList className="flex">
-    {/* <Tab className={`Tab ${activeTabIndex === 0 ? 'active' : ''}`}>Educational Information</Tab> */}    
+          
       <Tab className={`flex items-center gap-2 py-[10px] px-[20px] ${activeTab === 0 ? 'border-b-4 border-b-[#25476a]' :'border-b-transparent'}`}>
       <FaWpforms 
                       className="p-1 rounded-lg text-[#25476a] hover:bg-[#25476a] hover:text-white"
@@ -209,6 +209,7 @@ const UserDetailsInfo = () => {
         Other Documents
         </Tab>
     </TabList>
+
 
       {/*------------------ Educational Information TabPanel---------------------- */}
     <TabPanel className="border-t-2">
@@ -403,8 +404,7 @@ const UserDetailsInfo = () => {
 
       {/* form div  */}
       <div>
-        
-        
+      
       </div>
     </div>
   );

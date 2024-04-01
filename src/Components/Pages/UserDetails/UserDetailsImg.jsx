@@ -168,7 +168,6 @@ const UserDetailsImg = () => {
         <h1 className="text-3xl">
           Welcome <span></span>
         </h1>
-        <Link to="/contractPage"><button className="btn bg-blue-500">Contract Page</button></Link>
         </section>
 
         <p className="user_Details_paragraph">
@@ -186,6 +185,8 @@ const UserDetailsImg = () => {
         <p className="user_Details_paragraph">
         Email: <span className="user_Details_span">{userInfo.user?.email}</span>
         </p>
+          {/* Contract Page button  */}
+<Link className="flex justify-end " to="/contractPage"><button className="btn bg-blue-500">Contract Page</button></Link>
       </div>
     </div>
   );

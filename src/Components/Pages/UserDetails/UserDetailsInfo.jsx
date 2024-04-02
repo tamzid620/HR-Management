@@ -268,7 +268,7 @@ const UserDetailsInfo = () => {
     <div className="container mx-auto mt-[50px]">
 <Tabs selectedTab ={activeTab} onSelect={index => setActiveTab(index)} >
         
-    <TabList className="flex">
+    <TabList className="flex overflow-x-auto">
           
       <Tab className={`flex items-center gap-2 py-[10px] px-[20px] ${activeTab === 0 ? 'border-b-4 border-b-[#25476a]' :'border-b-transparent'}`}>
         <FaWpforms 

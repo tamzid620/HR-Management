@@ -22,21 +22,22 @@ const AdminLeedsList = () => {
               Leeds List
             </h1>
             <hr className="border border-gray-300 mb-[50px]" />
-            {/* Table Section   */}
+            {/* ------------------------Table Section -------------------------  */}
             <div className="overflow-x-auto">
               <Link to="/AdminLeedsAdd">
                 <button className="btn btn-md bg-info uppercase ms-[10px] mb-[10px]">
                   Add
                 </button>
               </Link>
-              <table className="table">
+              <table className="table table-zebra">
                 {/* head */}
                 <thead className="bg-gray-500 text-white">
                   <tr>
                     <th>index</th>
+                    <th>image</th>
                     <th>Name</th>
+                    <th>phone No</th>
                     <th>Email</th>
-                    <th>Birthdate</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -44,10 +45,11 @@ const AdminLeedsList = () => {
                   {/* row 1 */}
                   <tr>
                     <th>1</th>
+                    <td><img className="w-[70px] h-[70px] rounded-full" src="https://i2.wp.com/mrkoachman.com/wp-content/uploads/2015/10/mrkoachman_blog-9.jpg" alt="" /></td>
                     <td>Cy Ganderton</td>
                     <td>Quality Control Specialist</td>
                     <td>Blue</td>
-                    <td className="flex gap-5">
+                    <td className="flex mt-[19px] gap-5">
                     <Link to={`/AdminLeedsEdit/$`}>
                       <button className="btn btn-sm bg-success uppercase  mb-[10px]">
                         Edit

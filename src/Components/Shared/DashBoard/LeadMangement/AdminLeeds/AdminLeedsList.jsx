@@ -50,7 +50,7 @@ const AdminLeedsList = () => {
                     <td>Quality Control Specialist</td>
                     <td>Blue</td>
                     <td className="flex mt-[19px] gap-5">
-                    <Link to={`/AdminLeedsEdit/$`}>
+                    <Link to="/AdminLeedsEdit">
                       <button className="btn btn-sm bg-success uppercase  mb-[10px]">
                         Edit
                       </button>
@@ -58,9 +58,11 @@ const AdminLeedsList = () => {
                       <button className="btn btn-sm bg-error uppercase  mb-[10px]">
                         Delete
                       </button>
+                      <Link to="/AdminLeedsDetails">
                       <button className="btn btn-sm bg-warning uppercase  mb-[10px]">
                         Details
                       </button>
+                      </Link>
                     </td>
                   </tr>
                 </tbody>

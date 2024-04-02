@@ -29,6 +29,7 @@ import ConfirmContractPage from "./Components/Pages/UserDetails/ContractPage/Con
 import AdminLeedsList from "./Components/Shared/DashBoard/LeadMangement/AdminLeeds/AdminLeedsList";
 import AdminLeedsEdit from "./Components/Shared/DashBoard/LeadMangement/AdminLeeds/AdminLeedsEdit";
 import AdminLeedsAdd from "./Components/Shared/DashBoard/LeadMangement/AdminLeeds/AdminLeedsAdd";
+import AdminLeedsDetails from "./Components/Shared/DashBoard/LeadMangement/AdminLeeds/AdminLeedsDetails";
 
 const router = createBrowserRouter([
   {
@@ -102,12 +103,16 @@ const router = createBrowserRouter([
         element: <AdminLeedsList/>
       },
       {
+        path: "/AdminLeedsAdd",
+        element: <AdminLeedsAdd/>
+      },
+      {
         path: "/AdminLeedsEdit",
         element: <AdminLeedsEdit/>
       },
       {
-        path: "/AdminLeedsAdd",
-        element: <AdminLeedsAdd/>
+        path: "/AdminLeedsDetails",
+        element: <AdminLeedsDetails/>
       },
       {
         path: "/AdminSubLeeds",

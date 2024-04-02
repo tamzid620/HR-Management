@@ -8,6 +8,7 @@ import { BsFiletypePdf } from "react-icons/bs";
 import { FaWpforms } from "react-icons/fa";
 
 const UserDetailsInfo = () => {
+  
   const navigate = useNavigate();
   const [eduInfos, setEduInfos] = useState([]);
   const [docInfos, setDocInfos] = useState([]);

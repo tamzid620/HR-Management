@@ -23,7 +23,7 @@ import {
     Authorization: "Bearer " + user.token,
   };
   axios
-    .post(`https://backend.ap.loclx.io/api/admin-logout`, null, {
+    .post(`https://backend.ap.loclx.io/api/`, null, {
       headers: headers,
     })
     .then((res) => {

@@ -103,7 +103,7 @@ const handleSubmit = () => {
             </h1>
             <hr className="border border-gray-300" />
             {/* ------------------------input  Section -------------------------  */}
-            <section className="bg-gray-300 mx-[10px] p-[5px] mt-[10px] rounded-md">
+            <section className="bg-gray-300 mx-[10px] p-[5px] mt-[10px] rounded-md shadow-md shadow-gray-800">
             <div className="flex flex-col items-center mx-[10px]">
               {/* Name input */}
               <input

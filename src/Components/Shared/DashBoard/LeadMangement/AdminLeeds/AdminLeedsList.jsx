@@ -24,11 +24,6 @@ const AdminLeedsList = () => {
             <hr className="border border-gray-300 mb-[50px]" />
             {/* ------------------------Table Section -------------------------  */}
             <div className="overflow-x-auto">
-              <Link to="/AdminLeedsAdd">
-                <button className="btn btn-md bg-info uppercase ms-[10px] mb-[10px]">
-                  Add
-                </button>
-              </Link>
               <table className="table table-zebra">
                 {/* head */}
                 <thead className="bg-gray-500 text-white">
@@ -50,7 +45,7 @@ const AdminLeedsList = () => {
                     <td>Quality Control Specialist</td>
                     <td>Blue</td>
                     <td className="flex mt-[19px] gap-5">
-                    <Link to="/AdminLeedsEdit">
+                    <Link to={`/AdminLeedsEdit/${leed.id}`}>
                       <button className="btn btn-sm bg-success uppercase  mb-[10px]">
                         Edit
                       </button>

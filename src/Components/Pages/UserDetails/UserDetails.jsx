@@ -1,3 +1,4 @@
+import Loading from "../../Loading/Loading";
 import UserDetailsImg from "./UserDetailsImg";
 import UserDetailsInfo from "./UserDetailsInfo";
 

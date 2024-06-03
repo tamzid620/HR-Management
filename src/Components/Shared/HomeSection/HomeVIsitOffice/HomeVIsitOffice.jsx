@@ -6,7 +6,8 @@ const HomeVIsitOffice = () => {
   Aos.init();
 
   return (
-    <div className="my-20 mx-20">
+    <div className="">
+    <div className="my-20  mx-auto lg:max-w-5xl md:max-w-3xl sm: max-w-sm">
       <div
         data-aos="fade-down"
         data-aos-duration="2000"
@@ -44,6 +45,7 @@ const HomeVIsitOffice = () => {
           <img className="w-[450px]" src={officePhoto} alt="" />
         </div>
       </div>
+    </div>
     </div>
   );
 };

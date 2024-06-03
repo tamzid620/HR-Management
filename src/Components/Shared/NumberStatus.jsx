@@ -11,14 +11,11 @@ const NumberStatus = () => {
   return (
     <div
       className="
-        lg:ms-5 lg:w-[1540px] 
-        md:ms-4 md:w-[700px] 
-        sm: ms-5 sm: w-[900px] 
-        grid lg:grid-cols-4 md:grid-cols-2 sm: grid-cols-1 gap-16 mt-10 "
+        grid lg:grid-cols-4 md:grid-cols-2 sm: grid-cols-1 gap-5 mt-10 "
     >
       {/* ----------------------Number Status ------------------------- */}
       {/* cart-One  */}
-      <div className="lg:w-[380px] md:w-[350px] sm: w-[320px] rounded-lg  shadow-md shadow-gray-500  bg-white text-black py-6 px-6">
+      <div className=" rounded-lg  shadow-md shadow-gray-500  bg-white text-black py-6 px-6">
         <div className="flex mb-3 h-[50px] w-[50px] items-center justify-center rounded-full text-blue-900 bg-gray-300">
           <FaRegEye size={25} />
         </div>
@@ -32,7 +29,7 @@ const NumberStatus = () => {
         </div>
       </div>
       {/* cart-two  */}
-      <div className="lg:w-[380px] md:w-[350px] sm: w-[320px] rounded-lg  shadow-md shadow-gray-500  bg-white text-black py-6 px-6">
+      <div className=" rounded-lg  shadow-md shadow-gray-500  bg-white text-black py-6 px-6">
         <div className="flex mb-3 h-[50px] w-[50px] items-center justify-center rounded-full text-blue-900 bg-gray-300">
           <FaShoppingCart size={22} />
         </div>
@@ -46,7 +43,7 @@ const NumberStatus = () => {
         </div>
       </div>
       {/* cart-three  */}
-      <div className="lg:w-[380px] md:w-[350px] sm: w-[320px] rounded-lg  shadow-md shadow-gray-500  bg-white text-black py-6 px-6">
+      <div className=" rounded-lg  shadow-md shadow-gray-500  bg-white text-black py-6 px-6">
         <div className="flex mb-3 h-[50px] w-[50px] items-center justify-center rounded-full text-blue-900 bg-gray-300">
           <FaShoppingBag size={22} />
         </div>
@@ -60,7 +57,7 @@ const NumberStatus = () => {
         </div>
       </div>
       {/* cart-four  */}
-      <div className="lg:w-[380px] md:w-[350px] sm: w-[320px] rounded-lg  shadow-md shadow-gray-500  bg-white text-black py-6 px-6">
+      <div className=" rounded-lg  shadow-md shadow-gray-500  bg-white text-black py-6 px-6">
         <div className="flex mb-3 h-[50px] w-[50px] items-center justify-center rounded-full text-blue-900 bg-gray-300">
           <FaUserFriends size={22} />
         </div>

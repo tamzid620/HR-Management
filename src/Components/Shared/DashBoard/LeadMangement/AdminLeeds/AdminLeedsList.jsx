@@ -3,6 +3,9 @@ import AdminNav from "../../../../AdminPanel/AdminNav";
 import SearchPanel from "../../../SearchPanel/SearchPanel";
 
 const AdminLeedsList = () => {
+
+
+  
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Mobile and medium device sidebar toggle button */}
@@ -45,11 +48,11 @@ const AdminLeedsList = () => {
                     <td>Quality Control Specialist</td>
                     <td>Blue</td>
                     <td className="flex mt-[19px] gap-5">
-                    <Link to={`/AdminLeedsEdit/${leed.id}`}>
+                    {/* <Link to={`/AdminLeedsEdit/${leed.id}`}> */}
                       <button className="btn btn-sm bg-success uppercase  mb-[10px]">
                         Edit
                       </button>
-                    </Link>
+                    {/* </Link> */}
                       <button className="btn btn-sm bg-error uppercase  mb-[10px]">
                         Delete
                       </button>

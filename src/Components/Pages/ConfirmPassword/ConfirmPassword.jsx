@@ -4,6 +4,7 @@ import hidePasswordIcon from "../../../../public/icons/show-password-icon-18.jpg
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../Loading/Loading";
 
 const ConfirmPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,6 +14,7 @@ const ConfirmPassword = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [submitState, setSubmitState] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const storedEmail = localStorage.getItem("email");
@@ -47,8 +49,9 @@ const navigate = useNavigate();
 
   // handle submit ----------------------------------------------------------------
   const handleSubmit = (e) => {
-    console.log("button clicked");
+    console.log("email---", email, 'password--- ', confirmPassword);
     e.preventDefault();
+    setLoading(true);
 
     const data = new FormData();
     data.append("name", name);
@@ -58,25 +61,36 @@ const navigate = useNavigate();
     axios
       .post("https://backend.ap.loclx.io/api/student-reg", data)
       .then((res) => {
-        const responseData = res.data;
-        setSubmitState(responseData);
-        Swal.fire({
-          icon: "success",
-          title: res.data.message,
-          showConfirmButton: false,
-          timer: 2500
-        });
-        // localStorage.clear() ; 
-        navigate('/userLogin')
-      })
-      .catch((error) => {
-        console.error("Error submitting form:", error);
-      });
+        if(data){
+          setSubmitState(res.data);
+          navigate('/userLogin') ;
+          Swal.fire({
+            icon: "success",
+            title: res.data.message,
+            showConfirmButton: false,
+            timer: 2500
+          });
+        }
+        else{
+          Swal.fire({
+            icon: "error",
+            title: 'something went wrong',
+            showConfirmButton: false,
+            timer: 2500
+          });   
+        }
+      }
+    )
+    .catch((error) => {
+      console.error("Error submitting form:", error);
+    });
+    setLoading(false) ;
   };
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <form onClick={handleSubmit}>
+      {loading ? <Loading/> : 
+      <form>
         {/* Name section  */}
         <div>
           <label htmlFor="name">Name:</label>
@@ -190,12 +204,13 @@ const navigate = useNavigate();
         <div className="flex justify-center">
           <button
             className=" bg-[#25476a] hover:bg-gray-500 text-white text-md hover:text-black py-1 px-2 rounded focus:outline-none focus:shadow-outline  mt-3"
-            type="submit"
+            onClick={handleSubmit}
           >
             Submit
           </button>
         </div>
       </form>
+      }
     </div>
   );
 };

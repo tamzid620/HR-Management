@@ -5,6 +5,7 @@ import "aos/dist/aos.css";
 const HomeSupport = () => {
     Aos.init();
     return (
+        <div className="flex justify-center">
         <div className="my-20">
                 <h1 className="flex justify-center ">WE OFFER SUPPORT</h1>
                 <p className="flex justify-center font-bold text-3xl">How We Can Help You?</p>
@@ -85,6 +86,7 @@ const HomeSupport = () => {
             </div>
 
             </div>
+        </div>
         </div>
     );
 };

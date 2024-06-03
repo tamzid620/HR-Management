@@ -17,7 +17,7 @@ const SearchPanel = () => {
             {/* search button  */}
             <button className=" ms-2 sm: hidden md:hidden lg:flex items-center justify-center w-[30px] h-[30px] ">
               {" "}
-              <FaSearch className="text-white hover:text-blue-500" />{" "}
+              <FaSearch className="text-white hover:text-blue-500" />
             </button>
           </div>
           {/*-------------------- menu section---------------  */}

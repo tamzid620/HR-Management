@@ -18,7 +18,7 @@ const ChartTwo = () => {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   return (
-    <div className="lg:ms-5 md:ms-4 sm: ms-5 lg:w-[450px] md:w-full sm: w-[340px] p-5  rounded-md shadow-md shadow-gray-500  bg-white">
+    <div className="lg:ms-5 md:ms-4 sm: ms-5 p-5  rounded-md shadow-md shadow-gray-500  bg-white">
       <div className="flex justify-between">
         <h1 className=" font-bold text-lg">Used Device</h1>
         {/* sort option  */}

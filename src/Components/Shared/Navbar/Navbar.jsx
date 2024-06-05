@@ -93,7 +93,6 @@ const Navbar = () => {
               <a
                 onClick={toggleAboutUsDropDown}
                 className="md:p-4 py-2 uppercase  hover:text-[#539ce6] flex items-center relative "
-                href="#"
               >
                 About Us <IoIosArrowDown className="ms-2" />
               </a>
@@ -112,7 +111,7 @@ const Navbar = () => {
               <a
                 onClick={toggleOurServiceDropDown}
                 className="md:p-4 py-2 uppercase hover:text-[#539ce6] flex items-center relative"
-                href="#"
+              
               >
                 Our Services <IoIosArrowDown className="ms-2" />
               </a>
@@ -130,7 +129,6 @@ const Navbar = () => {
             <li>
               <a
                 className="md:p-4 py-2 block uppercase hover:text-[#539ce6]"
-                href="#"
               >
                 Successful Applicants
               </a>
@@ -138,7 +136,6 @@ const Navbar = () => {
             <li>
               <a
                 className="md:p-4 py-2 block uppercase hover:text-[#539ce6]"
-                href="#"
               >
                 Blog
               </a>
@@ -146,7 +143,6 @@ const Navbar = () => {
             <li>
               <a
                 className="md:p-4 py-2 block uppercase hover:text-[#539ce6]"
-                href="#"
               >
                 Event
               </a>
@@ -155,7 +151,6 @@ const Navbar = () => {
               <a
                 className="lg:flex md:hidden sm: hidden md:p-4 py-2 uppercase 
                  hover:text-black hover:bg-gray-300 text-white bg-[#25476a] rounded-full"
-                href="#"
               >
                 Contact
               </a>
@@ -172,7 +167,6 @@ const Navbar = () => {
             <li>
               <a
                 className="lg:hidden md:flex sm: flex md:p-4 py-2  hover:text-[#539ce6] text-purple-500"
-                href="#"
               >
                 Sign In
               </a>

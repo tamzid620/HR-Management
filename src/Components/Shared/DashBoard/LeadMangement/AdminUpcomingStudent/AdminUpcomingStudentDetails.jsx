@@ -95,7 +95,6 @@ const AdminUpcomingStudentDetails = () => {
         {/* Page content */}
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
           <div>
-            s
             <h1
               style={{ fontFamily: "Taviraj, serif" }}
               className="text-center font-semibold text-3xl mt-[50px] mb-[10px]"

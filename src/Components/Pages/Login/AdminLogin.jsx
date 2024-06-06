@@ -49,18 +49,29 @@ const AdminLogin = () => {
     axios
       .post(`http://backend.ap.loclx.io/api/login`, data)
       .then((res) => {
-        if (res.status === '201') {
+        if (res.status === 201) {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("user", JSON.stringify(res.data));
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: res.data.message,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate("/dp");
-        } else if (res.status === '403') {
+          if (res.data.user.role === "1") {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: res.data.message,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/dp");
+          } else {
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: res.data.message,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/adminLogin");
+          }
+        } else if (res.status === 403) {
           Swal.fire({
             position: "center",
             icon: "error",
@@ -77,10 +88,10 @@ const AdminLogin = () => {
             timer: 1500,
           });
         }
-        setIsLoading(false) ;
+        setIsLoading(false);
       })
       .catch((error) => {
-        if (error.response && error.response.status === '403') {
+        if (error.response && error.response.status === 403) {
           Swal.fire({
             icon: "error",
             title: "Authentication Error",
@@ -95,7 +106,6 @@ const AdminLogin = () => {
         }
         setIsLoading(false);
       });
-     
   };
 
   const backgroundStyles = {

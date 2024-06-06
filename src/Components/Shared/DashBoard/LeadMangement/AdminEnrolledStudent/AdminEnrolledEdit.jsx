@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import AdminNav from "../../../../AdminPanel/AdminNav";
@@ -14,7 +14,24 @@ const AdminEnrolledEdit = () => {
     const [phoneNo, setPhoneNo] = useState('');
     const [email, setEmail] = useState('');
     const [image, setImage] = useState(''); 
-  
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+
+    if (!token && user?.role === "1") {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "You have to Login first",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/adminLogin");
+    } else {
+      ("");
+    }
+  }, [navigate]);
     const handleNameChange = (e) => {
       setName(e.target.value);
     }

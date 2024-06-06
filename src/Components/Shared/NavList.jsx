@@ -21,19 +21,19 @@ const NavList = () => {
           Lead Management <MdArrowDropDown size={20} />
         </summary>
         <ul className="p-2 shadow menu dropdown-content z-[1] bg-[#25476a] border rounded-box w-52 ">
-          <Link to="/AdminContracts">
+          <Link to="/adminContracts">
             <li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">
               Contracts
             </li>
           </Link>
           <hr className="mt-1" />
-          <Link to="/AdminEnrolledList">
+          <Link to="/adminEnrolledList">
             <li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">
               Enrolled Students
             </li>
           </Link>
           <hr className="mt-1" />
-          <Link to="/AdminSubLeeds">
+          <Link to="/adminUpcomingStudentsList">
             <li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">
               Upcoming Students
             </li>
@@ -48,25 +48,25 @@ const NavList = () => {
           Finance <MdArrowDropDown size={20} />
         </summary>
         <ul className="p-2 shadow menu dropdown-content z-[1] bg-[#25476a] border rounded-box w-52 ">
-          <Link to="/AdminEstimates">
+          <Link to="/adminEstimates">
             <li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">
               Estimates
             </li>
           </Link>
           <hr className="mt-1" />
-          <Link to="/AdminInvoice">
+          <Link to="/adminInvoice">
             <li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">
               Invoice
             </li>
           </Link>
           <hr className="mt-1" />
-          <Link to="/AdminPayment">
+          <Link to="/adminPayment">
             <li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">
               Payment
             </li>
           </Link>
           <hr className="mt-1" />
-          <Link to="/AdminCreditNote">
+          <Link to="/adminCreditNote">
             <li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">
               Credit Note
             </li>
@@ -75,7 +75,7 @@ const NavList = () => {
       </details>
 
       {/* Tickets section  */}
-      <Link to="/AdminTickets">
+      <Link to="/adminTickets">
         <li className="flex font-semibold text-lg mb-3 ">
           <span className="flex items-center w-[250px] rounded-r-full text-sm  bg-[#191c24] hover:bg-transparent p-3 border-l-4 border-white">
             <IoIosSpeedometer className="text-white me-2" size={20} /> Tickets
@@ -83,7 +83,7 @@ const NavList = () => {
         </li>
       </Link>
       {/* Message section  */}
-      <Link to="/AdminMessage">
+      <Link to="/adminMessage">
         <li className="flex font-semibold text-lg mb-3 ">
           <span className="flex items-center w-[250px] rounded-r-full text-sm  bg-[#191c24] hover:bg-transparent p-3 border-l-4 border-white">
             <IoIosSpeedometer className="text-white me-2" size={20} /> Message
@@ -91,7 +91,7 @@ const NavList = () => {
         </li>
       </Link>
       {/* NoticeBoard section  */}
-      <Link to="/AdminNoticeBoard">
+      <Link to="/adminNoticeBoard">
         <li className="flex font-semibold text-lg mb-3 ">
           <span className="flex items-center w-[250px] rounded-r-full text-sm  bg-[#191c24] hover:bg-transparent p-3 border-l-4 border-white">
             <IoIosSpeedometer className="text-white me-2" size={20} /> Notice Board

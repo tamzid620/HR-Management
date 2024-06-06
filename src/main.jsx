@@ -25,10 +25,12 @@ import UserDetails from "./Components/Pages/UserDetails/UserDetails";
 import UdBackup from "./Components/Pages/UserDetails/UdBackup";
 import ContractPage from "./Components/Pages/UserDetails/ContractPage/ContractPage";
 import ConfirmContractPage from "./Components/Pages/UserDetails/ContractPage/ConfirmContractPage";
-import AdminEnrolledList from "./Components/Shared/DashBoard/LeadMangement/AdminEnrolled/AdminEnrolledList";
-import AdminEnrolledEdit from "./Components/Shared/DashBoard/LeadMangement/AdminEnrolled/AdminEnrolledEdit";
-import AdminUpcomingStudent from "./Components/Shared/DashBoard/LeadMangement/AdminUpcomingStudent";
-import AdminEnrolledDetails from "./Components/Shared/DashBoard/LeadMangement/AdminEnrolled/AdminEnrolledDetails";
+import AdminEnrolledList from "./Components/Shared/DashBoard/LeadMangement/AdminEnrolledStudent/AdminEnrolledList";
+import AdminEnrolledEdit from "./Components/Shared/DashBoard/LeadMangement/AdminEnrolledStudent/AdminEnrolledEdit";
+import AdminUpcomingStudent from "./Components/Shared/DashBoard/LeadMangement/AdminUpcomingStudent/AdminUpcomingStudentList";
+import AdminEnrolledDetails from "./Components/Shared/DashBoard/LeadMangement/AdminEnrolledStudent/AdminEnrolledDetails";
+import AdminUpcomingStudentEdit from "./Components/Shared/DashBoard/LeadMangement/AdminUpcomingStudent/AdminUpcomingStudentEdit";
+import AdminUpcomingStudentDetails from "./Components/Shared/DashBoard/LeadMangement/AdminUpcomingStudent/AdminUpcomingStudentDetails";
 
 const router = createBrowserRouter([
   {
@@ -106,8 +108,16 @@ const router = createBrowserRouter([
         element: <AdminEnrolledDetails/>
       },
       {
-        path: "/adminUpcomingStudents",
+        path: "/adminUpcomingStudentsList",
         element: <AdminUpcomingStudent/>
+      },   
+      {
+        path: "/adminUpcomingStudentsEdit/:UpcomingId",
+        element: <AdminUpcomingStudentEdit/>
+      },   
+      {
+        path: "/adminUpcomingStudentsDetails",
+        element: <AdminUpcomingStudentDetails/>
       },   
 //------------------------------------- Finance -------------------------------------  
       {

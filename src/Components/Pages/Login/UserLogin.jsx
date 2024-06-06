@@ -106,7 +106,6 @@ const UserLogin = () => {
         }
         setIsLoading(false);
       });
-
   };
 
   const backgroundStyles = {

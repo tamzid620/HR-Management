@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BsFiletypePdf } from "react-icons/bs";
-import { FaWpforms } from "react-icons/fa";
+// import { FaWpforms } from "react-icons/fa";
 
 const AdminLeedsDetails = () => {
   const navigate = useNavigate();

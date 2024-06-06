@@ -11,7 +11,6 @@ import Home from "./Components/Pages/Home/Home";
 import UserLogin from "./Components/Pages/Login/UserLogin";
 import UserSignUp from "./Components/Pages/Login/UserSignUp";
 import AdminContracts from "./Components/Shared/DashBoard/LeadMangement/AdminContracts";
-import AdminSubLeeds from "./Components/Shared/DashBoard/LeadMangement/AdminSubLeeds";
 import AdminEstimates from "./Components/Shared/DashBoard/Finance/AdminEstimates";
 import AdminInvoice from "./Components/Shared/DashBoard/Finance/AdminInvoice";
 import AdminPayment from "./Components/Shared/DashBoard/Finance/AdminPayment";
@@ -26,9 +25,10 @@ import UserDetails from "./Components/Pages/UserDetails/UserDetails";
 import UdBackup from "./Components/Pages/UserDetails/UdBackup";
 import ContractPage from "./Components/Pages/UserDetails/ContractPage/ContractPage";
 import ConfirmContractPage from "./Components/Pages/UserDetails/ContractPage/ConfirmContractPage";
-import AdminLeedsList from "./Components/Shared/DashBoard/LeadMangement/AdminLeeds/AdminLeedsList";
-import AdminLeedsEdit from "./Components/Shared/DashBoard/LeadMangement/AdminLeeds/AdminLeedsEdit";
-import AdminLeedsDetails from "./Components/Shared/DashBoard/LeadMangement/AdminLeeds/AdminLeedsDetails";
+import AdminEnrolledList from "./Components/Shared/DashBoard/LeadMangement/AdminEnrolled/AdminEnrolledList";
+import AdminEnrolledEdit from "./Components/Shared/DashBoard/LeadMangement/AdminEnrolled/AdminEnrolledEdit";
+import AdminUpcomingStudent from "./Components/Shared/DashBoard/LeadMangement/AdminUpcomingStudent";
+import AdminEnrolledDetails from "./Components/Shared/DashBoard/LeadMangement/AdminEnrolled/AdminEnrolledDetails";
 
 const router = createBrowserRouter([
   {
@@ -86,63 +86,59 @@ const router = createBrowserRouter([
         path: "/dp",
         element: <AdminPanel/>
       },
-// AdminDashBoard section --------------------------------------------------------
-
-
-
-
+// AdminDashBoard section *****************************************************
 
 // Lead Management ------
       {
-        path: "/AdminContracts",
+        path: "/adminContracts",
         element: <AdminContracts/>
       },
       {
-        path: "/AdminLeedsList",
-        element: <AdminLeedsList/>
+        path: "/adminEnrolledList",
+        element: <AdminEnrolledList/>
       },
       {
-        path: "/AdminLeedsEdit/:leedsId",
-        element: <AdminLeedsEdit/>
+        path: "/adminEnrolledEdit/:EnrolledId",
+        element: <AdminEnrolledEdit/>
       },
       {
-        path: "/AdminLeedsDetails",
-        element: <AdminLeedsDetails/>
+        path: "/adminEnrolledDetails",
+        element: <AdminEnrolledDetails/>
       },
       {
-        path: "/AdminSubLeeds",
-        element: <AdminSubLeeds/>
-      },
-// Finance --------------------      
+        path: "/adminUpcomingStudents",
+        element: <AdminUpcomingStudent/>
+      },   
+//------------------------------------- Finance -------------------------------------  
       {
-        path: "/AdminEstimates",
+        path: "/adminEstimates",
         element: <AdminEstimates/>
       },
       {
-        path: "/AdminInvoice",
+        path: "/adminInvoice",
         element: <AdminInvoice/>
       },
       {
-        path: "/AdminPayment",
+        path: "/adminPayment",
         element: <AdminPayment/>
       },
       {
-        path: "/AdminCreditNote",
+        path: "/adminCreditNote",
         element: <AdminCreditNote/>
       },
-// Tickets -------------------- 
+//------------------------------------- Tickets ------------------------------------- 
       {
-        path: "/AdminTickets",
+        path: "/adminTickets",
         element: <AdminTickets/>
       },
-// Message -------------------- 
+//------------------------------------- Message ------------------------------------- 
       {
-        path: "/AdminMessage",
+        path: "/adminMessage",
         element: <AdminMessages/>
       },
-// NOtice Board -------------------- 
+//------------------------------------- Notice Board ------------------------------------- 
       {
-        path: "/AdminNoticeBoard",
+        path: "/adminNoticeBoard",
         element: <AdminNoticeBoard/>
       },
 

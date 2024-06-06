@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import adminloginbanner from "../../../../public/images/loginBackground.jpg";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -68,6 +68,15 @@ const UserLogin = () => {
           });
           navigate("/userLogin");
         }
+      }
+      else{
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     });
   };

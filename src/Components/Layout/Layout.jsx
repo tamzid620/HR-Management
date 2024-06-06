@@ -20,22 +20,22 @@ location.pathname.includes('confirmPassword') ||
 location.pathname.includes('adminLogin') ||
 location.pathname.includes('dp') ||
 // Lead Management ----------
-location.pathname.includes('AdminContracts') ||
-location.pathname.includes('AdminLeedsList') ||
-location.pathname.includes('AdminLeedsEdit') ||
-location.pathname.includes('AdminLeedsDetails') ||
-location.pathname.includes('AdminSubLeeds') ||
+location.pathname.includes('adminContracts') ||
+location.pathname.includes('adminEnrolledList') ||
+location.pathname.includes('adminEnrolledEdit') ||
+location.pathname.includes('adminEnrolledDetails') ||
+location.pathname.includes('adminUpcomingStudents') ||
 // Finance --------------------
-location.pathname.includes('AdminEstimates') ||
-location.pathname.includes('AdminInvoice') ||
-location.pathname.includes('AdminPayment') ||
-location.pathname.includes('AdminCreditNote') ||
+location.pathname.includes('adminEstimates') ||
+location.pathname.includes('adminInvoice') ||
+location.pathname.includes('adminPayment') ||
+location.pathname.includes('adminCreditNote') ||
 // Tickets------------------
-location.pathname.includes('AdminTickets') ||
+location.pathname.includes('adminTickets') ||
 // Message------------------
-location.pathname.includes('AdminMessage') ||
+location.pathname.includes('adminMessage') ||
 // Notice Board------------------
-location.pathname.includes('AdminNoticeBoard') 
+location.pathname.includes('adminNoticeBoard') 
 
     return (
         <div>

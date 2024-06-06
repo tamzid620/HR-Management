@@ -26,8 +26,8 @@ const AdminLeedsList = () => {
             </h1>
             <hr className="border border-gray-300 mb-[50px]" />
             {/* ------------------------Table Section -------------------------  */}
-            <div className="overflow-x-auto">
-              <table className="table table-zebra">
+            <div className="overflow-x-auto ">
+              <table className="table table-zebra ">
                 {/* head */}
                 <thead className="bg-gray-500 text-white">
                   <tr>
@@ -41,6 +41,29 @@ const AdminLeedsList = () => {
                 </thead>
                 <tbody>
                   {/* row 1 */}
+                  <tr>
+                    <th>1</th>
+                    <td><img className="w-[70px] h-[70px] rounded-full" src="https://i2.wp.com/mrkoachman.com/wp-content/uploads/2015/10/mrkoachman_blog-9.jpg" alt="" /></td>
+                    <td>Cy Ganderton</td>
+                    <td>Quality Control Specialist</td>
+                    <td>Blue</td>
+                    <td className="flex mt-[19px] gap-5">
+                    {/* <Link to={`/AdminLeedsEdit/${leed.id}`}> */}
+                      <button className="btn btn-sm bg-success uppercase  mb-[10px]">
+                        Edit
+                      </button>
+                    {/* </Link> */}
+                      <button className="btn btn-sm bg-error uppercase  mb-[10px]">
+                        Delete
+                      </button>
+                      <Link to="/AdminLeedsDetails">
+                      <button className="btn btn-sm bg-warning uppercase  mb-[10px]">
+                        Details
+                      </button>
+                      </Link>
+                    </td>
+                  </tr>
+                  {/* row 2 */}
                   <tr>
                     <th>1</th>
                     <td><img className="w-[70px] h-[70px] rounded-full" src="https://i2.wp.com/mrkoachman.com/wp-content/uploads/2015/10/mrkoachman_blog-9.jpg" alt="" /></td>

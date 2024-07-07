@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 // import '../../Pages/Home/Nav.js'
 import homeLogo from "../../../../public/images/home_logo.jpg";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [aboutUsDropDownOpen, setAboutUsDropDownOpen] = useState(false);
   const [ourServiceDropDownOpen, setOurServiceDropDownOpen] = useState(false);
+  const navRef = useRef(null);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -23,9 +24,24 @@ const Navbar = () => {
     setAboutUsDropDownOpen(false);
   };
 
+  const handleClickOutside = (e) => {
+    if (navRef.current && !navRef.current.contains(e.target)) {
+      setOurServiceDropDownOpen(false);
+      setAboutUsDropDownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div>
       <nav
+        ref={navRef}
         className="
           flex flex-wrap
           items-center
@@ -111,7 +127,6 @@ const Navbar = () => {
               <a
                 onClick={toggleOurServiceDropDown}
                 className="md:p-4 py-2 uppercase hover:text-[#539ce6] flex items-center relative"
-              
               >
                 Our Services <IoIosArrowDown className="ms-2" />
               </a>
@@ -127,23 +142,17 @@ const Navbar = () => {
               </ul>
             </li>
             <li>
-              <a
-                className="md:p-4 py-2 block uppercase hover:text-[#539ce6]"
-              >
+              <a className="md:p-4 py-2 block uppercase hover:text-[#539ce6]">
                 Successful Applicants
               </a>
             </li>
             <li>
-              <a
-                className="md:p-4 py-2 block uppercase hover:text-[#539ce6]"
-              >
+              <a className="md:p-4 py-2 block uppercase hover:text-[#539ce6]">
                 Blog
               </a>
             </li>
             <li>
-              <a
-                className="md:p-4 py-2 block uppercase hover:text-[#539ce6]"
-              >
+              <a className="md:p-4 py-2 block uppercase hover:text-[#539ce6]">
                 Event
               </a>
             </li>
@@ -165,9 +174,7 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a
-                className="lg:hidden md:flex sm: flex md:p-4 py-2  hover:text-[#539ce6] text-purple-500"
-              >
+              <a className="lg:hidden md:flex sm: flex md:p-4 py-2  hover:text-[#539ce6] text-purple-500">
                 Sign In
               </a>
             </li>

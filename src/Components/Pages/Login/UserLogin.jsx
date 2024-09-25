@@ -47,7 +47,7 @@ const UserLogin = () => {
     console.log("Email:", email, ",", "Password:", password);
     setIsLoading(true);
     axios
-      .post(`https://backend.ap.loclx.io/api/login`, data)
+      .post(`https://consultantbackend.softplatoon.com/api/login`, data)
       .then((res) => {
         if (res.data.status === "201") {
           localStorage.setItem("token", res.data.token);
@@ -71,7 +71,7 @@ const UserLogin = () => {
             });
             navigate("/userLogin");
           }
-        } else if (res.status === "403") {
+        } else if (res.data.status === "403") {
           Swal.fire({
             position: "center",
             icon: "error",
@@ -91,7 +91,7 @@ const UserLogin = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        if (error.response && error.response.status === "403") {
+        if (error.res && error.res.data.status === "403") {
           Swal.fire({
             icon: "error",
             title: "Authentication Error",

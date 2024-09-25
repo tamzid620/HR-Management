@@ -67,7 +67,7 @@ const UdBackup = () => {
     });
   
     axios
-      .post("https://backend.ap.loclx.io/api/save-docs", formData, { headers })
+      .post("https://consultantbackend.softplatoon.com/api/save-docs", formData, { headers })
       .then((res) => {
         if (res.data.status === "201") {
           Swal.fire({

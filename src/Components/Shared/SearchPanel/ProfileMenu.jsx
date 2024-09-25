@@ -23,7 +23,7 @@ import {
     Authorization: "Bearer " + user.token,
   };
   axios
-    .post(`https://backend.ap.loclx.io/api/`, null, {
+    .post(`https://consultantbackend.softplatoon.com/api/`, null, {
       headers: headers,
     })
     .then((res) => {

@@ -59,7 +59,7 @@ const navigate = useNavigate();
     data.append("confirmPassword", confirmPassword);
 
     axios
-      .post("https://backend.ap.loclx.io/api/student-reg", data)
+      .post("https://consultantbackend.softplatoon.com/api/student-reg", data)
       .then((res) => {
         if(data){
           setSubmitState(res.data);

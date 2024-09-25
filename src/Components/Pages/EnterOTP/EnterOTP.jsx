@@ -33,7 +33,7 @@ const EnterOTP = () => {
     console.log(phoneNo,otp);
 
     axios
-      .post("https://backend.ap.loclx.io/api/otp-verify", data)
+      .post("https://consultantbackend.softplatoon.com/api/otp-verify", data)
       .then((res) => {
         const data = res.data;
         setSubmitOtp(data);
@@ -55,7 +55,7 @@ const EnterOTP = () => {
             image: localStorage.getItem("image"),
           };
           axios
-          .post("https://backend.ap.loclx.io/api/save-leed", localStorageData)
+          .post("https://consultantbackend.softplatoon.com/api/save-leed", localStorageData)
           .then((res) => {
             if (res.data.status === "201") {
               Swal.fire({

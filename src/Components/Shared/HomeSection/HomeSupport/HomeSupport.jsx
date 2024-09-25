@@ -21,7 +21,7 @@ const HomeSupport = () => {
                     <h1 style={{ fontFamily: 'Montserrat, sans-serif' }} className="flex justify-center font-bold text-xl">STUDENT VISA</h1>
                     <p style={{ fontFamily: 'Roboto, sans-serif' }} className="font-light my-5">With us you will get expert guidelines regarding all your Study abroad needs. We have been fulfilling the study abroad dreams of students in 30 countries for over 10 years.</p>
                     <div className=" flex justify-center mt-10 mb-10">
-                        <button className="bg-gray-300 text-black px-3 py-2 rounded-md font-semibold text-xs">Free Student Assessment</button>
+                        <button className="bg-gray-300 text-black px-3 py-2 rounded-md font-semibold text-xs">Know More</button>
                         </div>
                 </div>
             </div>

@@ -38,7 +38,7 @@ const UserDetailsImg = () => {
       Authorization: "Bearer " + user.token,
     };
     axios
-      .get("https://backend.ap.loclx.io/api/leed-info", {
+      .get("https://consultantbackend.softplatoon.com/api/leed-info", {
         headers,
       })
       .then((res) => {
@@ -47,7 +47,7 @@ const UserDetailsImg = () => {
     console.log("user:", userImg);
     // user informaiton  get method-------------------
     axios
-      .get("https://backend.ap.loclx.io/api/leed-info", {
+      .get("https://consultantbackend.softplatoon.com/api/leed-info", {
         headers,
       })
       .then((res) => {
@@ -84,7 +84,7 @@ const UserDetailsImg = () => {
 
     setUploading(true);
     axios
-      .post("https://backend.ap.loclx.io/api/save-photo", data, { headers })
+      .post("https://consultantbackend.softplatoon.com/api/save-photo", data, { headers })
       .then((res) => {
         if (res.data.status === "201") {
           Swal.fire({

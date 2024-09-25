@@ -53,7 +53,7 @@ const handleSubmit = () => {
   data.append("image", image);
 
   axios
-    .post("https://backend.ap.loclx.io/api/", data, { headers })
+    .post("https://consultantbackend.softplatoon.com/api/", data, { headers })
     .then((res) => {
       if (res.data.status === "201") {
         Swal.fire({

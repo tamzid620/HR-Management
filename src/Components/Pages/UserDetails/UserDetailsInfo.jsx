@@ -77,7 +77,7 @@ const UserDetailsInfo = () => {
     // Educational Information table  get method------------------------
     setEduLoading(true);
     axios
-    .get("https://backend.ap.loclx.io/api/edu-info", {
+    .get("https://consultantbackend.softplatoon.com/api/edu-info", {
       headers,
     })
     .then((res) => {
@@ -87,7 +87,7 @@ const UserDetailsInfo = () => {
     // Other Documents table get method------------------------
     setDocLoading(true);
     axios
-      .get("https://backend.ap.loclx.io/api/doc-info", {
+      .get("https://consultantbackend.softplatoon.com/api/doc-info", {
         headers,
       })
       .then((res) => {
@@ -97,7 +97,7 @@ const UserDetailsInfo = () => {
     //Contract table get method------------------------
     setContractLoading(true);
     axios
-      .get("https://backend.ap.loclx.io/api/~~~~~~~~", {
+      .get("https://consultantbackend.softplatoon.com/api/~~~~~~~~", {
         headers,
       })
       .then((res) => {
@@ -143,7 +143,7 @@ const UserDetailsInfo = () => {
     data.append("markSheet", markSheet);
 
     axios
-      .post("https://backend.ap.loclx.io/api/save-docs", data, { headers })
+      .post("https://consultantbackend.softplatoon.com/api/save-docs", data, { headers })
       .then((res) => {
         if (res.data.status === "201") {
           Swal.fire({
@@ -189,7 +189,7 @@ const UserDetailsInfo = () => {
     data.append("docFile", docFile);
 
     axios
-      .post("https://backend.ap.loclx.io/api/save-docs", data, { headers })
+      .post("https://consultantbackend.softplatoon.com/api/save-docs", data, { headers })
       .then((res) => {
         if (res.data.status === "201") {
           Swal.fire({
@@ -235,7 +235,7 @@ const UserDetailsInfo = () => {
     data.append("contractPaper", contractPaper);
 
     axios
-      .post("https://backend.ap.loclx.io/api/create-contract", data, { headers })
+      .post("https://consultantbackend.softplatoon.com/api/create-contract", data, { headers })
       .then((res) => {
         if (res.data.status === "201") {
           Swal.fire({

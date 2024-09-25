@@ -46,7 +46,7 @@ const HomeSlider = () => {
     <div 
     data-aos="fade-down"
     data-aos-duration="2000" 
-     className="my-20 lg:mx-[100px] md:mx-[50px] sm: mx-[50px]">
+     className="my-20 lg:max-w-5xl md:max-w-3xl sm: max-w-sm lg:mx-auto md:mx-5 sm: mx-4 ">
       <Slider {...settings}>
           <div className="flex items-center justify-center border border-gray-300 mx-3 ">
             <div className="flex justify-center"><img className=" w-[200px] h-[200px] p-5" src={photo1} alt="" /></div>

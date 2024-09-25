@@ -12,7 +12,8 @@ const AdminPanel = () => {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
 
-    if (!token && user?.role === "1") {
+    if (!token && !user) {
+    // if (!token && user?.role === "1") {
       Swal.fire({
         position: "center",
         icon: "warning",

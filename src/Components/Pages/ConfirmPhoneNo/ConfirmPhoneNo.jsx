@@ -35,7 +35,7 @@ const ConfirmPhoneNo = () => {
     data.append("phoneNo", phoneNo);
 
     axios
-      .post("https://backend.ap.loclx.io/api/otp-generate", data)
+      .post("https://consultantbackend.softplatoon.com/api/otp-generate", data)
       .then((res) => {
         const data = res.data;
         setGenerateOtp(data);

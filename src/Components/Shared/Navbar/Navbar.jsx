@@ -60,7 +60,7 @@ const Navbar = () => {
       >
         <div>
           <Link to="/">
-            <img className="w-[100px]" src={homeLogo} alt="" />
+            <img className="lg:w-[100px] md:w-[70px] sm: w-[50px]" src={homeLogo} alt="" />
           </Link>
         </div>
 
@@ -68,7 +68,7 @@ const Navbar = () => {
           xmlns="http://www.w3.org/2000/svg"
           id="menu-button"
           onClick={toggleMenu}
-          className="h-6 w-6 cursor-pointer md:hidden block"
+          className="h-6 w-6 cursor-pointer lg:hidden block"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -84,17 +84,16 @@ const Navbar = () => {
         <div
           className={`${
             menuOpen ? "block" : "hidden"
-          } w-full md:flex md:items-center md:w-auto`}
+          } w-full lg:flex lg:items-center lg:w-auto`}
           id="menu"
         >
           <ul
             className="
               pt-4
               text-sm text-gray-700
-              md:flex
-              md:justify-between 
-              md:pt-0
-              
+              lg:flex
+              lg:justify-between 
+              lg:pt-0
               gap-3"
           >
             <li>

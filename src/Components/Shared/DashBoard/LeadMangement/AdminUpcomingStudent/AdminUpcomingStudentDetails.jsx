@@ -37,7 +37,7 @@ const AdminUpcomingStudentDetails = () => {
     // Educational Information table  get method------------------------
     setEduLoading(true);
     axios
-      .get("https://backend.ap.loclx.io/api/edu-info", {
+      .get("https://consultantbackend.softplatoon.com/api/edu-info", {
         headers,
       })
       .then((res) => {
@@ -47,7 +47,7 @@ const AdminUpcomingStudentDetails = () => {
     // Other Documents table get method------------------------
     setDocLoading(true);
     axios
-      .get("https://backend.ap.loclx.io/api/doc-info", {
+      .get("https://consultantbackend.softplatoon.com/api/doc-info", {
         headers,
       })
       .then((res) => {
@@ -57,7 +57,7 @@ const AdminUpcomingStudentDetails = () => {
     //Contract table get method------------------------
     setContractLoading(true);
     axios
-      .get("https://backend.ap.loclx.io/api/~~~~~~~~", {
+      .get("https://consultantbackend.softplatoon.com/api/~~~~~~~~", {
         headers,
       })
       .then((res) => {

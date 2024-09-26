@@ -60,7 +60,7 @@ const HomeCounter = () => {
             </span>
             <p className="font-bold  text-4xl mb-5 flex justify-center">
             {countersVisible && (
-              <CountUp start={0} end={10} duration={2} delay={0.5}>
+              <CountUp start={0} end={11} duration={2} delay={0.5}>
                 {({ countUpRef, start }) => (
                   <div>
                     <span ref={countUpRef} /> +
